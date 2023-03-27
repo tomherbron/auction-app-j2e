@@ -2,21 +2,21 @@ package fr.eni.projetjee.TrocEncheres.bo;
 
 import java.util.Objects;
 
-public class Categories {
+public class Categorie {
 
 	int noCategorie;
 	String libelle;
 
-	public Categories() {
+	public Categorie() {
 		super();
 	}
 
-	public Categories(String libelle) {
+	public Categorie(String libelle) {
 			super();
 			this.libelle = libelle;
 	}
 
-	public Categories(int noCategorie, String libelle) {
+	public Categorie(int noCategorie, String libelle) {
 		super();
 		this.noCategorie = noCategorie;
 		this.libelle = libelle;
@@ -57,7 +57,7 @@ public class Categories {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Categories other = (Categories) obj;
+		Categorie other = (Categorie) obj;
 		return Objects.equals(libelle, other.libelle) && noCategorie == other.noCategorie;
 	}
 
