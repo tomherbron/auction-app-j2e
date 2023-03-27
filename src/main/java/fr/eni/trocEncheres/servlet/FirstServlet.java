@@ -29,6 +29,7 @@ public class FirstServlet extends HttpServlet {
 		System.out.println("bonjour");
 		System.out.println("ça va aujourd'hui ?");
 		System.out.println("test123");
+		System.out.println("ECLIPSE SUCKS");
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
