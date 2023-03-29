@@ -11,11 +11,11 @@
     <form method="get" action="./ServletConnexionUtilisateur">
 	    <div>
 	   	  <label for="identifiant">Identifiant :  </label>
-	      <input type="identifiant" id="identifiant" name="identifiant">
+	      <input type="text" id="identifiant" name="pseudo-utilisateur">
 	    </div>
 	    <div>
 	      <label for="password">Mot de passe : </label>
-	      <input type="password" id="password" name="password">
+	      <input type="password" id="password" name="mdp-utilisateur">
 	    </div>
 	    <div>
 	      <input type="submit" value="Valider" />

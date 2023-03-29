@@ -1,7 +1,6 @@
 package fr.eni.projetjee.TrocEncheres.servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +18,7 @@ import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 @WebServlet("/ServletInscription")
 public class ServletInscription extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	
 	private IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
@@ -74,7 +74,7 @@ public class ServletInscription extends HttpServlet {
 			e.printStackTrace();
 		}
 	    
-	    RequestDispatcher rd = request.getRequestDispatcher("./loginutilisateur.jsp");
+	    RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
 	     rd.forward(request, response);
 	     doGet(request, response);
 	     

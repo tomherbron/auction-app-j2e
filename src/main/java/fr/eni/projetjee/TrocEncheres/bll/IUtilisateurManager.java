@@ -11,6 +11,8 @@ public interface IUtilisateurManager {
 	
 	public void deleteUtilisateur(Integer noUtilisateur ) throws DALException, UtilisateurManagerException ;
 	
-	public void selectById(Integer noUtilisateur ) throws DALException, UtilisateurManagerException ;
+	public Utilisateur  selectById(Integer noUtilisateur ) throws DALException, UtilisateurManagerException ;
+	
+	public Utilisateur  selectByLogin (String pseudo, String motDePasse) throws DALException, UtilisateurManagerException ;
 
 }
