@@ -12,5 +12,5 @@ public interface IArticleVenduDAO {
 	
 	public void deleteArticleVendu(Integer noArticle) throws DALException, SQLException ;
 	
-	public void selectById(Integer noArticle) throws DALException, SQLException ;
+	public ArticleVendu selectById(Integer noArticle) throws DALException, SQLException ;
 }
