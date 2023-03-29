@@ -1,6 +1,7 @@
 package fr.eni.projetjee.TrocEncheres.dal;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.Enchere;
 
@@ -12,8 +13,8 @@ public interface IEnchereDAO {
 	
 	public void deleteEnchere (Integer noEnchere) throws DALException, SQLException;
 	
-	public void selectAllEncheres () throws DALException, SQLException;
+	public List<Enchere> selectAllEncheres () throws DALException, SQLException;
 	
-	public void selectEnchereById (Integer noEnchere) throws DALException, SQLException;
+	public Enchere selectEnchereById (Integer noEnchere) throws DALException, SQLException;
 	
 }
