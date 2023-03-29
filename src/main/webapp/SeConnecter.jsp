@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Authentification</h1>
-    <form method="get" action="./ServletConnexionUtilisateur">
+    <form method="post" action="./ServletConnexion">
 	    <div>
 	   	  <label for="identifiant">Identifiant :  </label>
 	      <input type="text" id="identifiant" name="pseudo-utilisateur">

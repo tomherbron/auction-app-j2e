@@ -8,9 +8,8 @@
 </head>
 <body>
 	<h1>Inscription</h1>
-    <form method="post" action="./ServletInscription">
+    <form method="post" action="./ServletInscriptionUtilisateur">
 	    <div>
-
 	   	  <label for="pseudo-utilisateur">Pseudo :  </label>
 	      <input type="text" id="pseudo-utilisateur" name="pseudo-utilisateur">
 	    </div>

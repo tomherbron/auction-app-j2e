@@ -15,21 +15,22 @@ import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
-
-@WebServlet("/ServletInscription")
-public class ServletInscription extends HttpServlet {
+@WebServlet("/ServletInscriptionUtilisateur")
+public class ServletInscriptionUtilisateur extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
        
-    public ServletInscription() {
+
+    public ServletInscriptionUtilisateur() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	    RequestDispatcher rd = request.getRequestDispatcher("./FormulaireInscription.jsp");
+	     rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -64,20 +65,20 @@ public class ServletInscription extends HttpServlet {
 	    
 	    Utilisateur newUser = new Utilisateur (pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 	    
-	    try {
-	    	
-	    	utilisateurManager.insertUtilisateur(newUser);
-	    	
-	    } catch (DALException e) {
-			e.printStackTrace();
-		} catch (UtilisateurManagerException e) {
-			e.printStackTrace();
-		}
+		    try {
+		    	
+		    	utilisateurManager.insertUtilisateur(newUser);
+		    	
+		    } catch (DALException e) {
+				e.printStackTrace();
+			} catch (UtilisateurManagerException e) {
+				e.printStackTrace();
+			}
 	    
 	    RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
 	     rd.forward(request, response);
 	     doGet(request, response);
 	     
 	}
-	
+
 }

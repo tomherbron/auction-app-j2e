@@ -16,52 +16,54 @@ import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
-@WebServlet("/ServletConnexionUtilisateur")
-public class ServletConnexionUtilisateur extends HttpServlet {
+/**
+ * Servlet implementation class ServletConnexion
+ */
+@WebServlet("/ServletConnexion")
+public class ServletConnexion extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
-    
-	private IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
 	
-    public ServletConnexionUtilisateur() {
+	private IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
+
+    public ServletConnexion() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("./LoginUtilisateur.jsp");
-		rd.forward(request, response);
+		 RequestDispatcher rd = request.getRequestDispatcher("./SeConnecter.jsp");
+	     rd.forward(request, response);
 	}
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Utilisateur utilisateur = null;
 		
 		String pseudo = request.getParameter("pseudo-utilisateur");
 		String motDePasse = request.getParameter("mdp-utlisateur");
 		
-		HttpSession session = request.getSession();
-		
-		session.setAttribute(pseudo, session);
-		session.setAttribute(motDePasse, session);
-		
 		try {
 			
-			Utilisateur utilisateur = utilisateurManager.selectByLogin(pseudo, motDePasse);
-			
-			if (utilisateur.getPseudo() == pseudo && utilisateur.getMotDePasse() == motDePasse) {
-				RequestDispatcher rd = request.getRequestDispatcher("./AccueuilListeEncheres.jsp");
-				rd.forward(request, response);
-				doGet(request, response);
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("./LoginUtilisateur.jsp");
-			     rd.forward(request, response);
-			     doGet(request, response);
-			}
-			
+			utilisateur = utilisateurManager.selectByLogin(pseudo, motDePasse);
+						
 		} catch (DALException e) {
 			e.printStackTrace();
 		} catch (UtilisateurManagerException e) {
 			e.printStackTrace();
 		}
 		
+		if (utilisateur.getPseudo() == pseudo && utilisateur.getMotDePasse() == motDePasse) {
+		
+		
+		
+		} else {
+		     
+		}
+		
+		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
+		rd.forward(request, response);	
+
 	}
 
 }
