@@ -1,5 +1,9 @@
 package fr.eni.projetjee.TrocEncheres.dal;
 
+import java.sql.SQLException;
+
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
+
 public class EnchereDAOJdbcImpl {
 
 	private static final String INSERT = "INSERT INTO enchere(no_enchere, date_enchere, montant_enchere) VALUES(?,?,?)";
@@ -7,5 +11,6 @@ public class EnchereDAOJdbcImpl {
 	private static final String DELETE= "DELETE FROM enchere WHERE no_enchere=?";
 	private static final String SELECTALL= "SELECT * FROM enchere";
 	private static final String SELECTBYID= "SELECT (no_enchere, date_enchere, montant_enchere) FROM enchere WHERE no_enchere=? )";
-
+	
+	
 }
