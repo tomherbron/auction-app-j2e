@@ -24,6 +24,9 @@ public class ServletConnexionUtilisateur extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		 RequestDispatcher rd = request.getRequestDispatcher("./loginutilisateur.jsp");
 	     rd.forward(request, response);
 	     doGet(request, response);

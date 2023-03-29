@@ -24,9 +24,6 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 		}
 
 		try (Connection con = ConnectionProvider.getConnection()) {
-			{
-
-				try {
 
 					PreparedStatement pstmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 					pstmt.setString(1, utilisateur.getPseudo());
@@ -48,12 +45,10 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 					rs.close();
 					pstmt.close();
 
-				} finally {
-				}
-			}
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Insert failed");
 		}
-
 	}
 
 	@Override
