@@ -14,7 +14,9 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 	private static final String UPDATE = "UPDATE utilisateur SET pseudo=?, nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?, ville=?,mot_de_passe=?WHERE no_utilisateur=?";
 	private static final String DELETE = "DELETE FROM Utilisateur WHERE no_utilisateur=?";
 	private static final String SELECTBYID = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit) FROM utilisateur WHERE no_utilisateur=? )";
-
+	private static final String SELECTBYLOGIN = "SELECT (no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit) FROM utilisateur WHERE pseudo=?, mot_de_passe=? ";
+	
+	
 	@Override
 	public void insertUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
 		if (utilisateur == null) {
@@ -69,27 +71,33 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 			pstmt.setString(8, utilisateur.getVille());
 			pstmt.setString(9, utilisateur.getMotDePasse());
 			pstmt.setInt(10, utilisateur.getNoUtilisateur());
+			
 			pstmt.executeUpdate();
 			pstmt.close();
-		}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Update failed");
+		}		
 	}
-
-
-
-	
 
 	@Override
 	public void deleteUtilisateur(Integer noUtilisateur) throws DALException, SQLException {
 		
-try (Connection con = ConnectionProvider.getConnection()){
-			
-			PreparedStatement pstmt = con.prepareStatement(DELETE);
-
-			pstmt.setInt(1, noUtilisateur);
-			pstmt.executeUpdate();
-			pstmt.close();
-}		
-
+		try (Connection con = ConnectionProvider.getConnection()){
+					
+					PreparedStatement pstmt = con.prepareStatement(DELETE);
+		
+					pstmt.setInt(1, noUtilisateur);
+					pstmt.executeUpdate();
+					
+					pstmt.close();
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Delete failed");
+		}		
+		
 	}
 
 	@Override
@@ -97,34 +105,79 @@ try (Connection con = ConnectionProvider.getConnection()){
 		Utilisateur utilisateur = null;
 		try (Connection con = ConnectionProvider.getConnection()){
 	
-		PreparedStatement pstmt = con.prepareStatement(SELECTBYID);
-		pstmt.setInt(1, noUtilisateur);
-		ResultSet rs = pstmt.executeQuery();
-
-		if(rs.next()){
-		noUtilisateur = rs.getInt(1);
-		String pseudo = rs.getString(2);
-		String nom = rs.getString(3);
-		String prenom = rs.getString(4);
-		String email = rs.getString(5);
-		String telephone = rs.getString(6);
-		String rue = rs.getString(7);
-		String codePostal = rs.getString(8);
-		String ville = rs.getString(9);
-		String motDePasse = rs.getString(10);
-		Integer credit = rs.getInt(11);
-		boolean administrateur = rs.getBoolean(12);
-
-		utilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email,telephone,rue, codePostal, ville, motDePasse, credit, administrateur);
-		}
-
-		pstmt.close();
+			PreparedStatement pstmt = con.prepareStatement(SELECTBYID);
+			pstmt.setInt(1, noUtilisateur);
+			ResultSet rs = pstmt.executeQuery();
 	
-
-		return utilisateur;
+			if(rs.next()){
+				
+				noUtilisateur = rs.getInt(1);
+				String pseudo = rs.getString(2);
+				String nom = rs.getString(3);
+				String prenom = rs.getString(4);
+				String email = rs.getString(5);
+				String telephone = rs.getString(6);
+				String rue = rs.getString(7);
+				String codePostal = rs.getString(8);
+				String ville = rs.getString(9);
+				String motDePasse = rs.getString(10);
+				Integer credit = rs.getInt(11);
+				boolean administrateur = rs.getBoolean(12);
+		
+				utilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email,telephone,rue, codePostal, ville, motDePasse, credit, administrateur);
+				
+			}
+	
+			pstmt.close();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("SelectById failed");
 		}		
-			
+		
+		return utilisateur;
+		
 	}
+
+	@Override
+	public Utilisateur selectByLogIn(String pseudo, String motDePasse) throws DALException, SQLException {
+		
+		Utilisateur utilisateur = null;
+		
+		try (Connection con = ConnectionProvider.getConnection()){
+	
+			PreparedStatement pstmt = con.prepareStatement(SELECTBYLOGIN);
+			pstmt.setString(1, pseudo);
+			pstmt.setString(2, motDePasse);
+			ResultSet rs = pstmt.executeQuery();
+	
+			if(rs.next()){
+				
+				Integer noUtilisateur = rs.getInt(1);
+				pseudo = rs.getString(2);
+				String nom = rs.getString(3);
+				String prenom = rs.getString(4);
+				String email = rs.getString(5);
+				String telephone = rs.getString(6);
+				String rue = rs.getString(7);
+				String codePostal = rs.getString(8);
+				String ville = rs.getString(9);
+				motDePasse = rs.getString(10);
+				Integer credit = rs.getInt(11);
+				boolean administrateur = rs.getBoolean(12);
+		
+				utilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email,telephone,rue, codePostal, ville, motDePasse, credit, administrateur);
+				
+			}
+			
+			pstmt.close();
+			
+		}	
+		
+		return utilisateur;
+		
+	}
+	
 }
 
 

@@ -20,6 +20,7 @@ public class UtilisateurManager implements IUtilisateurManager {
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
+				throw new UtilisateurManagerException("Insert failed.");
 			}
 	}
 
@@ -36,8 +37,24 @@ public class UtilisateurManager implements IUtilisateurManager {
 	}
 
 	@Override
-	public void selectById(Integer noUtilisateur) throws DALException, UtilisateurManagerException {
+	public Utilisateur  selectById(Integer noUtilisateur) throws DALException, UtilisateurManagerException {
+		return null;
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Utilisateur selectByLogin(String pseudo, String motDePasse) throws DALException, UtilisateurManagerException {
+		
+		try {
+			
+			Utilisateur utilisateur = utilisateurDAO.selectByLogIn(pseudo, motDePasse);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new UtilisateurManagerException("selectByLogin failed.");
+		}
+		return null;
 		
 	}
 
