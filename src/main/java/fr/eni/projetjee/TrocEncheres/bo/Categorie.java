@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Categorie {
 
-	int noCategorie;
-	String libelle;
+	private int noCategorie;
+	private String libelle;
 
 	public Categorie() {
 		super();

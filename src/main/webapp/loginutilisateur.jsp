@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Enchères ENI | Connexion</title>
 </head>
 <body>
 	<fieldset>
@@ -14,11 +14,11 @@
 	      <br>
 	      <br>
 	   	  <label for="identifiant">Identifiant :  </label>
-	      <input type="identifiant" id="identifiant" name="identifiant" value="identifiant">
+	      <input type="identifiant" id="identifiant" name="identifiant">
 	    </div>
 	    <div>
 	      <label for="password">Mot de passe : </label>
-	      <input type="password" id="password" name="password" value="password">
+	      <input type="password" id="password" name="password">
 	    </div>
 	    <div>
 	      <input type="submit" value="Valider" />

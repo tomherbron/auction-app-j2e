@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class ArticleVendu {
 	//Déclaration des attributs
-	Integer noArticle;
-	String nomArticle;
-	String description;
-	LocalDate dateDebutEnchere;
-	LocalDate dateFinEnchere;
-	Integer miseAPrix;
-	Integer prixDeVente;
-	Boolean etatVente;
+	private Integer noArticle;
+	private String nomArticle;
+	private String description;
+	private LocalDate dateDebutEnchere;
+	private LocalDate dateFinEnchere;
+	private Integer miseAPrix;
+	private Integer prixDeVente;
+	private Boolean etatVente;
 
 	//Constructeur vide
 	public ArticleVendu() {

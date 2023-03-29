@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class Enchere {
 	
-	Integer noEnchere;
-	LocalDate dateEnchere;
-	Integer montantEnchere;
+	private Integer noEnchere;
+	private LocalDate dateEnchere;
+	private Integer montantEnchere;
 	
 	public Enchere() {
 		super();
