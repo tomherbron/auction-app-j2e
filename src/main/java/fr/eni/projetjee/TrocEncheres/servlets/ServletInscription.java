@@ -1,16 +1,27 @@
 package fr.eni.projetjee.TrocEncheres.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetjee.TrocEncheres.bll.IUtilisateurManager;
+import fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager;
+import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
+import fr.eni.projetjee.TrocEncheres.dal.DALException;
+
 
 @WebServlet("/ServletInscription")
 public class ServletInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
        
     public ServletInscription() {
         super();
@@ -47,11 +58,26 @@ public class ServletInscription extends HttpServlet {
 	    ville =  request.getParameter("ville-utilisateur");
 	    motDePasse =  request.getParameter("mdp-utilisateur");
 	    confirmation = request.getParameter("confirmation-mdp");
-	
-		
-		
-		
-		doGet(request, response);
+	    
+	    credit = 0;
+	    administrateur = false;
+	    
+	    Utilisateur newUser = new Utilisateur (pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+	    
+	    try {
+	    	
+	    	utilisateurManager.insertUtilisateur(newUser);
+	    	
+	    } catch (DALException e) {
+			e.printStackTrace();
+		} catch (UtilisateurManagerException e) {
+			e.printStackTrace();
+		}
+	    
+	    RequestDispatcher rd = request.getRequestDispatcher("./loginutilisateur.jsp");
+	     rd.forward(request, response);
+	     doGet(request, response);
+	     
 	}
-
+	
 }

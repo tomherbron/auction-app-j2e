@@ -7,12 +7,9 @@
 <title>Enchères ENI | Connexion</title>
 </head>
 <body>
-	<fieldset>
-    <legend>Connexion</legend>
+    <h1>Authentification</h1>
     <form method="get" action="./ServletConnexionUtilisateur">
 	    <div>
-	      <br>
-	      <br>
 	   	  <label for="identifiant">Identifiant :  </label>
 	      <input type="identifiant" id="identifiant" name="identifiant">
 	    </div>
@@ -24,6 +21,5 @@
 	      <input type="submit" value="Valider" />
 	    </div>  
 	</form>    
-</fieldset>
 </body>
 </html>

@@ -7,55 +7,52 @@
 <title>Enchères ENI | Inscription</title>
 </head>
 <body>
-	<fieldset>
-    <legend>Inscription</legend>
+	<h1>Inscription</h1>
     <form method="post" action="./ServletInscription">
 	    <div>
-	      <br>
-	      <br>
+
 	   	  <label for="pseudo-utilisateur">Pseudo :  </label>
-	      <input type="pseudo-utilisateur" id="pseudo-utilisateur" name="pseudo-utilisateur">
+	      <input type="text" id="pseudo-utilisateur" name="pseudo-utilisateur">
 	    </div>
 	    <div>
 	      <label for="nom-utilisateur">Nom : </label>
-	      <input type="nom-utilisateur" id="nom-utilisateur" name="nom-utilisateur">
+	      <input type="name" id="nom-utilisateur" name="nom-utilisateur">
 	    </div>
 	   	<div>
 	      <label for="prenom-utilisateur">Prénom : </label>
-	      <input type="prenom-utilisateur" id="prenom-utilisateur" name="prenom-utilisateur">
+	      <input type="text" id="prenom-utilisateur" name="prenom-utilisateur">
 	    </div>
 	   	<div>
 	      <label for="email-utilisateur">E-mail : </label>
-	      <input type="email-utilisateur" id="email-utilisateur" name="email-utilisateur">
+	      <input type="email" id="email-utilisateur" name="email-utilisateur">
 	    </div>
 	   	<div>
 	      <label for="telephone-utilisateur">Téléphone : </label>
-	      <input type="telephone-utilisateur" id="telephone-utilisateur" name="telephone-utilisateur">
+	      <input type="phone" id="telephone-utilisateur" name="telephone-utilisateur">
 	    </div>
 	    <div>
 	      <label for="rue-utilisateur">Rue : </label>
-	      <input type="rue-utilisateur" id="rue-utilisateur" name="rue-utilisateur">
+	      <input type="text" id="rue-utilisateur" name="rue-utilisateur">
 	    </div>
 	   	<div>
 	      <label for="cpo-utilisateur">Code Postal : </label>
-	      <input type="cpo-utilisateur" id="cpo-utilisateur" name="cpo-utilisateur">
+	      <input type="text" id="cpo-utilisateur" name="cpo-utilisateur">
 	    </div>
 	   	<div>
 	      <label for="ville-utilisateur">Ville : </label>
-	      <input type="ville-utilisateur" id="ville-utilisateur" name="ville-utilisateur">
+	      <input type="text" id="ville-utilisateur" name="ville-utilisateur">
 	    </div>
 	   	<div>
 	      <label for="mdp-utilisateur">Mot de passe : </label>
-	      <input type="mdp-utilisateur" id="mdp-utilisateur" name="mdp-utilisateur">
+	      <input type="password" id="mdp-utilisateur" name="mdp-utilisateur">
 	    </div>
 	   	<div>
 	      <label for="confirmation-mdp">Confirmation : </label>
-	      <input type="confirmation-mdp" id="confirmation-mdp" name="confirmation-mdp">
+	      <input type="password" id="confirmation-mdp" name="confirmation-mdp">
 	    </div>
 	    <div>
 	      <input type="submit" value="Créer" />
 	    </div>  
 	</form>    
-</fieldset>
 </body>
 </html>
