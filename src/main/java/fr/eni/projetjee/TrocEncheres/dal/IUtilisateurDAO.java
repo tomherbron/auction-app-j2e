@@ -12,7 +12,7 @@ public interface IUtilisateurDAO {
 	
 	public void deleteUtilisateur(Integer noUtilisateur ) throws DALException, SQLException ;
 	
-	public void selectById(Integer noUtilisateur ) throws DALException, SQLException ;
+	public Utilisateur selectById(Integer noUtilisateur ) throws DALException, SQLException ;
 	
 	
 }
