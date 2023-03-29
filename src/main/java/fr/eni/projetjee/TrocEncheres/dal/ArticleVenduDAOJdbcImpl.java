@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 
@@ -46,4 +47,74 @@ public class ArticleVenduDAOJdbcImpl {
 		}
 
 	}
+
+	public void updateArticleVendu(ArticleVendu article) throws DALException, SQLException {
+
+		try (Connection con = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = con.prepareStatement(UPDATE);
+			pstmt = con.prepareStatement(UPDATE);
+			pstmt.setString(1, article.getNomArticle());
+			pstmt.setString(2, article.getDescription());
+			pstmt.setDate(3, Date.valueOf(article.getDateDebutEnchere()));
+			pstmt.setDate(4, Date.valueOf(article.getDateFinEnchere()));
+			pstmt.setInt(5, article.getMiseAPrix());
+			pstmt.setInt(6, article.getPrixDeVente());
+			pstmt.setBoolean(7, article.getEtatVente());
+			pstmt.executeUpdate();
+			pstmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Insert failed");
+		}
+
+	}
+
+	public void deleteArticleVendu(Integer noArticle) throws DALException, SQLException {
+
+		try (Connection con = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = con.prepareStatement(DELETE);
+			pstmt.setInt(1, noArticle);
+			pstmt.executeUpdate();
+			pstmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Insert failed");
+		}
+
+	}
+
+	public ArticleVendu selectById(Integer noArticle) throws DALException, SQLException {
+		ArticleVendu article = null;
+
+		try (Connection con = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = con.prepareStatement(SELECTBYID);
+			pstmt.setInt(1, noArticle);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				noArticle = rs.getInt(1);
+				String nomArticle = rs.getString(2);
+				String description = rs.getString(3);
+				LocalDate dateDebutEnchere = rs.getDate(4).toLocalDate();
+				LocalDate dateFinEnchere = rs.getDate(5).toLocalDate();
+				Integer miseAPrix = rs.getInt(6);
+				Integer prixDeVente = rs.getInt(7);
+				Boolean etatVente = rs.getBoolean(8);
+
+				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,
+						prixDeVente, etatVente);
+			}
+			pstmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Insert failed");
+		}
+
+		return article;
+	}
+
 }
