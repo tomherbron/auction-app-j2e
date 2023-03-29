@@ -5,7 +5,7 @@
 		driverClassName="com.mysql.cj.jdbc.Driver"
 		type="javax.sql.DataSource"
 	
-		url="jdbc:mysql://127.0.0.1:8080/encheres"
+		url="jdbc:mysql://127.0.0.1:3306/encheres"
 		username="root"
 		
 		maxTotal="20"
