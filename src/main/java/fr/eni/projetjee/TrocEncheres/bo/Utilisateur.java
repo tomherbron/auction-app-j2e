@@ -4,18 +4,18 @@ import java.util.Objects;
 
 public class Utilisateur {
 
-	Integer noUtilisateur;
-	String pseudo;
-	String nom;
-	String prenom;
-	String email;
-	String telephone;
-	String rue;
-	String codePostal;
-	String ville;
-	String motDePasse;
-	Integer credit;
-	Boolean administrateur;
+	private Integer noUtilisateur;
+	private String pseudo;
+	private String nom;
+	private String prenom;
+	private String email;
+	private String telephone;
+	private String rue;
+	private String codePostal;
+	private String ville;
+	private String motDePasse;
+	private Integer credit;
+	private Boolean administrateur;
 	
 	public Utilisateur() {
 		super();

@@ -1,6 +1,8 @@
 package fr.eni.projetjee.TrocEncheres.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +18,15 @@ public class ServletConnexionUtilisateur extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher rd = request.getRequestDispatcher("./loginutilisateur.jsp");
+		rd.forward(request, response);
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		 RequestDispatcher rd = request.getRequestDispatcher("./loginutilisateur.jsp");
+	     rd.forward(request, response);
+	     doGet(request, response);
 	}
 
 }

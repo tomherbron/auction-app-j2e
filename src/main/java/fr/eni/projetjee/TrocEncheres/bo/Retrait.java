@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Retrait {
 	//Création des attributs
-	String rue;
-	String codePostal;
-	String ville;
+	private String rue;
+	private String codePostal;
+	private String ville;
 	
 	//Constructeur vide
 	public Retrait() {
