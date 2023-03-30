@@ -53,7 +53,6 @@ public class ArticleVenduDAOJdbcImpl {
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(UPDATE);
-			pstmt = con.prepareStatement(UPDATE);
 			pstmt.setString(1, article.getNomArticle());
 			pstmt.setString(2, article.getDescription());
 			pstmt.setDate(3, Date.valueOf(article.getDateDebutEnchere()));
