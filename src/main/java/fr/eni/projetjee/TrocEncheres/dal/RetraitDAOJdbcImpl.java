@@ -2,6 +2,7 @@ package fr.eni.projetjee.TrocEncheres.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
@@ -28,20 +29,34 @@ public class RetraitDAOJdbcImpl {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Insert failed");
+			throw new DALException("Update failed");
 		}
 
 	}
 
 	public void selectRetrait(Integer noArticle) throws DALException, SQLException {
+		
+		Retrait retrait = null;
+		
 		try (Connection con = ConnectionProvider.getConnection()) {
 			
+			PreparedStatement psmt = con.prepareStatement(SELECT_BY_ID);
+			psmt.setInt(1, noArticle);
+			ResultSet rs = psmt.executeQuery();
 			
-			
+			if (rs.next()) {
+				String rue = rs.getString(1);
+				String cpo = rs.getString(2);
+				String ville = rs.getString(3);
+				noArticle= rs.getInt(4);
+				
+				retrait = new Retrait (rue, cpo, ville);
+				
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Insert failed");
+			throw new DALException("selectById failed");
 		}
 
 	}

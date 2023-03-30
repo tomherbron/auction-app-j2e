@@ -60,7 +60,7 @@ public class ServletInscriptionUtilisateur extends HttpServlet {
 	    motDePasse =  request.getParameter("mdp-utilisateur");
 	    confirmation = request.getParameter("confirmation-mdp");
 	    
-	    credit = 0;
+	    credit = 100;
 	    administrateur = false;
 	    
 	    Utilisateur newUser = new Utilisateur (pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
