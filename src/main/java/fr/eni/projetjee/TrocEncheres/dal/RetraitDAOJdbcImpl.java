@@ -12,7 +12,7 @@ public class RetraitDAOJdbcImpl {
 	private static final String UPDATE = "UPDATE retrait SET rue=?, code_postal=?, ville=? WHERE no_article=?";
 
 	// select avec le no_article comme condition
-	private static final String SELECT = "SELECT ( rue, code_postal, ville) FROM retrait WHERE no_article=? )";
+	private static final String SELECT_BY_ID = "SELECT `r`.`rue` AS `rue`, `r`.`code_postal` AS `code_postal`, `a`.`no_article` AS `no_article` FROM `retrait` AS `r`INNER JOIN `article_vendu` AS `a` ON `a`.`no_article` = `r`.`no_article` WHERE `r`.`no_article` = ?";
 
 	public void updateRetrait(Retrait retrait) throws DALException, SQLException {
 
@@ -25,14 +25,24 @@ public class RetraitDAOJdbcImpl {
 			pstmt.setString(3, retrait.getVille());
 			pstmt.executeUpdate();
 			pstmt.close();
-			
-			
-		}catch (SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException("Insert failed");
 		}
 
 	}
-	
-	
+
+	public void selectRetrait(Integer noArticle) throws DALException, SQLException {
+		try (Connection con = ConnectionProvider.getConnection()) {
+			
+			
+			
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Insert failed");
+		}
+
+	}
 }
