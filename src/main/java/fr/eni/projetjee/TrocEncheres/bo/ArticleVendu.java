@@ -47,11 +47,10 @@ public class ArticleVendu {
 	}
 	
 
-	//Constructeur sans retrait
-	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEnchere,
+	//Constructeur sans retrait et noArticle
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere,
 			LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
 		super();
-		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEnchere = dateDebutEnchere;
