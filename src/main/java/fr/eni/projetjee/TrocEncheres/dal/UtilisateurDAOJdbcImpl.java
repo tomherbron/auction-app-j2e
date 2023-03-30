@@ -20,9 +20,6 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 	private static final String SELECT_ALL = "SELECT `no_utilisateur`, `pseudo`, `nom`, `prenom`, `email`, `telephone`, `rue`, `code_postal`, `ville`, `mot_de_passe`, `credit`, `administrateur` FROM `utilisateur` ";
 	@Override
 	public void insertUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
-		if (utilisateur == null) {
-			
-		}
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 

@@ -23,6 +23,7 @@ public class ArticleVenduDAOJdbcImpl {
 			// TODO
 
 		}
+		
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
