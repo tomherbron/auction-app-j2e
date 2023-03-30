@@ -19,7 +19,7 @@ public class ArticleVendu {
 	public ArticleVendu() {
 	}
 	
-	
+	//Constructeur sans noArticle
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere,LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
 		super();
 		this.nomArticle = nomArticle;
@@ -62,18 +62,7 @@ public class ArticleVendu {
 	}
 	
 
-	//Constructeur sans retrait et noArticle
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere,
-			LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEnchere = dateDebutEnchere;
-		this.dateFinEnchere = dateFinEnchere;
-		this.miseAPrix = miseAPrix;
-		this.prixDeVente = prixDeVente;
-		this.etatVente = etatVente;
-	}
+
 
 	//Génération des getters et setters
 	public Integer getNoArticle() {
