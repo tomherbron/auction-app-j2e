@@ -1,6 +1,8 @@
 package fr.eni.projetjee.TrocEncheres.bll;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
@@ -14,6 +16,8 @@ public class UtilisateurManager implements IUtilisateurManager {
 	@Override
 	public void insertUtilisateur(Utilisateur utilisateur) throws DALException, UtilisateurManagerException {
 		
+		List<Utilisateur> userList = new ArrayList<>();
+	
 		try {
 			
 				utilisateurDAO.insertUtilisateur(utilisateur);

@@ -104,10 +104,11 @@ public class ArticleVenduDAOJdbcImpl {
 				Integer prixDeVente = rs.getInt(7);
 				Boolean etatVente = rs.getBoolean(8);
 
-				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,
-						prixDeVente, etatVente);
+				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, etatVente);
 			}
+			
 			pstmt.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException("Insert failed");

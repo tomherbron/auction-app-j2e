@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.Enchere;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
@@ -15,7 +17,7 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 	private static final String DELETE = "DELETE FROM Utilisateur WHERE no_utilisateur=?";
 	private static final String SELECT_BY_ID = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit) FROM utilisateur WHERE no_utilisateur=? )";
 	private static final String SELECT_BY_LOGIN = "SELECT `no_utilisateur`, `pseudo`, `nom`, `prenom`, `email`, `telephone`, `rue`, `code_postal`, `ville`, `mot_de_passe`, `credit`, `administrateur` FROM `utilisateur` WHERE pseudo=? AND mot_de_passe=?";
-	
+	private static final String SELECT_ALL = "SELECT `no_utilisateur`, `pseudo`, `nom`, `prenom`, `email`, `telephone`, `rue`, `code_postal`, `ville`, `mot_de_passe`, `credit`, `administrateur` FROM `utilisateur` ";
 	@Override
 	public void insertUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
 		if (utilisateur == null) {
@@ -172,6 +174,45 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 		}	
 		
 		return utilisateur;
+		
+	}
+
+	@Override
+	public List<Utilisateur> selectAllUtilisateurs() throws DALException, SQLException {
+		List<Utilisateur> userList = new ArrayList<>();
+        Utilisateur utilisateur = null;
+
+        try (Connection con = ConnectionProvider.getConnection()){
+
+            PreparedStatement pstmt = con.prepareStatement(SELECT_ALL);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()){
+            	Integer noUtilisateur = rs.getInt(1);
+				String pseudo = rs.getString(2);
+				String nom = rs.getString(3);
+				String prenom = rs.getString(4);
+				String email = rs.getString(5);
+				String telephone = rs.getString(6);
+				String rue = rs.getString(7);
+				String codePostal = rs.getString(8);
+				String ville = rs.getString(9);
+				String motDePasse = rs.getString(10);
+				Integer credit = rs.getInt(11);
+				boolean administrateur = rs.getBoolean(12);
+
+ 
+            }
+
+            pstmt.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DALException("Guitars.Dbo/SelectAll failed.");
+        }
+
+        return userList;
 		
 	}
 	
