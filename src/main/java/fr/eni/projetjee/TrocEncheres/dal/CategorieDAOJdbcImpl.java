@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.bo.Categorie;
@@ -43,8 +45,8 @@ public class CategorieDAOJdbcImpl {
 	}
 	
 
-	public Categorie selectAll() throws DALException, SQLException {
-		Categorie categorie = null;
+	public List<Categorie> selectAll() throws DALException, SQLException {
+		List<Categorie> categories = null;
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
@@ -53,7 +55,7 @@ public class CategorieDAOJdbcImpl {
 			if (rs.next()) {
 				String libelle = rs.getString(2);
 							
-				categorie = new Categorie (libelle);
+				categories = new ArrayList<Categorie>();
 			}
 			
 			pstmt.close();
@@ -63,7 +65,7 @@ public class CategorieDAOJdbcImpl {
 			throw new DALException("Select by Id");
 		}
 
-		return categorie;
+		return categories;
 		
 	}
 	
