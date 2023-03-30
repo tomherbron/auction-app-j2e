@@ -1,6 +1,8 @@
 package fr.eni.projetjee.TrocEncheres.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,21 +45,33 @@ public class ServletConnexion extends HttpServlet {
 		String pseudo = request.getParameter("pseudo-utilisateur");
 		String motDePasse = request.getParameter("mdp-utilisateur");
 		
+		HttpSession session = request.getSession();
+		session.setAttribute("pseudo", pseudo);
+		String sessionId = session.getId();
+		
 		try {
 			
-			utilisateur = utilisateurManager.selectByLogin(pseudo, motDePasse);
-						
+				List <Utilisateur> userList = new ArrayList<>();
+				userList = utilisateurManager.selectAll();
+				
+				for (Utilisateur current : userList) {
+					if (current.getPseudo().equals(pseudo) && current.getMotDePasse().equals(motDePasse)) {
+						RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
+						rd.forward(request, response);		
+					} else if (userList.contains(pseudo)) {
+						RequestDispatcher rd = request.getRequestDispatcher("./SeConnecter.jsp");
+						rd.forward(request, response);	
+					}
+				}
+				
+				
 		} catch (DALException e) {
 			e.printStackTrace();
 		} catch (UtilisateurManagerException e) {
 			e.printStackTrace();
+		
 		}
-	
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
-		rd.forward(request, response);	
-		
-
 	}
 
 }
