@@ -17,68 +17,57 @@ import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 @WebServlet("/ServletInscriptionUtilisateur")
 public class ServletInscriptionUtilisateur extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
-       
 
-    public ServletInscriptionUtilisateur() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    RequestDispatcher rd = request.getRequestDispatcher("./FormulaireInscription.jsp");
-	     rd.forward(request, response);
+	public ServletInscriptionUtilisateur() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		 String pseudo;
-		 String nom;
-		 String prenom;
-		 String email;
-		 String telephone;
-		 String rue;
-		 String codePostal;
-		 String ville;
-		 String motDePasse;
-		 
-		String confirmation; 
-		Integer credit;
-		Boolean administrateur;
-		
-		pseudo = request.getParameter("pseudo-utilisateur");
-		nom = request.getParameter("nom-utilisateur");
-		prenom = request.getParameter("prenom-utilisateur");
-	    email = request.getParameter("email-utilisateur");
-	    telephone =  request.getParameter("telephone-utilisateur");
-	    rue =  request.getParameter("rue-utilisateur");
-	    codePostal =  request.getParameter("cpo-utilisateur");
-	    ville =  request.getParameter("ville-utilisateur");
-	    motDePasse =  request.getParameter("mdp-utilisateur");
-	    confirmation = request.getParameter("confirmation-mdp");
-	    
-	    credit = 100;
-	    administrateur = false;
-	    
-	    Utilisateur newUser = new Utilisateur (pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-	    
-		    try {
-		    	
-		    	utilisateurManager.insertUtilisateur(newUser);
-		    	
-		    } catch (DALException e) {
-				e.printStackTrace();
-			} catch (UtilisateurManagerException e) {
-				e.printStackTrace();
-			}
-	    
-	    RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
-	     rd.forward(request, response);
-	     doGet(request, response);
-	     
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("./FormulaireInscription.jsp");
+		rd.forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String pseudo = request.getParameter("pseudo-utilisateur");
+		String nom = request.getParameter("nom-utilisateur");
+		String prenom = request.getParameter("prenom-utilisateur");
+		String email = request.getParameter("email-utilisateur");
+		String telephone = request.getParameter("telephone-utilisateur");
+		String rue = request.getParameter("rue-utilisateur");
+		String codePostal = request.getParameter("cpo-utilisateur");
+		String ville = request.getParameter("ville-utilisateur");
+		String motDePasse = request.getParameter("mdp-utilisateur");
+		String confirmation = request.getParameter("confirmation-mdp");
+
+		int credit = 100;
+		boolean administrateur = false;
+
+		Utilisateur newUser = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse,
+				credit, administrateur);
+
+		try {
+			
+			utilisateurManager.insertUtilisateur(newUser);
+
+		} catch (DALException e) {
+			e.printStackTrace();
+			request.setAttribute("erreur", "Probleme de base de donnée.");
+		} catch (UtilisateurManagerException e) {
+			e.printStackTrace();
+			request.setAttribute("erreur", "Probleme de manager.");
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
+		rd.forward(request, response);
+
 	}
 
 }

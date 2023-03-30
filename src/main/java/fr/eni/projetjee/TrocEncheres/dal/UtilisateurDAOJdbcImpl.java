@@ -201,15 +201,16 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 				Integer credit = rs.getInt(11);
 				boolean administrateur = rs.getBoolean(12);
 
- 
+				utilisateur = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+				userList.add(utilisateur);
+				
             }
-
+            
             pstmt.close();
-
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new DALException("Guitars.Dbo/SelectAll failed.");
+            throw new DALException("SelectAll failed");
         }
 
         return userList;

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,6 @@
 	<a href=".\Inscription.jsp">S'inscrire<a>
 	 <a href=".\LoginUtilisateur.jsp">Se Connecter</a> 
 </nav>
-	
 	
 	<div>
 		Liste des enchères
