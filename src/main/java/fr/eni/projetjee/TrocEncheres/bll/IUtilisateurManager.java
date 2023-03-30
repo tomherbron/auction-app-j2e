@@ -1,5 +1,7 @@
 package fr.eni.projetjee.TrocEncheres.bll;
 
+import java.util.List;
+
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
@@ -13,6 +15,8 @@ public interface IUtilisateurManager {
 	
 	public Utilisateur  selectById(Integer noUtilisateur ) throws DALException, UtilisateurManagerException ;
 	
-	public Utilisateur  selectByLogin (String pseudo, String motDePasse) throws DALException, UtilisateurManagerException ;
+	public Utilisateur  selectByLogin (String pseudo, String motDePasse) throws DALException, UtilisateurManagerException;
+	
+	public List <Utilisateur> selectAll() throws DALException, UtilisateurManagerException;
 
 }

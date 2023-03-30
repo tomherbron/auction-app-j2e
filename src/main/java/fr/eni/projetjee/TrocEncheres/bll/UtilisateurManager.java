@@ -20,6 +20,18 @@ public class UtilisateurManager implements IUtilisateurManager {
 	
 		try {
 			
+				userList = utilisateurDAO.selectAllUtilisateurs();
+				
+				for (Utilisateur current : userList) {
+					if (utilisateur.getPseudo().equalsIgnoreCase(current.getPseudo())) {
+						throw new UtilisateurManagerException("Ce pseudo existe déjà.");
+					}
+					
+					if (utilisateur.getEmail().equalsIgnoreCase(current.getEmail())) {
+						throw new UtilisateurManagerException("Cet email existe déjà.");
+					}
+				}
+			
 				utilisateurDAO.insertUtilisateur(utilisateur);
 				
 			} catch (SQLException e) {
@@ -63,6 +75,11 @@ public class UtilisateurManager implements IUtilisateurManager {
 		
 		return utilisateur;
 		
+	}
+
+	@Override
+	public List<Utilisateur> selectAll() throws DALException, UtilisateurManagerException {
+		return null;
 	}
 
 }
