@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class ArticleVendu {
-	//Déclaration des attributs
+	// Déclaration des attributs
 	private Integer noArticle;
 	private String nomArticle;
 	private String description;
@@ -12,31 +12,18 @@ public class ArticleVendu {
 	private LocalDate dateFinEnchere;
 	private Integer miseAPrix;
 	private Integer prixDeVente;
-	private Boolean etatVente;
 	private Retrait retrait;
-
-	//Constructeur vide
+	private Utilisateur utilisateur;
+	private Categorie categorie;
+	private Boolean etatVente;
+	// Constructeur vide
 	public ArticleVendu() {
 	}
-	
-	//Constructeur sans noArticle
-	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere,LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
-		super();
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEnchere = dateDebutEnchere;
-		this.dateFinEnchere = dateFinEnchere;
-		this.miseAPrix = miseAPrix;
-		this.prixDeVente = prixDeVente;
-		this.etatVente = etatVente;
-	}
 
-
-
-
-	//Constructeur avec le noArticle
+	// avec noArticle
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEnchere,
-			LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente, Retrait retrait) {
+			LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente, Retrait retrait,
+			Utilisateur utilisateur, Categorie categorie) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -46,11 +33,14 @@ public class ArticleVendu {
 		this.prixDeVente = prixDeVente;
 		this.etatVente = etatVente;
 		this.retrait = retrait;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 
-	//Constructeur sans le noArticle
+	// Constructeur sans noArticle
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere, LocalDate dateFinEnchere,
-			Integer miseAPrix, Integer prixDeVente, Boolean etatVente, Retrait retrait) {
+			Integer miseAPrix, Integer prixDeVente, Boolean etatVente, Retrait retrait, Utilisateur utilisateur,
+			Categorie categorie) {
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEnchere = dateDebutEnchere;
@@ -59,12 +49,27 @@ public class ArticleVendu {
 		this.prixDeVente = prixDeVente;
 		this.etatVente = etatVente;
 		this.retrait = retrait;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
 	}
 	
+	
+	//Constructeur sans retrait et noArticle
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere, LocalDate dateFinEnchere,
+			Integer miseAPrix, Integer prixDeVente, Utilisateur utilisateur, Categorie categorie, Boolean etatVente) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEnchere = dateDebutEnchere;
+		this.dateFinEnchere = dateFinEnchere;
+		this.miseAPrix = miseAPrix;
+		this.prixDeVente = prixDeVente;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+		this.etatVente = etatVente;
+	}
 
-
-
-	//Génération des getters et setters
+	// Génération des getters et setters
 	public Integer getNoArticle() {
 		return noArticle;
 	}
@@ -128,7 +133,7 @@ public class ArticleVendu {
 	public void setEtatVente(Boolean etatVente) {
 		this.etatVente = etatVente;
 	}
-	
+
 	public Retrait getRetrait() {
 		return retrait;
 	}
@@ -137,20 +142,26 @@ public class ArticleVendu {
 		this.retrait = retrait;
 	}
 
-	//Génération de la méthode toString
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(dateDebutEnchere, dateFinEnchere, description, etatVente, miseAPrix, noArticle, nomArticle,
-				prixDeVente, retrait);
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	@Override
-	public String toString() {
-		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
-				+ ", dateDebutEnchere=" + dateDebutEnchere + ", dateFinEnchere=" + dateFinEnchere + ", miseAPrix="
-				+ miseAPrix + ", prixDeVente=" + prixDeVente + ", etatVente=" + etatVente + ", retrait=" + retrait
-				+ "]";
+	public int hashCode() {
+		return Objects.hash(categorie, dateDebutEnchere, dateFinEnchere, description, etatVente, miseAPrix, noArticle,
+				nomArticle, prixDeVente, retrait, utilisateur);
 	}
 
 	@Override
@@ -162,18 +173,20 @@ public class ArticleVendu {
 		if (getClass() != obj.getClass())
 			return false;
 		ArticleVendu other = (ArticleVendu) obj;
-		return Objects.equals(dateDebutEnchere, other.dateDebutEnchere)
+		return Objects.equals(categorie, other.categorie) && Objects.equals(dateDebutEnchere, other.dateDebutEnchere)
 				&& Objects.equals(dateFinEnchere, other.dateFinEnchere)
 				&& Objects.equals(description, other.description) && Objects.equals(etatVente, other.etatVente)
 				&& Objects.equals(miseAPrix, other.miseAPrix) && Objects.equals(noArticle, other.noArticle)
 				&& Objects.equals(nomArticle, other.nomArticle) && Objects.equals(prixDeVente, other.prixDeVente)
-				&& Objects.equals(retrait, other.retrait);
+				&& Objects.equals(retrait, other.retrait) && Objects.equals(utilisateur, other.utilisateur);
 	}
 
-	//Génération de la méthode equals
-
-	
-	
-	
+	@Override
+	public String toString() {
+		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
+				+ ", dateDebutEnchere=" + dateDebutEnchere + ", dateFinEnchere=" + dateFinEnchere + ", miseAPrix="
+				+ miseAPrix + ", prixDeVente=" + prixDeVente + ", etatVente=" + etatVente + ", retrait=" + retrait
+				+ ", utilisateur=" + utilisateur + ", categorie=" + categorie + "]";
+	}
 
 }

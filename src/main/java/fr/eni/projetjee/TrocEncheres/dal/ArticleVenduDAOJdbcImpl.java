@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
+import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 
 public class ArticleVenduDAOJdbcImpl {
-
-	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
-	private static final String INSERT_RETRAIT = "INSERT INTO retrait(rue, code_postal, ville) VALUES(?,?,?)";
-	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=? WHERE no_article=?";
+	
+	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) VALUES(?,?,?,?,?,?,?,?,?)";
+	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=?, etat_vente =? WHERE no_article=?";
 	private static final String DELETE = "DELETE FROM article_vendu WHERE no_article=?";
 	private static final String SELECT_BY_ID = "SELECT (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) FROM article_vendu WHERE no_article=? )";
 
@@ -34,7 +34,9 @@ public class ArticleVenduDAOJdbcImpl {
 			pstmt.setDate(4, Date.valueOf(article.getDateFinEnchere()));
 			pstmt.setInt(5, article.getMiseAPrix());
 			pstmt.setInt(6, article.getPrixDeVente());
-			pstmt.setBoolean(7, article.getEtatVente());
+			pstmt.setInt(7, article.getUtilisateur().getNoUtilisateur());
+			pstmt.setInt(8, article.getCategorie().getNoCategorie());
+			pstmt.setBoolean(9, article.getEtatVente());
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				article.setNoArticle((rs.getInt(1)));
@@ -42,14 +44,13 @@ public class ArticleVenduDAOJdbcImpl {
 			rs.close();
 			pstmt.close();
 			
-			PreparedStatement pstmt2 = con.prepareStatement(INSERT_RETRAIT);
+			Retrait retrait = new Retrait();
+
+			retrait.setRue(article.getRetrait().getRue());
+			retrait.setCodePostal(article.getRetrait().getCodePostal());
+			retrait.setVille(article.getRetrait().getVille());
 			
-			pstmt.setInt(1, article.getNoArticle());
-			pstmt.setString(2, article.getRetrait().getRue());
-			pstmt.setString(3, article.getRetrait().getCodePostal());
-			pstmt.setString(4, article.getRetrait().getVille());
-			pstmt2.close();
-			
+			 DAOFactory.getRetraitDAO () .insertRetrait(retrait, article.getNoArticle());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -69,7 +70,9 @@ public class ArticleVenduDAOJdbcImpl {
 			pstmt.setDate(4, Date.valueOf(article.getDateFinEnchere()));
 			pstmt.setInt(5, article.getMiseAPrix());
 			pstmt.setInt(6, article.getPrixDeVente());
-			pstmt.setBoolean(7, article.getEtatVente());
+			pstmt.setInt(7, article.getUtilisateur().getNoUtilisateur());
+			pstmt.setInt(8, article.getCategorie().getNoCategorie());
+			pstmt.setBoolean(9, article.getEtatVente());
 			pstmt.executeUpdate();
 			pstmt.close();
 
@@ -112,9 +115,10 @@ public class ArticleVenduDAOJdbcImpl {
 				LocalDate dateFinEnchere = rs.getDate(5).toLocalDate();
 				Integer miseAPrix = rs.getInt(6);
 				Integer prixDeVente = rs.getInt(7);
-				Boolean etatVente = rs.getBoolean(8);
-
-				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, etatVente);
+				Boolean etatVente = rs.getBoolean(10);
+				
+				
+				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, article.getUtilisateur(),article.getCategorie(), etatVente);
 			}
 			
 			pstmt.close();
