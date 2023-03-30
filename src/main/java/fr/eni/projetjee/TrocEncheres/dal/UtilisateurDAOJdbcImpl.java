@@ -11,18 +11,15 @@ import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 
 	private static final String INSERT = "INSERT INTO utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String UPDATE = "UPDATE utilisateur SET pseudo=?, nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?, ville=?,mot_de_passe=?WHERE no_utilisateur=?";
+	private static final String UPDATE = "UPDATE utilisateur SET pseudo=?, nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?, ville=?,mot_de_passe=? WHERE no_utilisateur=?";
 	private static final String DELETE = "DELETE FROM Utilisateur WHERE no_utilisateur=?";
-	private static final String SELECTBYID = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit) FROM utilisateur WHERE no_utilisateur=? )";
-	private static final String SELECTBYLOGIN = "SELECT (no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit) FROM utilisateur WHERE pseudo=?, mot_de_passe=? ";
-	
+	private static final String SELECT_BY_ID = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit) FROM utilisateur WHERE no_utilisateur=? )";
+	private static final String SELECT_BY_LOGIN = "SELECT `no_utilisateur`, `pseudo`, `nom`, `prenom`, `email`, `telephone`, `rue`, `code_postal`, `ville`, `mot_de_passe`, `credit`, `administrateur` FROM `utilisateur` WHERE pseudo=? AND mot_de_passe=?";
 	
 	@Override
 	public void insertUtilisateur(Utilisateur utilisateur) throws DALException, SQLException {
 		if (utilisateur == null) {
 			
-			// TODO
-
 		}
 
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -105,7 +102,7 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 		Utilisateur utilisateur = null;
 		try (Connection con = ConnectionProvider.getConnection()){
 	
-			PreparedStatement pstmt = con.prepareStatement(SELECTBYID);
+			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, noUtilisateur);
 			ResultSet rs = pstmt.executeQuery();
 	
@@ -146,7 +143,7 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 		
 		try (Connection con = ConnectionProvider.getConnection()){
 	
-			PreparedStatement pstmt = con.prepareStatement(SELECTBYLOGIN);
+			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_LOGIN);
 			pstmt.setString(1, pseudo);
 			pstmt.setString(2, motDePasse);
 			ResultSet rs = pstmt.executeQuery();

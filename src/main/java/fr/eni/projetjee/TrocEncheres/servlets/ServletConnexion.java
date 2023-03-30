@@ -46,23 +46,18 @@ public class ServletConnexion extends HttpServlet {
 		try {
 			
 			utilisateur = utilisateurManager.selectByLogin(pseudo, motDePasse);
+			System.out.println(utilisateur.toString());
 						
 		} catch (DALException e) {
 			e.printStackTrace();
 		} catch (UtilisateurManagerException e) {
 			e.printStackTrace();
 		}
-		
-		if (utilisateur.getPseudo() == pseudo && utilisateur.getMotDePasse() == motDePasse) {
-		
-		
-		
-		} else {
-		     
-		}
+	
 		
 		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
 		rd.forward(request, response);	
+		
 
 	}
 
