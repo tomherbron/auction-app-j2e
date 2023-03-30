@@ -11,15 +11,15 @@
     <form method="post" action="./ServletInscriptionUtilisateur">
 	    <div>
 	   	  <label for="pseudo-utilisateur">Pseudo :  </label>
-	      <input type="text" id="pseudo-utilisateur" name="pseudo-utilisateur">
+	      <input type="text" id="pseudo-utilisateur" name="pseudo-utilisateur" pattern = "^[a-zA-Z0-9]{4,16}$">
 	    </div>
 	    <div>
 	      <label for="nom-utilisateur">Nom : </label>
-	      <input type="name" id="nom-utilisateur" name="nom-utilisateur">
+	      <input type="text" id="nom-utilisateur" name="nom-utilisateur" pattern = "^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$">
 	    </div>
 	   	<div>
 	      <label for="prenom-utilisateur">Prénom : </label>
-	      <input type="text" id="prenom-utilisateur" name="prenom-utilisateur">
+	      <input type="text" id="prenom-utilisateur" name="prenom-utilisateur" pattern = "^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$">
 	    </div>
 	   	<div>
 	      <label for="email-utilisateur">E-mail : </label>
@@ -27,7 +27,7 @@
 	    </div>
 	   	<div>
 	      <label for="telephone-utilisateur">Téléphone : </label>
-	      <input type="phone" id="telephone-utilisateur" name="telephone-utilisateur">
+	      <input type="text" id="telephone-utilisateur" name="telephone-utilisateur"  pattern = "^[0-9]{10}$">
 	    </div>
 	    <div>
 	      <label for="rue-utilisateur">Rue : </label>
@@ -35,7 +35,7 @@
 	    </div>
 	   	<div>
 	      <label for="cpo-utilisateur">Code Postal : </label>
-	      <input type="text" id="cpo-utilisateur" name="cpo-utilisateur">
+	      <input type="text" id="cpo-utilisateur" name="cpo-utilisateur" pattern = "^[0-9]{5}(?:-[0-9]{4})?$">
 	    </div>
 	   	<div>
 	      <label for="ville-utilisateur">Ville : </label>
@@ -43,11 +43,11 @@
 	    </div>
 	   	<div>
 	      <label for="mdp-utilisateur">Mot de passe : </label>
-	      <input type="password" id="mdp-utilisateur" name="mdp-utilisateur">
+	      <input type="password" id="mdp-utilisateur" name="mdp-utilisateur"  pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$">
 	    </div>
 	   	<div>
 	      <label for="confirmation-mdp">Confirmation : </label>
-	      <input type="password" id="confirmation-mdp" name="confirmation-mdp">
+	      <input type="password" id="confirmation-mdp" name="confirmation-mdp" pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$">
 	    </div>
 	    <div>
 	      <input type="submit" value="Créer" />
