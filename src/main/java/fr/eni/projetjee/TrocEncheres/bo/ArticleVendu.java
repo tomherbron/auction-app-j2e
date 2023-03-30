@@ -45,8 +45,22 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.retrait = retrait;
 	}
-
 	
+
+	//Constructeur sans retrait
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEnchere,
+			LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEnchere = dateDebutEnchere;
+		this.dateFinEnchere = dateFinEnchere;
+		this.miseAPrix = miseAPrix;
+		this.prixDeVente = prixDeVente;
+		this.etatVente = etatVente;
+	}
+
 	//Génération des getters et setters
 	public Integer getNoArticle() {
 		return noArticle;

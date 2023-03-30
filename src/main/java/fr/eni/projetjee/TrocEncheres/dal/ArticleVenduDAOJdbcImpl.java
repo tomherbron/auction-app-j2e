@@ -11,10 +11,11 @@ import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 
 public class ArticleVenduDAOJdbcImpl {
 
-	private static final String INSERT = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
+	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?,?,?,?,?,?,?,?)";
+	private static final String INSERT_RETRAIT = "INSERT INTO retrait(rue, code_postal, ville) VALUES(?,?,?)";
 	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=? WHERE no_article=?";
 	private static final String DELETE = "DELETE FROM article_vendu WHERE no_article=?";
-	private static final String SELECTBYID = "SELECT (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) FROM article_vendu WHERE no_article=? )";
+	private static final String SELECT_BY_ID = "SELECT (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) FROM article_vendu WHERE no_article=? )";
 
 	public void insertArticleVendu(ArticleVendu article) throws DALException, SQLException {
 
@@ -25,7 +26,7 @@ public class ArticleVenduDAOJdbcImpl {
 		}
 		try (Connection con = ConnectionProvider.getConnection()) {
 
-			PreparedStatement pstmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement pstmt = con.prepareStatement(INSERT_ARTICLE_VENDU, PreparedStatement.RETURN_GENERATED_KEYS);
 
 			pstmt.setString(1, article.getNomArticle());
 			pstmt.setString(2, article.getDescription());
@@ -40,6 +41,15 @@ public class ArticleVenduDAOJdbcImpl {
 			}
 			rs.close();
 			pstmt.close();
+			
+			PreparedStatement pstmt2 = con.prepareStatement(INSERT_RETRAIT);
+			
+			pstmt.setInt(1, article.getNoArticle());
+			pstmt.setString(2, article.getRetrait().getRue());
+			pstmt.setString(3, article.getRetrait().getCodePostal());
+			pstmt.setString(4, article.getRetrait().getVille());
+			pstmt2.close();
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,7 +101,7 @@ public class ArticleVenduDAOJdbcImpl {
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
-			PreparedStatement pstmt = con.prepareStatement(SELECTBYID);
+			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, noArticle);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -104,8 +114,7 @@ public class ArticleVenduDAOJdbcImpl {
 				Integer prixDeVente = rs.getInt(7);
 				Boolean etatVente = rs.getBoolean(8);
 
-				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,
-						prixDeVente, etatVente);
+				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, etatVente);
 			}
 			pstmt.close();
 		} catch (SQLException e) {
