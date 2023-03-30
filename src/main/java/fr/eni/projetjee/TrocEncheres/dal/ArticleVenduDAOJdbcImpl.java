@@ -116,7 +116,9 @@ public class ArticleVenduDAOJdbcImpl {
 
 				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, etatVente);
 			}
+			
 			pstmt.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException("Insert failed");

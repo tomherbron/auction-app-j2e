@@ -19,6 +19,21 @@ public class ArticleVendu {
 	public ArticleVendu() {
 	}
 	
+	
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere,LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEnchere = dateDebutEnchere;
+		this.dateFinEnchere = dateFinEnchere;
+		this.miseAPrix = miseAPrix;
+		this.prixDeVente = prixDeVente;
+		this.etatVente = etatVente;
+	}
+
+
+
+
 	//Constructeur avec le noArticle
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEnchere,
 			LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente, Retrait retrait) {
