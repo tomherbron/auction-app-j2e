@@ -51,7 +51,6 @@ public class UtilisateurManager implements IUtilisateurManager {
 		try {
 			
 			utilisateur = utilisateurDAO.selectByLogIn(pseudo, motDePasse);
-			System.out.println(utilisateur.toString());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -41,12 +41,11 @@ public class ServletConnexion extends HttpServlet {
 		Utilisateur utilisateur = null;
 		
 		String pseudo = request.getParameter("pseudo-utilisateur");
-		String motDePasse = request.getParameter("mdp-utlisateur");
+		String motDePasse = request.getParameter("mdp-utilisateur");
 		
 		try {
 			
 			utilisateur = utilisateurManager.selectByLogin(pseudo, motDePasse);
-			System.out.println(utilisateur.toString());
 						
 		} catch (DALException e) {
 			e.printStackTrace();
