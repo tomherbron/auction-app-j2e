@@ -46,15 +46,19 @@ public class UtilisateurManager implements IUtilisateurManager {
 	@Override
 	public Utilisateur selectByLogin(String pseudo, String motDePasse) throws DALException, UtilisateurManagerException {
 		
+		Utilisateur utilisateur = null;
+		
 		try {
 			
-			Utilisateur utilisateur = utilisateurDAO.selectByLogIn(pseudo, motDePasse);
+			utilisateur = utilisateurDAO.selectByLogIn(pseudo, motDePasse);
+			System.out.println(utilisateur.toString());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new UtilisateurManagerException("selectByLogin failed.");
 		}
-		return null;
+		
+		return utilisateur;
 		
 	}
 
