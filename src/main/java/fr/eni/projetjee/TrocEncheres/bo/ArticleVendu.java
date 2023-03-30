@@ -19,7 +19,7 @@ public class ArticleVendu {
 	public ArticleVendu() {
 	}
 	
-	
+	//Constructeur sans noArticle
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere,LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
 		super();
 		this.nomArticle = nomArticle;
@@ -60,8 +60,10 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.retrait = retrait;
 	}
-
 	
+
+
+
 	//Génération des getters et setters
 	public Integer getNoArticle() {
 		return noArticle;
