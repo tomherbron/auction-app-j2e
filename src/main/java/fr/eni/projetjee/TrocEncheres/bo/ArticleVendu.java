@@ -13,6 +13,7 @@ public class ArticleVendu {
 	private Integer miseAPrix;
 	private Integer prixDeVente;
 	private Boolean etatVente;
+	private Retrait retrait;
 
 	//Constructeur vide
 	public ArticleVendu() {
@@ -20,7 +21,7 @@ public class ArticleVendu {
 	
 	//Constructeur avec le noArticle
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEnchere,
-			LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
+			LocalDate dateFinEnchere, Integer miseAPrix, Integer prixDeVente, Boolean etatVente, Retrait retrait) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -29,11 +30,12 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixDeVente = prixDeVente;
 		this.etatVente = etatVente;
+		this.retrait = retrait;
 	}
 
 	//Constructeur sans le noArticle
 	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEnchere, LocalDate dateFinEnchere,
-			Integer miseAPrix, Integer prixDeVente, Boolean etatVente) {
+			Integer miseAPrix, Integer prixDeVente, Boolean etatVente, Retrait retrait) {
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.dateDebutEnchere = dateDebutEnchere;
@@ -41,6 +43,7 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixDeVente = prixDeVente;
 		this.etatVente = etatVente;
+		this.retrait = retrait;
 	}
 
 	
@@ -108,21 +111,31 @@ public class ArticleVendu {
 	public void setEtatVente(Boolean etatVente) {
 		this.etatVente = etatVente;
 	}
-	//Génération de la méthode toString
-	@Override
-	public String toString() {
-		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
-				+ ", dateDebutEnchere=" + dateDebutEnchere + ", dateFinEnchere=" + dateFinEnchere + ", miseAPrix="
-				+ miseAPrix + ", prixDeVente=" + prixDeVente + ", etatVente=" + etatVente + "]";
+	
+	public Retrait getRetrait() {
+		return retrait;
 	}
+
+	public void setRetrait(Retrait retrait) {
+		this.retrait = retrait;
+	}
+
+	//Génération de la méthode toString
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(dateDebutEnchere, dateFinEnchere, description, etatVente, miseAPrix, noArticle, nomArticle,
-				prixDeVente);
+				prixDeVente, retrait);
 	}
 
-	//Génération de la méthode equals
+	@Override
+	public String toString() {
+		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
+				+ ", dateDebutEnchere=" + dateDebutEnchere + ", dateFinEnchere=" + dateFinEnchere + ", miseAPrix="
+				+ miseAPrix + ", prixDeVente=" + prixDeVente + ", etatVente=" + etatVente + ", retrait=" + retrait
+				+ "]";
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -136,8 +149,12 @@ public class ArticleVendu {
 				&& Objects.equals(dateFinEnchere, other.dateFinEnchere)
 				&& Objects.equals(description, other.description) && Objects.equals(etatVente, other.etatVente)
 				&& Objects.equals(miseAPrix, other.miseAPrix) && Objects.equals(noArticle, other.noArticle)
-				&& Objects.equals(nomArticle, other.nomArticle) && Objects.equals(prixDeVente, other.prixDeVente);
+				&& Objects.equals(nomArticle, other.nomArticle) && Objects.equals(prixDeVente, other.prixDeVente)
+				&& Objects.equals(retrait, other.retrait);
 	}
+
+	//Génération de la méthode equals
+
 	
 	
 	
