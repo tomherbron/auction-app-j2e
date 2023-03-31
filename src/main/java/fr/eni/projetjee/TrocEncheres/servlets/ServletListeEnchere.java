@@ -17,13 +17,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
+import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
+import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
+import fr.eni.projetjee.TrocEncheres.dal.ArticleVenduDAOJdbcImpl;
+import fr.eni.projetjee.TrocEncheres.dal.DALException;
+import fr.eni.projetjee.TrocEncheres.dal.DAOFactory;
 
 /**
  * Servlet implementation class ListeEnchereServlet
  */
 @WebServlet("/ServletListeEnchere")
 public class ServletListeEnchere extends HttpServlet {
+	
+	private IArticleVenduManager articleVenduManager =  SingletonArticleVenduManager.getInstance();	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -34,7 +42,9 @@ public class ServletListeEnchere extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/rechArticle.jsp");
+		
+    	
+    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListeArticles.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -47,17 +57,24 @@ public class ServletListeEnchere extends HttpServlet {
 		List<ArticleVendu> listeArticles = new ArrayList();
 		Connection con = null;
 
-
+		try {
+			listeArticles = articleVenduManager.selectAll();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ArticleVenduManagerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		String nomArticle = "";
 		String articleCategory = "";
-
 		
-		nomArticle = request.getParameter("nom_article");
-		articleCategory = request.getParameter("categories_article");
-		String sqlquery = "SELECT * FROM article WHERE nom_article LIKE '%" + nomArticle +  "%' and categorie =  " + articleCategory;
-		if (nomArticle != null && !(nomArticle.equals(""))) {
-			sqlquery += " and isbn_code='" + nomArticle + "'";
+		
 		}
+
 		if (articleCategory != null && !(articleCategory.equals("-1"))) {
 			sqlquery += " dans la categorie='" + articleCategory + "'";
 		}

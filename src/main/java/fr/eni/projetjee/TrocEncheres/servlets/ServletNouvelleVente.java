@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.ICategorieManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
@@ -31,32 +32,29 @@ import fr.eni.projetjee.TrocEncheres.dal.DALException;
  */
 @WebServlet("/ServletNouvelleVente")
 public class ServletNouvelleVente extends HttpServlet {
+<<<<<<< HEAD
 	private ICategorieManager categorieManager = SingletonCategorieManager.getInstance();
 	private IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
+=======
+	
+	private ICategorieManager categorieManager = SingletonCategorieManager
+			.getInstance();
+	
+	private IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();	
+	
+>>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres.git
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ServletNouvelleVente() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("./NouvelleVente.jsp");
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -65,6 +63,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		String description = request.getParameter("description");
 		String categorie = request.getParameter("categorie");
 		Categorie categorieVerif = null;
+		
 		try {
 			categorieVerif = checkCategorie(categorie);
 		} catch (DALException e) {
@@ -90,6 +89,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		String ville = request.getParameter("ville");
 
 		Retrait nouveauRetrait = new Retrait(rue, codePostal, ville);
+		
 		ArticleVendu nouvelArticle = new ArticleVendu(nomArticle, description, debutEnchere, finEnchere, miseAprix,
 				prixDeVente, etatVente, nouveauRetrait, user, categorieVerif);
 		System.out.println("yo");
@@ -101,7 +101,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (UtilisateurManagerException e) {
+		} catch (ArticleVenduManagerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -110,22 +110,21 @@ public class ServletNouvelleVente extends HttpServlet {
 	}
 
 	public Categorie checkCategorie(String libelle) throws DALException {
+		
 		Categorie categorie = null;
 		List<Categorie> maListe = new ArrayList<>();
+		
 		try {
 			maListe = categorieManager.selectAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UtilisateurManagerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		for (int i = 0; i < maListe.size(); i++) {
 			if (libelle.equals(maListe.get(i).getLibelle())) {
 				categorie = maListe.get(i);
-
 			}
 		}
 

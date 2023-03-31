@@ -27,7 +27,7 @@
 
 			<th>vide</th>
 
-			<th>Category</th>
+			<th>Categorie</th>
 
 		</tr>
 

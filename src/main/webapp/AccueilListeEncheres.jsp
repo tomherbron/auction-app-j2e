@@ -12,8 +12,8 @@
 	<h1>ENI-Encheres</h1>
 	
 <nav>
-	<a href=".\Inscription.jsp">S'inscrire</a>
-	 <a href=".\LoginUtilisateur.jsp">Se Connecter</a> 
+	<a href="/Inscription.jsp">S'inscrire</a>
+	 <a href="/LoginUtilisateur.jsp">Se Connecter</a> 
 </nav>
 	
 	<div>
@@ -21,7 +21,7 @@
 	</div>
 
 
-<form action="post" action=".\ServletAccueilListeEncheres">
+<form action="post" action="./ServletAccueilListeEncheres">
 	<div>
 		<label for="site-search">Filtres :</label> <input type="search" placeholder="Le nom de l'article contient"
 			id="site-search" name="q">
@@ -43,7 +43,7 @@
 </map>
 <img usemap="#resultatRecherche1" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
-</br>
+<br>
 
 <map name="resultatRecherche2">
     <area shape="rect" coords="0,0,350,150"
@@ -52,7 +52,7 @@
 </map>
 <img usemap="#resultatRecherche2" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
-</br>
+<br>
 
 <map name="resultatRecherche3">
     <area shape="rect" coords="0,0,350,150"
@@ -61,7 +61,7 @@
 </map>
 <img usemap="#resultatRecherche3" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
-</br>
+<br>
 
 <map name="resultatRecherche4">
     <area shape="rect" coords="0,0,350,150"
@@ -70,7 +70,7 @@
 </map>
 <img usemap="#resultatRecherche4" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
-</br>
+<br>
 
 
 
