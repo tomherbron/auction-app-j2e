@@ -43,7 +43,7 @@
 </map>
 <img usemap="#resultatRecherche1" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
-</br>
+<br>
 
 <map name="resultatRecherche2">
     <area shape="rect" coords="0,0,350,150"
@@ -52,7 +52,7 @@
 </map>
 <img usemap="#resultatRecherche2" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
-</br>
+<br>
 
 <map name="resultatRecherche3">
     <area shape="rect" coords="0,0,350,150"
@@ -61,7 +61,7 @@
 </map>
 <img usemap="#resultatRecherche3" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
-</br>
+<br>
 
 <map name="resultatRecherche4">
     <area shape="rect" coords="0,0,350,150"
@@ -70,7 +70,7 @@
 </map>
 <img usemap="#resultatRecherche4" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
-</br>
+<br>
 
 
 

@@ -7,7 +7,8 @@
 <title>Enchères ENI | Inscription</title>
 </head>
 <body>
-	<h1>Inscription</h1>
+	<h1>ENI-Enchères</h1>
+	<h2>Inscription</h2>
     <form method="post" action="./ServletInscriptionUtilisateur">
 	    <div>
 	   	  <label for="pseudo-utilisateur">Pseudo :  </label>

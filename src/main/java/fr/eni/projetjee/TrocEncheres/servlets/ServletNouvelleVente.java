@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.ICategorieManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
@@ -99,7 +100,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (UtilisateurManagerException e) {
+		} catch (ArticleVenduManagerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
