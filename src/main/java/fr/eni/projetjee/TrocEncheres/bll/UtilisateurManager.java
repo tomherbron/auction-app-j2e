@@ -79,7 +79,19 @@ public class UtilisateurManager implements IUtilisateurManager {
 
 	@Override
 	public List<Utilisateur> selectAll() throws DALException, UtilisateurManagerException {
-		return null;
+		
+		List<Utilisateur> userList = new ArrayList<>();
+		
+		try {
+			
+			userList = utilisateurDAO.selectAllUtilisateurs();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new UtilisateurManagerException("selectAll failed.");
+		}
+		
+		return userList;
 	}
 
 }
