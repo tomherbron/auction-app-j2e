@@ -6,7 +6,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,10 +19,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
+import fr.eni.projetjee.TrocEncheres.bo.Categorie;
+import fr.eni.projetjee.TrocEncheres.bo.Retrait;
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.ArticleVenduDAOJdbcImpl;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 import fr.eni.projetjee.TrocEncheres.dal.DAOFactory;
@@ -28,6 +34,7 @@ import fr.eni.projetjee.TrocEncheres.dal.DAOFactory;
 /**
  * Servlet implementation class ListeEnchereServlet
  */
+
 @WebServlet("/ServletListeEnchere")
 public class ServletListeEnchere extends HttpServlet {
 	
@@ -42,23 +49,14 @@ public class ServletListeEnchere extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	List<ArticleVendu> listeArticles = new ArrayList<>();
 		
-    	
-    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListeArticles.jsp");
-		dispatcher.forward(request, response);
-	}
-	
-	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-
-		HttpSession session = request.getSession(true);
-
-		List<ArticleVendu> listeArticles = new ArrayList();
-		Connection con = null;
-
 		try {
+			//recherche des Articles
+			listeArticles = null;
 			listeArticles = articleVenduManager.selectAll();
+			request.setAttribute("listeArticles", listeArticles);
+			
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -66,22 +64,18 @@ public class ServletListeEnchere extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+			
+			// transfert affichage à la jsp
+			RequestDispatcher rd = request.getRequestDispatcher("/ListeArticles.jsp");
+			rd.forward(request, response);
 		
-		
-		
-		String nomArticle = "";
-		String articleCategory = "";
-		
-		
-		}
-
-		if (articleCategory != null && !(articleCategory.equals("-1"))) {
-			sqlquery += " dans la categorie='" + articleCategory + "'";
-		}
-
-		request.setAttribute("listeArticles", listeArticles);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/rechArticle.jsp");
-		dispatcher.forward(request, response);
+			}
+    	
+    
+	
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 
