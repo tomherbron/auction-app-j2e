@@ -11,12 +11,8 @@ import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 
 public class RetraitDAOJdbcImpl {
 
-	// update avec le no_article comme condition
 	private static final String UPDATE = "UPDATE retrait SET rue=?, code_postal=?, ville=? WHERE no_article=?";
-
-	// select avec le no_article comme condition
 	private static final String SELECT_BY_ID = "SELECT `r`.`rue` AS `rue`, `r`.`code_postal` AS `code_postal`, `a`.`no_article` AS `no_article` FROM `retrait` AS `r`INNER JOIN `article_vendu` AS `a` ON `a`.`no_article` = `r`.`no_article` WHERE `r`.`no_article` = ?";
-	
 	private static final String INSERT_RETRAIT = "INSERT INTO retrait(no_article, rue, code_postal, ville) VALUES(?,?,?,?)";
 
 	public void updateRetrait(Retrait retrait) throws DALException, SQLException {
@@ -65,17 +61,20 @@ public class RetraitDAOJdbcImpl {
 
 	}
 	
-	public void insertRetrait(Retrait retrait, int idArticle) throws DALException, SQLException {
+	public void insertRetrait(Retrait retrait, Integer noArticleVendu) throws DALException, SQLException {
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			
 			PreparedStatement pstmt = con.prepareStatement(INSERT_RETRAIT);
 			
-			pstmt.setInt(1, idArticle);
+			pstmt.setInt(1, noArticleVendu);
 			pstmt.setString(2, retrait.getRue());
 			pstmt.setString(3, retrait.getCodePostal());
 			pstmt.setString(4, retrait.getVille());
+			
+			pstmt.executeUpdate();
+			
 			pstmt.close();
 			
 
