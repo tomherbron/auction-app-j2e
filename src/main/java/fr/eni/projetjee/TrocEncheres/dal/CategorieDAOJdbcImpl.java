@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-<<<<<<< HEAD
-=======
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres.git
+
 
 import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 
