@@ -39,8 +39,10 @@
 			<label for="mise-a-prix">Mise à prix :</label><select
 				name="mise-a-prix" id=mise-a-prix>
 
-				<option value="" hidden>150</option>
+				<option value="" hidden></option>
 
+
+				<option value="150">150</option>
 				<option value="200">200</option>
 				<option value="250">250</option>
 				<option value="300">300</option>

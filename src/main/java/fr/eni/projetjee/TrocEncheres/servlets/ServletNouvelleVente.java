@@ -31,9 +31,8 @@ import fr.eni.projetjee.TrocEncheres.dal.DALException;
  */
 @WebServlet("/ServletNouvelleVente")
 public class ServletNouvelleVente extends HttpServlet {
-	private ICategorieManager categorieManager = SingletonCategorieManager
-			.getInstance();
-	private IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();	
+	private ICategorieManager categorieManager = SingletonCategorieManager.getInstance();
+	private IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -93,6 +92,9 @@ public class ServletNouvelleVente extends HttpServlet {
 		Retrait nouveauRetrait = new Retrait(rue, codePostal, ville);
 		ArticleVendu nouvelArticle = new ArticleVendu(nomArticle, description, debutEnchere, finEnchere, miseAprix,
 				prixDeVente, etatVente, nouveauRetrait, user, categorieVerif);
+		System.out.println("yo");
+		
+		
 		
 		try {
 			articleManager.insertArticle(nouvelArticle);
@@ -103,7 +105,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		doGet(request, response);
 	}
 
