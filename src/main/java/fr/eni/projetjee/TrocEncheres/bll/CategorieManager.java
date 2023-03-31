@@ -6,24 +6,39 @@ import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
+import fr.eni.projetjee.TrocEncheres.dal.CategorieDAOJdbcImpl;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
+import fr.eni.projetjee.TrocEncheres.dal.DAOFactory;
+import fr.eni.projetjee.TrocEncheres.dal.UtilisateurDAOJdbcImpl;
 
 public class CategorieManager implements ICategorieManager {
+	
+	private CategorieDAOJdbcImpl categorieDAO = DAOFactory.getCategorieDAO();
 
 	@Override
-	public void selectById(Integer noCategorie) throws DALException, SQLException {
+	public void selectById(Integer noCategorie) throws DALException, UtilisateurManagerException {
 				
 	}
 
 	@Override
-	public void insertCategorie(Categorie categorie) throws DALException, SQLException {
+	public void insertCategorie(Categorie categorie) throws DALException, UtilisateurManagerException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void selectAll() throws DALException, SQLException {
-		// TODO Auto-generated method stub
+	public List<Categorie> selectAll() throws DALException, UtilisateurManagerException {
+		List<Categorie> catList = new ArrayList<>();
+		
+		try {
+			
+			catList = categorieDAO.selectAll();			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new UtilisateurManagerException("selectAll failed.");
+		}
+		return catList;
 		
 	}	
 		

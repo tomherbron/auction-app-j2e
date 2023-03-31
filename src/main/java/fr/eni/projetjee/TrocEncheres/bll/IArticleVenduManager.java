@@ -8,6 +8,7 @@ import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 public interface IArticleVenduManager {
+
 	public void insertArticle(ArticleVendu article ) throws DALException, ArticleVenduManagerException;
 	
 	public void updateArticle(ArticleVendu article ) throws DALException, ArticleVenduManagerException;
