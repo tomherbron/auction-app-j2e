@@ -15,7 +15,7 @@ public class ArticleVenduDAOJdbcImpl {
 	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=?, etat_vente =? WHERE no_article=?";
 	private static final String DELETE = "DELETE FROM article_vendu WHERE no_article=?";
-	private static final String SELECT_BY_ID = "SELECT (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) FROM article_vendu WHERE no_article=? )";
+	private static final String SELECT_BY_ID = "SELECT (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) FROM article_vendu WHERE no_article=?";
 
 	public void insertArticleVendu(ArticleVendu article) throws DALException, SQLException {
 
@@ -126,7 +126,7 @@ public class ArticleVenduDAOJdbcImpl {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Insert failed");
+			throw new DALException("select by id failed");
 		}
 
 		return article;
