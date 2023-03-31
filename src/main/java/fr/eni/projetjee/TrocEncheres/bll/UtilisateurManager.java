@@ -31,8 +31,6 @@ public class UtilisateurManager implements IUtilisateurManager {
 						throw new UtilisateurManagerException("Cet email existe déjà.");
 					}
 				}
-				
-
 			
 				utilisateurDAO.insertUtilisateur(utilisateur);
 				
@@ -90,7 +88,7 @@ public class UtilisateurManager implements IUtilisateurManager {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new UtilisateurManagerException("selectByLogin failed.");
+			throw new UtilisateurManagerException("selectAll failed.");
 		}
 		
 		return userList;
