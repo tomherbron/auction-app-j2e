@@ -27,16 +27,18 @@ public class CategorieManager implements ICategorieManager {
 	}
 
 	@Override
-	public void selectAll() throws DALException, UtilisateurManagerException {
+	public List<Categorie> selectAll() throws DALException, UtilisateurManagerException {
+		List<Categorie> catList = new ArrayList<>();
 		
 		try {
 			
-			categorieDAO.selectAll();			
+			catList = categorieDAO.selectAll();			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new UtilisateurManagerException("selectAll failed.");
 		}
+		return catList;
 		
 	}	
 		
