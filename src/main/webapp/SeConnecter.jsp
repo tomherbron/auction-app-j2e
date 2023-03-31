@@ -7,7 +7,8 @@
 <title>Enchères ENI | Connexion</title>
 </head>
 <body>
-    <h1>Authentification</h1>
+    <h1>Enchères-ENI</h1>
+    <h2>Se connecter</h2>
     <form method="post" action="./ServletConnexion">
 	    <div>
 	   	  <label for="identifiant">Identifiant :  </label>
