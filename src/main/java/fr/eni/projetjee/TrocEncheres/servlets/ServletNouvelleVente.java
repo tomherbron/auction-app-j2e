@@ -32,17 +32,11 @@ import fr.eni.projetjee.TrocEncheres.dal.DALException;
  */
 @WebServlet("/ServletNouvelleVente")
 public class ServletNouvelleVente extends HttpServlet {
-<<<<<<< HEAD
 	private ICategorieManager categorieManager = SingletonCategorieManager.getInstance();
 	private IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
-=======
+
 	
-	private ICategorieManager categorieManager = SingletonCategorieManager
-			.getInstance();
-	
-	private IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();	
-	
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres.git
+
 	private static final long serialVersionUID = 1L;
 
 	public ServletNouvelleVente() {
