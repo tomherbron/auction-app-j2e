@@ -12,8 +12,8 @@
 	<h1>ENI-Encheres</h1>
 	
 <nav>
-	<a href=".\Inscription.jsp">S'inscrire</a>
-	 <a href=".\LoginUtilisateur.jsp">Se Connecter</a> 
+	<a href="/Inscription.jsp">S'inscrire</a>
+	 <a href="/LoginUtilisateur.jsp">Se Connecter</a> 
 </nav>
 	
 	<div>
@@ -21,7 +21,7 @@
 	</div>
 
 
-<form action="post" action=".\ServletAccueilListeEncheres">
+<form action="post" action="./ServletAccueilListeEncheres">
 	<div>
 		<label for="site-search">Filtres :</label> <input type="search" placeholder="Le nom de l'article contient"
 			id="site-search" name="q">

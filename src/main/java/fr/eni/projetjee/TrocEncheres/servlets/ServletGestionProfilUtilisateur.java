@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetjee.TrocEncheres.bll.IUtilisateurManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager;
@@ -32,6 +33,7 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 		String pseudo = request.getParameter("pseudo-utilisateur");
 		String nom = request.getParameter("nom-utilisateur");

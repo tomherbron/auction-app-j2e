@@ -31,6 +31,10 @@ public class UtilisateurManager implements IUtilisateurManager {
 						throw new UtilisateurManagerException("Cet email existe déjà.");
 					}
 				}
+				
+				if (utilisateur.getCredit() == 0) {
+					utilisateur.setCredit(100);
+				}
 			
 				utilisateurDAO.insertUtilisateur(utilisateur);
 				
