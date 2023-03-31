@@ -76,7 +76,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		Integer prixDeVente = 0;
 		Boolean etatVente = false;
 
-		Utilisateur user = (Utilisateur) session.getAttribute("pseudo");
+		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
 
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("code-postal");

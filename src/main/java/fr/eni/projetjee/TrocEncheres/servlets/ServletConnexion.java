@@ -44,7 +44,9 @@ public class ServletConnexion extends HttpServlet {
 		Utilisateur utilisateur = null;
 		
 		String pseudo = request.getParameter("pseudo-utilisateur");
+		utilisateur.setPseudo(pseudo);
 		String motDePasse = request.getParameter("mdp-utilisateur");
+		utilisateur.setMotDePasse(motDePasse);
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("utilisateur", utilisateur);

@@ -57,7 +57,7 @@ public class ArticleVenduDAOJdbcImpl {
 			retrait.setCodePostal(article.getRetrait().getCodePostal());
 			retrait.setVille(article.getRetrait().getVille());
 			
-			 DAOFactory.getRetraitDAO () .insertRetrait(retrait, article.getNoArticle());
+			 DAOFactory.getRetraitDAO() .insertRetrait(retrait, article.getNoArticle());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
