@@ -48,7 +48,9 @@ public class ServletConnexion extends HttpServlet {
 		Utilisateur utilisateur = null;
 		
 		try {
+			
 			utilisateur = utilisateurManager.selectByLogin (pseudo, motDePasse);
+			
 		} catch (DALException e1) {
 			e1.printStackTrace();
 		} catch (UtilisateurManagerException e1) {

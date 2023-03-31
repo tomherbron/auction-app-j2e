@@ -12,8 +12,9 @@
 	<h1>ENI-Encheres</h1>
 	
 <nav>
-	<a href="/Inscription.jsp">S'inscrire</a>
-	 <a href="/LoginUtilisateur.jsp">Se Connecter</a> 
+	 <a href="FormulaireInscription.jsp">S'inscrire</a>
+	 <a href="SeConnecter.jsp">Se Connecter</a> 
+	 <a href="NouvelleVente.jsp">Vendre un article</a> 
 </nav>
 	
 	<div>
