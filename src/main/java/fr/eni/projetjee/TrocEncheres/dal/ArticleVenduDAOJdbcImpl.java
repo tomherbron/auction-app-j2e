@@ -24,6 +24,8 @@ public class ArticleVenduDAOJdbcImpl {
 	
 	public void insertArticleVendu(ArticleVendu article) throws DALException, SQLException {
 
+		System.out.println("insertArticleVendu");
+		
 		if (article == null) {
 
 			// TODO

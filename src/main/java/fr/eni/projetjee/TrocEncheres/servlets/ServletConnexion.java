@@ -41,12 +41,19 @@ public class ServletConnexion extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Utilisateur utilisateur = null;
 		
 		String pseudo = request.getParameter("pseudo-utilisateur");
-		utilisateur.setPseudo(pseudo);
 		String motDePasse = request.getParameter("mdp-utilisateur");
-		utilisateur.setMotDePasse(motDePasse);
+
+		Utilisateur utilisateur = null;
+		
+		try {
+			utilisateur = utilisateurManager.selectByLogin (pseudo, motDePasse);
+		} catch (DALException e1) {
+			e1.printStackTrace();
+		} catch (UtilisateurManagerException e1) {
+			e1.printStackTrace();
+		}
 		
 		HttpSession session = request.getSession(true);
 		session.setAttribute("utilisateur", utilisateur);
