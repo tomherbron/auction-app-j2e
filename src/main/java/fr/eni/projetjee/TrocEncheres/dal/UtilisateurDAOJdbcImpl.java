@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.projetjee.TrocEncheres.bo.Enchere;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 
 public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
-import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 
 public class ArticleVenduDAOJdbcImpl {
