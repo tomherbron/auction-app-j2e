@@ -17,7 +17,16 @@ public class ArticleVenduManager implements IArticleVenduManager{
 	
 	@Override
 	public void insertArticle(ArticleVendu article) throws DALException, ArticleVenduManagerException {
-		// TODO Auto-generated method stub
+		
+		try {
+			articleVenduDAO.insertArticleVendu(article);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

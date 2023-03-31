@@ -88,8 +88,6 @@ public class ServletNouvelleVente extends HttpServlet {
 				prixDeVente, etatVente, nouveauRetrait, user, categorieVerif);
 		System.out.println("yo");
 		
-		
-		
 		try {
 			articleManager.insertArticle(nouvelArticle);
 		} catch (DALException e) {
