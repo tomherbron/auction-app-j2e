@@ -34,7 +34,9 @@ public class ServletListeEnchere extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/rechArticle.jsp");
+		
+    	
+    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListeArticles.jsp");
 		dispatcher.forward(request, response);
 	}
 	
