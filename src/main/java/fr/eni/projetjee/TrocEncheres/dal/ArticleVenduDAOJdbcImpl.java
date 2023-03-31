@@ -24,14 +24,6 @@ public class ArticleVenduDAOJdbcImpl {
 	
 	
 	public void insertArticleVendu(ArticleVendu article) throws DALException, SQLException {
-
-		System.out.println("insertArticleVendu");
-		
-		if (article == null) {
-
-			// TODO
-
-		}
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
 
@@ -46,10 +38,16 @@ public class ArticleVenduDAOJdbcImpl {
 			pstmt.setInt(7, article.getUtilisateur().getNoUtilisateur());
 			pstmt.setInt(8, article.getCategorie().getNoCategorie());
 			pstmt.setBoolean(9, article.getEtatVente());
+			
+			pstmt.executeUpdate();
+			
 			ResultSet rs = pstmt.getGeneratedKeys();
+			
 			if (rs.next()) {
-				article.setNoArticle((rs.getInt(1)));
+				article.setNoArticle(rs.getInt(1));
+				System.out.println(article.getNoArticle());
 			}
+			
 			rs.close();
 			pstmt.close();
 			
@@ -58,6 +56,7 @@ public class ArticleVenduDAOJdbcImpl {
 			retrait.setRue(article.getRetrait().getRue());
 			retrait.setCodePostal(article.getRetrait().getCodePostal());
 			retrait.setVille(article.getRetrait().getVille());
+			System.out.println(retrait);
 			
 			 DAOFactory.getRetraitDAO() .insertRetrait(retrait, article.getNoArticle());
 

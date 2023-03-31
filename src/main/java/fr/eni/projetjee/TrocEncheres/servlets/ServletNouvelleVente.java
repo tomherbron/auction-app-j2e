@@ -77,7 +77,8 @@ public class ServletNouvelleVente extends HttpServlet {
 		Boolean etatVente = false;
 
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-
+		System.out.println(user);
+		
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("code-postal");
 		String ville = request.getParameter("ville");
@@ -86,7 +87,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		
 		ArticleVendu nouvelArticle = new ArticleVendu(nomArticle, description, debutEnchere, finEnchere, miseAprix,
 				prixDeVente, etatVente, nouveauRetrait, user, categorieVerif);
-		System.out.println("yo");
 		
 		try {
 			articleManager.insertArticle(nouvelArticle);
@@ -108,6 +108,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		
 		try {
 			maListe = categorieManager.selectAll();
+			System.out.println(maListe.toString());
 		} catch (DALException e) {
 			e.printStackTrace();
 		} catch (UtilisateurManagerException e) {

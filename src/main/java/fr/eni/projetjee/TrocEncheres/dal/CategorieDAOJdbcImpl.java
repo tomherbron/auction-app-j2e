@@ -13,7 +13,7 @@ import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 public class CategorieDAOJdbcImpl {
 
 	private static final String SELECT_BY_ID = "SELECT (libelle) FROM categorie WHERE no_categorie=?";
-	private static final String SELECT_ALL = "SELECT * FROM categorie";
+	private static final String SELECT_ALL = "SELECT `no_categorie`, `libelle` FROM `categorie`";
 	
 
 	
@@ -45,26 +45,32 @@ public class CategorieDAOJdbcImpl {
 	
 
 	public List<Categorie> selectAll() throws DALException, SQLException {
-		List<Categorie> categories = null;
+		List<Categorie> catList = new ArrayList<>();
+		Categorie categorie = null;
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(SELECT_ALL);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
+			
+			while (rs.next()) {
+				Integer noCategorie = rs.getInt(1);
 				String libelle = rs.getString(2);
-							
-				categories = new ArrayList<Categorie>();
+				
+				categorie = new Categorie(noCategorie, libelle);
+				
+				catList.add(categorie);
+				
 			}
 			
 			pstmt.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Select by Id");
+			throw new DALException("SelectAll");
 		}
 
-		return categories;
+		return catList;
 		
 	}
 	

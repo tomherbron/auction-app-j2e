@@ -67,11 +67,6 @@ public class RetraitDAOJdbcImpl {
 	
 	public void insertRetrait(Retrait retrait, int idArticle) throws DALException, SQLException {
 
-		if (retrait == null) {
-
-			// TODO
-
-		}
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			
