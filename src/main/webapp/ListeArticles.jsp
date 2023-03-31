@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 
 <html>
 
@@ -11,53 +12,77 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Recherche Article</title>
+<title>Liste Article</title>
 
 </head>
 
 <body>
 
+
 	<table align="center">
 
-		<h2 align="center">Liste Articles</h2>
-
-		<tr>
-
-			<th>nom article</th>
-
-			<th>vide</th>
-
-			<th>Categorie</th>
-
-		</tr>
-
-		<tr>
+		<thead>
+			<tr>
+				<td>Date</td>
+				<td>Heure</td>
+				<td>Action</td>
+			</tr>
+		</thead>
+	
 			<%
-				List<ArticleVendu> listeArticles = (List<ArticleVendu>) request.getAttribute("listeArticles");
-				if(listeArticles!=null)
-				{
-					for(int i=0;i<listeArticles.size();i++){
-						ArticleVendu article=listeArticles.get(i);
+			List<ArticleVendu> uneVariable = (List<ArticleVendu>) request.getAttribute("listeArticles");
+			
 			
 			%>
-			<td><%=article.getNomArticle() %></td>
-
-
+				
+		<ul>
 			<%
-
-				}
-			}
-			
-			else {
-			
+			for (ArticleVendu element : uneVariable) {
 			%>
-			
-			Pas d'articles disponilbles !
-			
+			<li><%=element%></li>
 			<%
 			}
 			%>
-		
+		</ul>
+
+
+
+
+		<%
+		List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticles");
+		if (listeArticle != null && listeArticle.size() > 0) {
+		%>
+		<tbody>
+			<%
+			for (ArticleVendu articleVendu : listeArticle) {
+			%>
+			<tr>
+				<td><%=articleVendu.getNomArticle()%></td>
+				<td><%=articleVendu.getDescription()%></td>
+
+				<td><a
+					href="<%=request.getContextPath()%>/articleVendu?detail=<%=articleVendu.getNoArticle()%>">détail</a></td>
+			</tr>
+			<%
+			if (String.valueOf(articleVendu.getNoArticle()).equals(request.getParameter("detail"))) {
+			%>
+			<tr>
+				<td><%=articleVendu.getCategorie()%></td>
+
+			</tr>
+			<%
+			}
+			}
+			%>
+		</tbody>
+		<%
+		}
+		%>
+
+
+
+
+
 	</table>
 
 </body>
