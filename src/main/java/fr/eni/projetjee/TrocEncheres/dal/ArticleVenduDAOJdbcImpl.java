@@ -147,11 +147,12 @@ public class ArticleVenduDAOJdbcImpl {
 				
 				Categorie cat = new Categorie (noCategorie, libelle);
 				Utilisateur user = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+				Retrait ret = new Retrait (rue, codePostal, ville);
 				
-				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, user, cat, etatVente);
+				article = new ArticleVendu(noArticle, nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, prixDeVente, etatVente, ret, user, cat);
 				
 			}
-			
+	
 			pstmt.close();
 			
 		} catch (SQLException e) {

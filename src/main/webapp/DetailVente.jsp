@@ -15,11 +15,9 @@
 <meta charset="UTF-8">
 <title>Détail de la vente</title>
 </head>
-<h1>ENI - Enchères</h1>
-<h2>Détail vente</h2>
 <body>
-	<h1>Détail Vente</h1>
-
+	<h1>ENI - Enchères</h1>
+	<h2>Détail vente</h2>
 
 	<%
  
