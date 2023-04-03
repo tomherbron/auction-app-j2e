@@ -39,8 +39,6 @@ public class ServletListeEnchere extends HttpServlet {
 			listeArticle = null;
 			listeArticle = articleVenduManager.selectAll();
 
-			System.out.println("nombre :" + listeArticle.size());
-			System.out.println("list :" + listeArticle);
 			request.setAttribute("listeArticle", listeArticle);
 			
 		} catch (DALException e) {

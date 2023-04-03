@@ -48,6 +48,7 @@ public class ServletDetailVente extends HttpServlet {
 		try {
 			
 		article =	articleManager.selectById(idArticle);
+		System.out.println(article);
 			
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
@@ -56,11 +57,11 @@ public class ServletDetailVente extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		request.setAttribute("article", article);
 		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
-		System.out.println(article.toString());
 		
 		
 		rd.forward(request, response);

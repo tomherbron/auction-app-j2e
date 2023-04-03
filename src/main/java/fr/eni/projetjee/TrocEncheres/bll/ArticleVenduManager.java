@@ -41,8 +41,20 @@ public class ArticleVenduManager implements IArticleVenduManager{
 
 	@Override
 	public ArticleVendu selectById(Integer noArticle) throws DALException, ArticleVenduManagerException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ArticleVendu article = null;
+		
+		try {
+			
+			article = articleVenduDAO.selectById(noArticle);
+			
+		} catch (DALException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return article;
+		
 	}
 
 	@Override

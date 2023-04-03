@@ -118,6 +118,7 @@ public class ArticleVenduDAOJdbcImpl {
 			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, noArticle);
 			ResultSet rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
 				noArticle = rs.getInt(1);
 				String nomArticle = rs.getString(2);
@@ -128,7 +129,6 @@ public class ArticleVenduDAOJdbcImpl {
 				Integer prixDeVente = rs.getInt(7);
 				Boolean etatVente = rs.getBoolean(10);
 				
-				
 				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, article.getUtilisateur(),article.getCategorie(), etatVente);
 			}
 			
@@ -136,7 +136,7 @@ public class ArticleVenduDAOJdbcImpl {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("select by id failed");
+			throw new DALException("selectById failed");
 		}
 
 		return article;
