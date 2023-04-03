@@ -7,7 +7,7 @@
 <title>ENI Enchères | Mon profil</title>
 </head>
 <body>
-	<h1>Enchères-ENI</h1>
+	<h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>
 	<div>
 		<h2>Mon profil</h2>
 		<p>Pseudo : ${pseudo}</p>
@@ -21,7 +21,7 @@
 		<p>Crédit : ${credit}</p>
 	</div>
 	<div>
-		<button name ="btn-modifierUtilisateur" type="button"><a href="./ServletGestionProfilUtilisateur">Modifier</a></button>
+		<button name ="btn-modifierUtilisateur" type="button"><a href="ModifierProfilUtilisateur.jsp">Modifier</a></button>
 	</div>
 </body>
 </html>

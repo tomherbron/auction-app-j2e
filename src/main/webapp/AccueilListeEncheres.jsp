@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h1>Enchères-ENI</h1>
+	<h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>
 	
 <nav>
 	 <a href="FormulaireInscription.jsp">S'inscrire</a>
