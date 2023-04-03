@@ -49,10 +49,10 @@
 		<%
 			List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
 								
-			for (ArticleVendu element : listeArticle) {
+			for (ArticleVendu articleCourant : listeArticle) {
 			%>
-			<a href= "./ServletDetailVente"><%=element.getNomArticle()%></a>'
-			<p><%=element.getDescription()%></p>
+			<a href= "./ServletDetailVente"><%=articleCourant.getNomArticle()%></a>'
+			<p><%=articleCourant.getDescription()%></p>
 			<%
 			}
 			%>	
