@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Nouvelle vente</title>
+<title>Enchères-ENI | Nouvelle vente</title>
 </head>
 <body>
-	<h1>ENI - Enchères</h1>
+	<h1>Enchères-ENI</h1>
 	<h2>Nouvelle vente</h2>
 	<form method="post" action="./ServletNouvelleVente">
 		<div>
