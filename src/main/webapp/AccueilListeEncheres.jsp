@@ -21,7 +21,8 @@
 	 <a href="FormulaireInscription.jsp">S'inscrire</a>
 	 <a href="SeConnecter.jsp">Se Connecter</a> 
 	 <a href="NouvelleVente.jsp">Vendre un article</a> 
-	 <a href= "ModifierProfilUtilisateur.jsp">Modifier mon profil</a>
+	 <a href= "./ServletAffichageProfilUtilisateurCourant">Modifier mon profil</a>
+	 <a href= "">Se déconnecter</a>
 </nav>
 	
 	<div>

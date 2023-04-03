@@ -28,31 +28,7 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		Utilisateur current = (Utilisateur) session.getAttribute("utilisateur");
-		
-		Integer noUtilisateur = current.getNoUtilisateur();
-		
-		Utilisateur currentUser = null;
-		
-			try {
-				
-				currentUser = utilisateurManager.selectById(noUtilisateur);
-				System.out.println(currentUser);
-	
-			} catch (DALException e) {
-				e.printStackTrace();
-			} catch (UtilisateurManagerException e) {
-				e.printStackTrace();
-			}
-			
-		Integer credit = currentUser.getCredit();
-		
-		request.setAttribute("credit", credit);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("./ModifierProfilUtilisateur.jsp");
-		rd.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -92,9 +68,7 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 			request.setAttribute("erreur", "Probleme de manager.");
 		}		
 		
-		System.out.println(current);
-
-		RequestDispatcher rd = request.getRequestDispatcher("./ModifierProfilUtilisateur.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/ServletAffichageProfilUtilisateur");
 		rd.forward(request, response);
 		
 	}

@@ -54,10 +54,7 @@
 	      <input type="password" id="confirmation-mdp" name="confirmation-mdp" pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$">
 	    </div>
 	    <div>
-			<p>Credit : <% 
-			Integer credit = (Integer) request.getAttribute("credit"); 
-			out.println(credit);
-			%></p>
+			<p>Crédit : ${credit}</p>
 		</div>
 	    <div>
 	      <input type="submit" value="Enregistrer"/>
