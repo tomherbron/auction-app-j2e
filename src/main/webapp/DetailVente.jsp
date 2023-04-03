@@ -22,10 +22,10 @@
 
 
 	<%
-        SingletonArticleVenduManager.getInstance();
-    
-        ArticleVendu article = new ArticleVendu();
-        if (article != null) {
+ 
+    	
+        ArticleVendu article = (ArticleVendu)request.getAttribute("article");
+	out.print(article);
     %>
 
 	<p>Nom : </p>
@@ -44,7 +44,6 @@
 	<%=article.getRetrait().getVille() %>
 	<%=article.getUtilisateur().getPseudo() %>
 	
-	<%} %>
 	<form action="<%=request.getContextPath()%>/ServletDetailVente" method="post">
 
 		<label for="tentacles">Ma proposition :</label>
