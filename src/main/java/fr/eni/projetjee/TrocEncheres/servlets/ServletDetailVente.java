@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
+
 
 /**
  * Servlet implementation class ServletDetailVente
@@ -30,7 +32,12 @@ public class ServletDetailVente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    
+		String id = request.getParameter("id");
+		Integer idArticle =Integer.parseInt(id);
 		
+		ArticleVendu article=null;
+		
+		article.setNoArticle(idArticle);
 		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");

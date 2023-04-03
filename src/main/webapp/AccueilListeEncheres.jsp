@@ -46,16 +46,16 @@
 </form>
 
 			
-		<%
-			List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
-								
-			for (ArticleVendu articleCourant : listeArticle) {
-			%>
-			<a href= "./ServletDetailVente"><%=articleCourant.getNomArticle()%></a>'
-			<p><%=articleCourant.getDescription()%></p>
-			<%
-			}
-			%>	
+<%
+List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
+for (ArticleVendu articleCourant : listeArticle) {
+%>
+<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+<p><%=articleCourant.getDescription()%></p>
+<%
+session.setAttribute("articleCourant", articleCourant);
+}
+%>
 
 
 </body>
