@@ -7,7 +7,7 @@
 <title>Enchères-ENI | Inscription</title>
 </head>
 <body>
-	<h1>ENI-Enchères</h1>
+	<h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>
 	<h2>Inscription</h2>
     <form method="post" action="./ServletInscriptionUtilisateur">
 	    <div>

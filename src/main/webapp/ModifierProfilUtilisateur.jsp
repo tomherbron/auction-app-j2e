@@ -7,7 +7,8 @@
 <title>Enchères-ENI | Mon profil</title>
 </head>
 <body> 
-	<h1>Mon profil</h1>
+	<h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>
+	<h2>Modifier mon profil</h2>
 	<form method="post" action="./ServletGestionProfilUtilisateur">
 	    <div>
 	   	  <label for="pseudo-utilisateur">Pseudo :  </label>
@@ -53,9 +54,6 @@
 	      <label for="confirmation-mdp">Confirmation : </label>
 	      <input type="password" id="confirmation-mdp" name="confirmation-mdp" pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$">
 	    </div>
-	    <div>
-			<p>Crédit : ${credit}</p>
-		</div>
 	    <div>
 	      <input type="submit" value="Enregistrer"/>
 	    </div>  

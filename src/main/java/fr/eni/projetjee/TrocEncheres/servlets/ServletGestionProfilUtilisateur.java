@@ -28,7 +28,10 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		RequestDispatcher rd = request.getRequestDispatcher("./ProfilUtilisateur.jsp");
+		rd.forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -68,7 +71,17 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 			request.setAttribute("erreur", "Probleme de manager.");
 		}		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/ServletAffichageProfilUtilisateur");
+		request.setAttribute("pseudo", pseudo);
+		request.setAttribute("nom", nom);
+		request.setAttribute("prenom", prenom);
+		request.setAttribute("email", email);
+		request.setAttribute("telephone", telephone);
+		request.setAttribute("rue", rue);
+		request.setAttribute("cpo", codePostal);
+		request.setAttribute("ville", ville);
+		request.setAttribute("credit", current.getCredit());
+		
+		RequestDispatcher rd = request.getRequestDispatcher("./ProfilUtilisateur.jsp");
 		rd.forward(request, response);
 		
 	}
