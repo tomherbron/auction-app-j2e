@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -93,6 +94,12 @@ public class ServletNouvelleVente extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		int idArticle = nouvelArticle.getNoArticle();
+		Cookie cookieIdArticle = new Cookie("id_article", Integer.toString(idArticle));
+		cookieIdArticle.setMaxAge(0);
+		response.addCookie(cookieIdArticle);
+		
 
 		doGet(request, response);
 	}
