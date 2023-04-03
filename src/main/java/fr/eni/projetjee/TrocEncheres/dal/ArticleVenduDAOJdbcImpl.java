@@ -1,5 +1,4 @@
 package fr.eni.projetjee.TrocEncheres.dal;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
-import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 

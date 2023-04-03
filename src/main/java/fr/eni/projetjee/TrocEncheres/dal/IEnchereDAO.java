@@ -1,8 +1,6 @@
 package fr.eni.projetjee.TrocEncheres.dal;
-
 import java.sql.SQLException;
 import java.util.List;
-
 import fr.eni.projetjee.TrocEncheres.bo.Enchere;
 
 public interface IEnchereDAO {

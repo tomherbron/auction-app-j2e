@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.Categorie;
-import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.CategorieDAOJdbcImpl;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 import fr.eni.projetjee.TrocEncheres.dal.DAOFactory;
-import fr.eni.projetjee.TrocEncheres.dal.UtilisateurDAOJdbcImpl;
 
 public class CategorieManager implements ICategorieManager {
 	

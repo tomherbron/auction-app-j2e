@@ -21,6 +21,9 @@
 	    <div>
 	      <input type="submit" value="Valider" />
 	    </div>  
-	</form>    
+	</form>  
+	<div>
+		<button name="btn-creercompte"type="button"><a href="./FormulaireInscription.jsp">Créer un compte</a></button>
+	</div> 
 </body>
 </html>

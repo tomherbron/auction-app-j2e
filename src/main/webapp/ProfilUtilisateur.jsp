@@ -4,9 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ENI Enchères | Profil utilisateur</title>
 </head>
 <body>
-
+	<h1>ENI-Encheres</h1>
+	<div>
+		<h2>Profil utilisateur de </h2>
+		<p>Pseudo : </p>
+		<p>Nom : </p>
+		<p>Prénom : </p>
+		<p>Email : </p>
+		<p>Téléphone : </p>
+		<p>Rue : </p>
+		<p>Code postal : </p>
+		<p>Ville : </p>
+	</div>
 </body>
 </html>

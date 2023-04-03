@@ -1,7 +1,6 @@
 package fr.eni.projetjee.TrocEncheres.bll;
 
 
-import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;

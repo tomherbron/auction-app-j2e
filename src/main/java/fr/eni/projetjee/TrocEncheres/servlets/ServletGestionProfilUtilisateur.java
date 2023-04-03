@@ -1,7 +1,5 @@
 package fr.eni.projetjee.TrocEncheres.servlets;
-
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,6 +32,9 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		Utilisateur current = (Utilisateur) session.getAttribute("utilisateur");
+		System.out.println(current);
 		
 		String pseudo = request.getParameter("pseudo-utilisateur");
 		String nom = request.getParameter("nom-utilisateur");
@@ -47,6 +48,10 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 
 		int credit = 100;
 		boolean administrateur = false;
+		
+		
+		credit = current.getCredit();
+		System.out.println(credit);
 
 		Utilisateur newUser = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseNouveau,
 				credit, administrateur);

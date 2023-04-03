@@ -1,5 +1,4 @@
 package fr.eni.projetjee.TrocEncheres.bo;
-
 import java.util.Objects;
 
 public class Categorie {
