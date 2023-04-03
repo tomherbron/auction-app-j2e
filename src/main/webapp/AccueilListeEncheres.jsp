@@ -51,7 +51,7 @@
 								
 			for (ArticleVendu element : listeArticle) {
 			%>
-			<a href= "><%=element.getNomArticle()%></a>'
+			<a href= "./ServletDetailVente"><%=element.getNomArticle()%></a>'
 			<p><%=element.getDescription()%></p>
 			<%
 			}
