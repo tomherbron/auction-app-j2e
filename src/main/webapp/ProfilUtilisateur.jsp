@@ -4,20 +4,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ENI Enchères | Profil utilisateur</title>
+<title>ENI Enchères | Mon profil</title>
 </head>
 <body>
 	<h1>Enchères-ENI</h1>
 	<div>
-		<h2>Profil utilisateur de </h2>
-		<p>Pseudo : </p>
-		<p>Nom : </p>
-		<p>Prénom : </p>
-		<p>Email : </p>
-		<p>Téléphone : </p>
-		<p>Rue : </p>
-		<p>Code postal : </p>
-		<p>Ville : </p>
+		<h2>Mon profil</h2>
+		<p>Pseudo : ${pseudo}</p>
+		<p>Nom : ${nom} </p>
+		<p>Prénom : ${prenom}</p>
+		<p>Email : ${email}</p>
+		<p>Téléphone : ${telephone}</p>
+		<p>Rue : ${rue}</p>
+		<p>Code postal : ${cpo}</p>
+		<p>Ville : ${ville}</p>
+		<p>Crédit : ${credit}</p>
+	</div>
+	<div>
+		<button name ="btn-modifierUtilisateur" type="button"><a href="./ServletGestionProfilUtilisateur">Modifier</a></button>
 	</div>
 </body>
 </html>
