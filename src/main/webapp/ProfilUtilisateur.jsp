@@ -9,6 +9,11 @@
 <body>
 	<h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>
 	<div>
+		<form action="./ServletDeconnexion" method="GET">
+  			<button type="submit">Se déconnecter</button>
+		</form>
+	</div>
+	<div>
 		<h2>Mon profil</h2>
 		<p>Pseudo : ${pseudo}</p>
 		<p>Nom : ${nom} </p>
