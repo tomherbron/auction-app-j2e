@@ -18,11 +18,8 @@ public class ArticleVenduDAOJdbcImpl {
 	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=?, etat_vente =? WHERE no_article=?";
 	private static final String DELETE = "DELETE FROM article_vendu WHERE no_article=?";
-	private static final String SELECT_BY_ID  = "SELECT * FROM  `article_vendu `" 
-																+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie" 
-																+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur" 
-																+ "WHERE no_article = ?";
-	private static final String SELECT_ALL = "SELECT * FROM `article_vendu` "
+	private static final String SELECT_BY_ID  = "SELECT * FROM  article_vendu LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE no_article = ?";
+	private static final String SELECT_ALL = "SELECT * FROM article_vendu "
 													+ "LEFT JOIN retrait ON article_vendu.no_article = retrait.no_article "
 													+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie "
 													+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur"; 
