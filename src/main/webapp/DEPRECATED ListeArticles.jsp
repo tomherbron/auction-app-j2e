@@ -17,23 +17,20 @@
 </head>
 
 <body>
-
+ <A href=<%=  %>/>'
 
 	
 			<%
 			List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
 						
-			%>
-				
-		<ul>
-			<%
+		
 			for (ArticleVendu element : listeArticle) {
 			%>
 			<li><%=element.getDescription()%></li>
 			<%
 			}
 			%>
-		</ul>
+		
 
 
 
