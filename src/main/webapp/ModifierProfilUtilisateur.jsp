@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ENI Enchères | Mon profil</title>
+<title>Enchères-ENI | Mon profil</title>
 </head>
 <body> 
 	<h1>Mon profil</h1>
@@ -54,7 +54,10 @@
 	      <input type="password" id="confirmation-mdp" name="confirmation-mdp" pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$">
 	    </div>
 	    <div>
-			<p>Credit : ${credit}</p>
+			<p>Credit : <% 
+			Integer credit = (Integer) request.getAttribute("credit"); 
+			out.println(credit);
+			%></p>
 		</div>
 	    <div>
 	      <input type="submit" value="Enregistrer"/>

@@ -44,7 +44,15 @@ public class UtilisateurManager implements IUtilisateurManager {
 
 	@Override
 	public void updateUtilisateur(Utilisateur utilisateur) throws DALException, UtilisateurManagerException {
-		// TODO Auto-generated method stub
+		
+		try {
+			
+			utilisateurDAO.updateUtilisateur(utilisateur);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new UtilisateurManagerException("Update failed.");
+		}
 		
 	}
 
