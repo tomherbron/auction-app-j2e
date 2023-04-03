@@ -1,12 +1,8 @@
 package fr.eni.projetjee.TrocEncheres.dal;
-
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 
 public class RetraitDAOJdbcImpl {

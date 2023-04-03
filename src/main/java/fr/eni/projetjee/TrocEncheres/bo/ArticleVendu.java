@@ -1,5 +1,4 @@
 package fr.eni.projetjee.TrocEncheres.bo;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
