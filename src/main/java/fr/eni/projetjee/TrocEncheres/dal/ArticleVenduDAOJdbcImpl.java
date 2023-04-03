@@ -18,7 +18,10 @@ public class ArticleVenduDAOJdbcImpl {
 	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=?, etat_vente =? WHERE no_article=?";
 	private static final String DELETE = "DELETE FROM article_vendu WHERE no_article=?";
-	private static final String SELECT_BY_ID = "SELECT (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) FROM article_vendu WHERE no_article=?";
+	private static final String SELECT_BY_ID  = "SELECT * FROM  `article_vendu `" 
+																+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie" 
+																+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur" 
+																+ "WHERE no_article = ?";
 	private static final String SELECT_ALL = "SELECT * FROM `article_vendu` "
 													+ "LEFT JOIN retrait ON article_vendu.no_article = retrait.no_article "
 													+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie "
@@ -89,7 +92,7 @@ public class ArticleVenduDAOJdbcImpl {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Insert failed");
+			throw new DALException("Update failed");
 		}
 
 	}
@@ -105,12 +108,13 @@ public class ArticleVenduDAOJdbcImpl {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Insert failed");
+			throw new DALException("Delete failed");
 		}
 
 	}
 
 	public ArticleVendu selectById(Integer noArticle) throws DALException, SQLException {
+		
 		ArticleVendu article = null;
 
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -120,16 +124,35 @@ public class ArticleVenduDAOJdbcImpl {
 			ResultSet rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				noArticle = rs.getInt(1);
-				String nomArticle = rs.getString(2);
-				String description = rs.getString(3);
-				LocalDate dateDebutEnchere = rs.getDate(4).toLocalDate();
-				LocalDate dateFinEnchere = rs.getDate(5).toLocalDate();
-				Integer miseAPrix = rs.getInt(6);
-				Integer prixDeVente = rs.getInt(7);
-				Boolean etatVente = rs.getBoolean(10);
 				
-				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, article.getUtilisateur(),article.getCategorie(), etatVente);
+				noArticle = rs.getInt("no_article");
+				String nomArticle = rs.getString("nom_article");
+				String description = rs.getString("description");
+				LocalDate dateDebutEnchere = rs.getDate("date_debut_enchere").toLocalDate();
+				LocalDate dateFinEnchere = rs.getDate("date_fin_enchere").toLocalDate();
+				Integer miseAPrix = rs.getInt("prix_initial");
+				Integer prixDeVente = rs.getInt("prix_vente");
+				Integer noUtilisateur = rs.getInt("no_utilisateur");
+				Integer noCategorie = rs.getInt("no_categorie");
+				Boolean etatVente = rs.getBoolean("etat_vente");
+				String rue = rs.getNString("rue");
+				String codePostal = rs.getString("code_postal");
+				String ville = rs.getNString("ville");
+				String libelle = rs.getString("libelle");
+				String pseudo = rs.getString("pseudo");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String motDePasse = rs.getString("mot_de_passe");
+				Integer credit = rs.getInt("credit");
+				Boolean administrateur = rs.getBoolean("administrateur");
+				
+				Categorie cat = new Categorie (noCategorie, libelle);
+				Utilisateur user = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+				
+				article = new ArticleVendu(nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix,prixDeVente, user, cat, etatVente);
+				
 			}
 			
 			pstmt.close();
@@ -138,6 +161,8 @@ public class ArticleVenduDAOJdbcImpl {
 			e.printStackTrace();
 			throw new DALException("selectById failed");
 		}
+		
+		System.out.println(article);
 
 		return article;
 	}
