@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
+
+<%@page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -38,41 +44,18 @@
 	</div>
 </form>
 
-<map name="resultatRecherche1">
-    <area shape="rect" coords="0,0,350,150"
-          href="https://developer.mozilla.org"
-          alt="premier résultat"/>
-</map>
-<img usemap="#resultatRecherche1" src="https://via.placeholder.com/350x150" alt="MDN infographic">
+			
+		<%
+			List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
+								
+			for (ArticleVendu element : listeArticle) {
+			%>
+			<a href= "><%=element.getNomArticle()%></a>'
+			<p><%=element.getDescription()%></p>
+			<%
+			}
+			%>	
 
-<br>
-
-<map name="resultatRecherche2">
-    <area shape="rect" coords="0,0,350,150"
-          href="https://developer.mozilla.org"
-          alt="premier résultat"/>
-</map>
-<img usemap="#resultatRecherche2" src="https://via.placeholder.com/350x150" alt="MDN infographic">
-
-<br>
-
-<map name="resultatRecherche3">
-    <area shape="rect" coords="0,0,350,150"
-          href="https://developer.mozilla.org"
-          alt="premier résultat"/>
-</map>
-<img usemap="#resultatRecherche3" src="https://via.placeholder.com/350x150" alt="MDN infographic">
-
-<br>
-
-<map name="resultatRecherche4">
-    <area shape="rect" coords="0,0,350,150"
-          href="https://developer.mozilla.org"
-          alt="premier résultat"/>
-</map>
-<img usemap="#resultatRecherche4" src="https://via.placeholder.com/350x150" alt="MDN infographic">
-
-<br>
 
 </body>
 </html>
