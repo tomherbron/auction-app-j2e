@@ -181,6 +181,8 @@ public class ArticleVenduDAOJdbcImpl {
 				article = new ArticleVendu (noArticle, nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, prixDeVente, etatVente, retrait2, utilisateur2, categorie2); 	
 							
 				listeArticleVendu = new ArrayList<ArticleVendu>();
+				listeArticleVendu.add(article);
+				
 			}
 			
 			pstmt.close();

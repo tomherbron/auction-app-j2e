@@ -30,7 +30,7 @@
 		</thead>
 	
 			<%
-			List<ArticleVendu> uneVariable = (List<ArticleVendu>) request.getAttribute("listeArticles");
+			List<ArticleVendu> uneVariable = (List<ArticleVendu>) request.getAttribute("listeArticle");
 			
 			
 			%>
@@ -49,7 +49,7 @@
 
 
 		<%
-		List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticles");
+		List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
 		if (listeArticle != null && listeArticle.size() > 0) {
 		%>
 		<tbody>
