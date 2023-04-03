@@ -32,12 +32,15 @@ public class ServletListeEnchere extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	List<ArticleVendu> listeArticle = new ArrayList<>();
+    	List<ArticleVendu> listeArticle = new ArrayList<>();
 		
 		try {
 			//recherche des Articles
 			listeArticle = null;
 			listeArticle = articleVenduManager.selectAll();
+
+			System.out.println("nombre :" + listeArticle.size());
+			System.out.println("list :" + listeArticle);
 			request.setAttribute("listeArticle", listeArticle);
 			
 		} catch (DALException e) {

@@ -17,4 +17,5 @@ public interface IArticleVenduManager {
 	public ArticleVendu selectById(Integer noArticle ) throws DALException, ArticleVenduManagerException;
 
 	public List<ArticleVendu> selectAll() throws DALException, ArticleVenduManagerException ;
+	
 }

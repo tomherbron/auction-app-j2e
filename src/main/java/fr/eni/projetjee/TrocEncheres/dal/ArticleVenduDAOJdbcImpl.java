@@ -149,7 +149,10 @@ public class ArticleVenduDAOJdbcImpl {
 
 			PreparedStatement pstmt = con.prepareStatement(SELECT_ALL);
 			ResultSet rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
+				if (listeArticleVendu == null)
+					listeArticleVendu = new ArrayList<ArticleVendu>();
 				Integer noArticle = rs.getInt("no_article");
 				String nomArticle = rs.getString("nom_article");
 				String description = rs.getString("description");
@@ -172,17 +175,13 @@ public class ArticleVenduDAOJdbcImpl {
 				String motDePasse = rs.getString("mot_de_passe");
 				Integer credit = rs.getInt("credit");
 				Boolean administrateur = rs.getBoolean("administrateur");
-							
-								
 				
 				Retrait retrait2 = new Retrait (rue, codePostal, ville);
 				Categorie categorie2 = new Categorie (noCategorie, libelle);
 				Utilisateur utilisateur2 = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 				article = new ArticleVendu (noArticle, nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, prixDeVente, etatVente, retrait2, utilisateur2, categorie2); 	
-							
-				listeArticleVendu = new ArrayList<ArticleVendu>();
-				listeArticleVendu.add(article);
 				
+				listeArticleVendu.add(article);
 			}
 			
 			pstmt.close();
