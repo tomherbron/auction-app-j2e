@@ -15,6 +15,7 @@
 	 <a href="FormulaireInscription.jsp">S'inscrire</a>
 	 <a href="SeConnecter.jsp">Se Connecter</a> 
 	 <a href="NouvelleVente.jsp">Vendre un article</a> 
+	 <a href= "ModifierProfilUtilisateur.jsp">Modifier mon profil</a>
 </nav>
 	
 	<div>
@@ -33,7 +34,7 @@
 				<option value="cat3">cat3</option>
 				<option value="cat4">cat4</option>
 			</select>
-		<button>rechercher</button>
+		<button>Rechercher</button>
 	</div>
 </form>
 
@@ -72,16 +73,6 @@
 <img usemap="#resultatRecherche4" src="https://via.placeholder.com/350x150" alt="MDN infographic">
 
 <br>
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>

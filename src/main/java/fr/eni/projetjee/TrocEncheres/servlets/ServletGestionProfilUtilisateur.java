@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import fr.eni.projetjee.TrocEncheres.bll.IUtilisateurManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager;
 import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
@@ -30,6 +32,9 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		Utilisateur current = (Utilisateur) session.getAttribute("utilisateur");
+		System.out.println(current);
 		
 		String pseudo = request.getParameter("pseudo-utilisateur");
 		String nom = request.getParameter("nom-utilisateur");
@@ -43,6 +48,10 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 
 		int credit = 100;
 		boolean administrateur = false;
+		
+		
+		credit = current.getCredit();
+		System.out.println(credit);
 
 		Utilisateur newUser = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseNouveau,
 				credit, administrateur);

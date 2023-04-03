@@ -15,9 +15,6 @@ import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
-/**
- * Servlet implementation class ServletConnexion
- */
 @WebServlet("/ServletConnexion")
 public class ServletConnexion extends HttpServlet {
 	
