@@ -12,6 +12,7 @@ import java.util.List;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 
 public class ArticleVenduDAOJdbcImpl {
 	
@@ -19,7 +20,10 @@ public class ArticleVenduDAOJdbcImpl {
 	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=?, etat_vente =? WHERE no_article=?";
 	private static final String DELETE = "DELETE FROM article_vendu WHERE no_article=?";
 	private static final String SELECT_BY_ID = "SELECT (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie) FROM article_vendu WHERE no_article=?";
-	private static final String SELECT_ALL = "SELECT * FROM article_vendu";
+	private static final String SELECT_ALL = "SELECT * FROM `article_vendu` "
+													+ "LEFT JOIN retrait ON article_vendu.no_article = retrait.no_article "
+													+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie "
+													+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur"; 
 	
 	
 	
@@ -140,20 +144,42 @@ public class ArticleVenduDAOJdbcImpl {
 	}
 	public List<ArticleVendu> selectAll() throws DALException, SQLException {
 		List<ArticleVendu> listeArticleVendu = null;
+		ArticleVendu article = null;
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(SELECT_ALL);
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				int noArticle = rs.getInt(1);
-				String nomArticle = rs.getString(2);
-				String description = rs.getString(3);
-				LocalDate dateDebutEnchere = rs.getDate(4).toLocalDate();
-				LocalDate dateFinEnchere = rs.getDate(5).toLocalDate();
-				Integer miseAPrix = rs.getInt(6);
-				Integer prixDeVente = rs.getInt(7);
-				Boolean etatVente = rs.getBoolean(10);
+			while (rs.next()) {
+				Integer noArticle = rs.getInt("no_article");
+				String nomArticle = rs.getString("nom_article");
+				String description = rs.getString("description");
+				LocalDate dateDebutEnchere = rs.getDate("date_debut_enchere").toLocalDate();
+				LocalDate dateFinEnchere = rs.getDate("date_fin_enchere").toLocalDate();
+				Integer miseAPrix = rs.getInt("prix_initial");
+				Integer prixDeVente = rs.getInt("prix_vente");
+				Integer noUtilisateur = rs.getInt("no_utilisateur");
+				Integer noCategorie = rs.getInt("no_categorie");
+				Boolean etatVente = rs.getBoolean("etat_vente");
+				String rue = rs.getNString("rue");
+				String codePostal = rs.getString("code_postal");
+				String ville = rs.getNString("ville");
+				String libelle = rs.getString("libelle");
+				String pseudo = rs.getString("pseudo");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String motDePasse = rs.getString("mot_de_passe");
+				Integer credit = rs.getInt("credit");
+				Boolean administrateur = rs.getBoolean("administrateur");
+							
+								
+				
+				Retrait retrait2 = new Retrait (rue, codePostal, ville);
+				Categorie categorie2 = new Categorie (noCategorie, libelle);
+				Utilisateur utilisateur2 = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+				article = new ArticleVendu (noArticle, nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, prixDeVente, etatVente, retrait2, utilisateur2, categorie2); 	
 							
 				listeArticleVendu = new ArrayList<ArticleVendu>();
 			}
