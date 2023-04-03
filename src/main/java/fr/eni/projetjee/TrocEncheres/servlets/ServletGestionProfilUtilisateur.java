@@ -1,5 +1,7 @@
 package fr.eni.projetjee.TrocEncheres.servlets;
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +28,29 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		Utilisateur current = (Utilisateur) session.getAttribute("utilisateur");
+		
+		Integer noUtilisateur = current.getNoUtilisateur();
+		
+		Utilisateur currentUser = null;
+		
+			try {
+				
+				currentUser = utilisateurManager.selectById(noUtilisateur);
+				System.out.println(currentUser);
+	
+			} catch (DALException e) {
+				e.printStackTrace();
+			} catch (UtilisateurManagerException e) {
+				e.printStackTrace();
+			}
+			
+		Integer credit = currentUser.getCredit();
+		
+		request.setAttribute("credit", credit);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("./ModifierProfilUtilisateur.jsp");
 		rd.forward(request, response);
 	}
@@ -34,7 +59,6 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Utilisateur current = (Utilisateur) session.getAttribute("utilisateur");
-		System.out.println(current);
 		
 		String pseudo = request.getParameter("pseudo-utilisateur");
 		String nom = request.getParameter("nom-utilisateur");
@@ -45,20 +69,20 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 		String codePostal = request.getParameter("cpo-utilisateur");
 		String ville = request.getParameter("ville-utilisateur");
 		String motDePasseNouveau = request.getParameter("mdp-utilisateur");
-
-		int credit = 100;
-		boolean administrateur = false;
 		
-		
-		credit = current.getCredit();
-		System.out.println(credit);
-
-		Utilisateur newUser = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasseNouveau,
-				credit, administrateur);
+		current.setPseudo(pseudo);
+		current.setNom(nom);
+		current.setPrenom(prenom);
+		current.setEmail(email);
+		current.setTelephone(telephone);
+		current.setRue(rue);
+		current.setCodePostal(codePostal);
+		current.setVille(ville);
+		current.setMotDePasse(motDePasseNouveau);
 
 		try {
 			
-			utilisateurManager.updateUtilisateur(newUser);
+			utilisateurManager.updateUtilisateur(current);
 
 		} catch (DALException e) {
 			e.printStackTrace();
@@ -66,15 +90,13 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 		} catch (UtilisateurManagerException e) {
 			e.printStackTrace();
 			request.setAttribute("erreur", "Probleme de manager.");
-		}
+		}		
 		
-		
+		System.out.println(current);
 
-		RequestDispatcher rd = request.getRequestDispatcher("./ProfilUtilisateur.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./ModifierProfilUtilisateur.jsp");
 		rd.forward(request, response);
-
 		
-		doGet(request, response);
 	}
 
 }

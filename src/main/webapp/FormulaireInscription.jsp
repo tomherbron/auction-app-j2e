@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Enchères ENI | Inscription</title>
+<title>Enchères-ENI | Inscription</title>
 </head>
 <body>
 	<h1>ENI-Enchères</h1>

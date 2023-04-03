@@ -7,7 +7,7 @@
 <title>ENI Enchères | Profil utilisateur</title>
 </head>
 <body>
-	<h1>ENI-Encheres</h1>
+	<h1>Enchères-ENI</h1>
 	<div>
 		<h2>Profil utilisateur de </h2>
 		<p>Pseudo : </p>

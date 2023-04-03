@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>A Web Page</title>
+<title>Enchères-ENI | Accueil</title>
 </head>
 <body>
 
-	<h1>ENI-Encheres</h1>
+	<h1>Enchères-ENI</h1>
 	
 <nav>
 	 <a href="FormulaireInscription.jsp">S'inscrire</a>
