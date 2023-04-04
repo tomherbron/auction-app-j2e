@@ -5,8 +5,16 @@
 <!DOCTYPE html>
 
 <%@page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
+<%@page import="fr.eni.projetjee.TrocEncheres.bo.Categorie"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+
+
+<%
+ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCategorie");
+%>
+
+
 
 <html>
 <head>
@@ -49,18 +57,13 @@
 							%>
 				</select> <input type="submit"/>
 			</form>
-
-
-
-
-			</select>
-		<button>Rechercher</button>
+			
 	</div>
-</form>
+
 
 		
 
-		</div>
+		
 
 		
 		
