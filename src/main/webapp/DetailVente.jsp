@@ -29,10 +29,10 @@
 	
 	%>
 
-	<p>Nom : <%=article.getNomArticle()%></p>
+	<p>Nom de l'article : <%=article.getNomArticle()%></p>
 	<p>Description : <%=article.getDescription()%></p>
 	<p>Catégorie : <%=article.getCategorie().getLibelle()%></p>
-	<p>Meilleure offre : <%=article.getMiseAPrix()%></p>
+	<p>Meilleure offre : <%=article.getMiseAPrix()%> points</p>
 	<p>Fin de l'enchère : <%=article.getDateFinEnchere()%></p>
 	<p>Retrait : <%=article.getRetrait().getRue()%>
 	<%=article.getRetrait().getCodePostal()%>

@@ -30,12 +30,9 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 		</h1>
 
 		<nav>
-
-			<a href="./ServletInscriptionUtilisateur">S'inscrire</a> <a
-				href="./ServletConnexion">Se Connecter</a> <a
-				href="./ServletNouvelleVente">Vendre un article</a> <a
-				href="./ServletAffichageProfilUtilisateurCourant">Modifier mon
-				profil</a> <a href="./ServletDeconnexion">Se déconnecter</a>
+				<a href="./ServletNouvelleVente">Vendre un article</a> 
+				<a href="./ServletAffichageProfilUtilisateurCourant">Modifier mon profil</a> 
+				<a href="./ServletDeconnexion">Se déconnecter</a>
 		</nav>
 
 		<div>Liste des enchères</div>
