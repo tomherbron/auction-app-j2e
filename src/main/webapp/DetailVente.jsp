@@ -59,8 +59,9 @@
 
 			<form action="<%=request.getContextPath()%>/ServletDetailVente"
 				method="post">
-				<label for="tentacles">Ma proposition :</label> <input type="number"
-					id="tentacles" name="proposition" min="10" max="2000">
+				<label for="tentacles">Ma proposition :</label>
+				<br> 
+				<input type="number" id="tentacles" name="proposition" min="10" max="2000">	
 				<input type="submit" value="Enchérir" />		
 			</form>
 		</article>
