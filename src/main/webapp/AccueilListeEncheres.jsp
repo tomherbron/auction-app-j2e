@@ -29,8 +29,6 @@
 
 	<div>Liste des enchères</div>
 
-
-
 	<form action="post" action="./ServletAccueilListeEncheres">
 		<div>
 			<label for="site-search">Filtres :</label> <input type="search"
@@ -46,28 +44,25 @@
 		<button>Rechercher</button>
 	</div>
 </form>
-		
-	<% inserer le select by categorie avec le noCategorie du menu déroulant. %>	
 			
-<%
-List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
-for (ArticleVendu articleCourant : listeArticle) {
-%>
+	<%
+	List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
+	for (ArticleVendu articleCourant : listeArticle) {
+	%>
 
-<br>
-<p>-----------------------------------------------</p>
-<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
-<br>
-<p>Prix : <%=articleCourant.getMiseAPrix()%> points</p>
-<p>Fin de l'enchère : <%=articleCourant.getDateFinEnchere()%></p>
-<br>
-<p>Vendeur : <%=articleCourant.getUtilisateur().getPseudo()%></p>
+	<br>
+	<p>-----------------------------------------------</p>
+	<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+	<br>
+	<p>Prix : <%=articleCourant.getMiseAPrix()%> points</p>
+	<p>Fin de l'enchère : <%=articleCourant.getDateFinEnchere()%></p>
+	<br>
+	<p>Vendeur : <%=articleCourant.getUtilisateur().getPseudo()%></p>
 
-<%
-session.setAttribute("articleCourant", articleCourant);
-}
-%>
-
+	<%
+	session.setAttribute("articleCourant", articleCourant);
+	}
+	%>
 
 </body>
 </html>

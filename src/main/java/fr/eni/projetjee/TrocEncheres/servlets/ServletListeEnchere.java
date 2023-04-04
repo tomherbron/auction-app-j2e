@@ -46,7 +46,7 @@ public class ServletListeEnchere extends HttpServlet {
 		request.setAttribute("listeArticle", listeArticle);
 			
 		// transfert affichage à la jsp
-		RequestDispatcher rd = request.getRequestDispatcher("/AccueilListeEncheres.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
 		rd.forward(request, response);
 		
     }

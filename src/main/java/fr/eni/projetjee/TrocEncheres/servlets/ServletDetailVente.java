@@ -59,10 +59,7 @@ public class ServletDetailVente extends HttpServlet {
 		}
 		
 		request.setAttribute("article", article);
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
-		
 		
 		rd.forward(request, response);
 	}

@@ -62,7 +62,7 @@ public class ServletInscriptionUtilisateur extends HttpServlet {
 			request.setAttribute("erreur", "Probleme de manager.");
 		}
 
-		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/ServletListeEnchere");
 		rd.forward(request, response);
 
 	}

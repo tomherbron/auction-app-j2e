@@ -63,9 +63,9 @@ public class ServletConnexion extends HttpServlet {
 				for (Utilisateur current : userList) {
 					
 					if (current.getPseudo().equals(pseudo) && current.getMotDePasse().equals(motDePasse)) {
-						dispatcher = request.getRequestDispatcher("./AccueilListeEncheres.jsp");		
+						dispatcher = request.getRequestDispatcher("/ServletListeEnchere");		
 					} else if (!userList.contains(pseudo)) {
-						dispatcher = request.getRequestDispatcher("./SeConnecter.jsp");
+						dispatcher = request.getRequestDispatcher("/ServletConnexion");
 					}
 				}
 				

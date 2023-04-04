@@ -95,10 +95,8 @@ public class ServletNouvelleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		int idArticle = nouvelArticle.getNoArticle();
-		Cookie cookieIdArticle = new Cookie("id_article", Integer.toString(idArticle));
-		cookieIdArticle.setMaxAge(0);
-		response.addCookie(cookieIdArticle);
+		RequestDispatcher rd = request.getRequestDispatcher("/ServletDetailVente");
+		rd.forward(request, response);
 		
 
 		doGet(request, response);
