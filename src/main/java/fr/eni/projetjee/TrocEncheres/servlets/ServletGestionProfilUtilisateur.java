@@ -28,10 +28,8 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		RequestDispatcher rd = request.getRequestDispatcher("./ProfilUtilisateur.jsp");
 		rd.forward(request, response);
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,7 +79,7 @@ public class ServletGestionProfilUtilisateur extends HttpServlet {
 		request.setAttribute("ville", ville);
 		request.setAttribute("credit", current.getCredit());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./ProfilUtilisateur.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/ServletAffichageProfilUtilisateurCourant");
 		rd.forward(request, response);
 		
 	}

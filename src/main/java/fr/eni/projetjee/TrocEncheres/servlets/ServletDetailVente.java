@@ -38,9 +38,8 @@ public class ServletDetailVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    
 		
-		String id = request.getParameter("id");
-		System.out.println(id);
-		Integer idArticle =Integer.parseInt(id);
+		Integer idArticle = (Integer) request.getAttribute("id");
+		System.out.println(idArticle);
 		
 		ArticleVendu article=null;
 		
@@ -59,10 +58,7 @@ public class ServletDetailVente extends HttpServlet {
 		}
 		
 		request.setAttribute("article", article);
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
-		
 		
 		rd.forward(request, response);
 	}
@@ -71,7 +67,22 @@ public class ServletDetailVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String proposition = request.getParameter("proposition");
+		Integer propo = Integer.parseInt(proposition);
+		ArticleVendu article = (ArticleVendu) request.getAttribute("article");
+		Integer nouveauPrix;
+		
+		if(propo > article.getPrixDeVente() ) {
+			
+			nouveauPrix=propo;
+		} else {
+			nouveauPrix = article.getPrixDeVente();
+		}
+			
+		
+		
+		
+		
 		doGet(request, response);
 	}
 

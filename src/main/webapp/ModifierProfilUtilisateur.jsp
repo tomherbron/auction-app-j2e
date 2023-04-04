@@ -7,7 +7,9 @@
 <title>Enchères-ENI | Mon profil</title>
 </head>
 <body> 
-	<h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>
+	<h1>
+		<a href="./ServletListeEnchere">Enchères-ENI</a>
+	</h1>
 	<h2>Modifier mon profil</h2>
 	<form method="post" action="./ServletGestionProfilUtilisateur">
 	    <div>
@@ -59,7 +61,7 @@
 	    </div>  
 	</form>    
 	<div>
-		<button name="btn-supprimercompte" type="button" href="./ServletSuppressionUtilisateur">Supprimer mon compte</button>
+		<button name="btn-supprimercompte" type="button"><a href="./ServletSuppressionUtilisateur">Supprimer mon compte</a></button>
 	</div>
 </body>
 </html>

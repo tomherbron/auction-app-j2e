@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 
 <%@page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
-<%@page import="fr.eni.projetjee.TrocEncheres.bo.Categorie"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -15,25 +14,21 @@
 <title>Enchères-ENI | Accueil</title>
 </head>
 <body>
-	<%
-	List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
-	ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCategorie");
-	%>
 
 	<h1>
-		<a href="AccueilListeEncheres.jsp">Enchères-ENI</a>
+		<a href="./ServletListeEnchere">Enchères-ENI</a>
 	</h1>
 
 	<nav>
-		<a href="FormulaireInscription.jsp">S'inscrire</a> <a
-			href="SeConnecter.jsp">Se Connecter</a> <a href="NouvelleVente.jsp">Vendre
-			un article</a> <a href="./ServletAffichageProfilUtilisateurCourant">Modifier
-			mon profil</a> <a href="">Se déconnecter</a>
+	
+		<a href="./ServletInscriptionUtilisateur">S'inscrire</a> 
+		<a href="./ServletConnexion">Se Connecter</a> 
+		<a href="./ServletNouvelleVente">Vendre un article</a> 
+		<a href="./ServletAffichageProfilUtilisateurCourant">Modifier mon profil</a>
+		<a href="./ServletDeconnexion">Se déconnecter</a>
 	</nav>
 
 	<div>Liste des enchères</div>
-
-
 
 	<div>
 
@@ -58,28 +53,32 @@
 
 
 
+			</select>
+		<button>Rechercher</button>
+	</div>
+</form>
+
+		
+
 		</div>
 
-	<%
-	for (ArticleVendu articleCourant : listeArticle) {
-	%>
+		
+		
+		
+			
+<%
+List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
+for (ArticleVendu articleCourant : listeArticle) {
+%>
 
-	<br>
-	<p>-----------------------------------------------</p>
-	<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
-	<br>
-	<p>
-		Prix :
-		<%=articleCourant.getMiseAPrix()%>
-		points
-	</p>
-	<p>
-		Fin de l'enchère :
-		<%=articleCourant.getDateFinEnchere()%></p>
-	<br>
-	<p>
-		Vendeur :
-		<%=articleCourant.getUtilisateur().getPseudo()%></p>
+<br>
+<p>-----------------------------------------------</p>
+<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+<br>
+<p>Prix : <%=articleCourant.getMiseAPrix()%> points</p>
+<p>Fin de l'enchère : <%=articleCourant.getDateFinEnchere()%></p>
+<br>
+<p>Vendeur : <%=articleCourant.getUtilisateur().getPseudo()%></p>
 
 	<%
 	session.setAttribute("articleCourant", articleCourant);

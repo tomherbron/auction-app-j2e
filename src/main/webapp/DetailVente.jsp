@@ -16,39 +16,37 @@
 <title>Détail de la vente</title>
 </head>
 <body>
-	<h1>ENI - Enchères</h1>
+	<h1>
+		<a href="./ServletListeEnchere">Enchères-ENI</a>
+	</h1>
 	<h2>Détail vente</h2>
 
 	<%
-    	
-        ArticleVendu article = (ArticleVendu)request.getAttribute("article");
-	out.print(article);
-	
-    %>
+		ArticleVendu article = (ArticleVendu) request.getAttribute("article");
+		out.print(article);
+	%>
 
-	<p>Nom : </p>
+	<p>Nom :</p>
 	<%=article.getNomArticle()%>
-	<p>Description : </p>
+	<p>Description :</p>
 	<%=article.getDescription()%>
-	<p>Catégorie : </p>
-	<%=article.getCategorie() %>
-	<p>Meilleure offre : </p>
-	<%=article.getMiseAPrix() %>
-	<p>Fin de l'enchère : </p>
-	<%=article.getDateFinEnchere() %>
-	<p>Retrait : </p>
-	<%=article.getRetrait().getRue() %>
+	<p>Catégorie :</p>
+	<%=article.getCategorie()%>
+	<p>Meilleure offre :</p>
+	<%=article.getMiseAPrix()%>
+	<p>Fin de l'enchère :</p>
+	<%=article.getDateFinEnchere()%>
+	<p>Retrait :</p>
+	<%=article.getRetrait().getRue()%>
 	<%=article.getRetrait().getCodePostal()%>
-	<%=article.getRetrait().getVille() %>
-	<%=article.getUtilisateur().getPseudo() %>
-	
-	<form action="<%=request.getContextPath()%>/ServletDetailVente" method="post">
+	<%=article.getRetrait().getVille()%>
+	<%=article.getUtilisateur().getPseudo()%>
 
-		<label for="tentacles">Ma proposition :</label>
+	<form action="<%=request.getContextPath()%>/ServletDetailVente"
+		method="post">
+		<label for="tentacles">Ma proposition :</label> <input type="number"
+			id="tentacles" name="proposition" min="10" max="2000">
 
-	<input type="number" id="tentacles" name="proposition"
-       min="10" max="2000">
-	
 	</form>
 
 </body>

@@ -86,7 +86,7 @@ public class ServletListeEnchere extends HttpServlet {
 				
 		
 		// transfert affichage à la jsp
-		RequestDispatcher rd = request.getRequestDispatcher("/AccueilListeEncheres.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
 		rd.forward(request, response);
 		
 		
