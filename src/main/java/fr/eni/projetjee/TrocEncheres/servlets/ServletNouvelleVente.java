@@ -99,7 +99,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
+		System.out.println("L'id article est : " + idArticle); //OKKK
 		
 		request.setAttribute("id", idArticle);
 		RequestDispatcher rd = request.getRequestDispatcher("/ServletDetailVente");

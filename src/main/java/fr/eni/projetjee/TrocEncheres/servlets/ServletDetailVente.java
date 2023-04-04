@@ -38,10 +38,8 @@ public class ServletDetailVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    
 		
-		Integer idArticle = Integer.parseInt(request.getParameter("id"));
-		
+		Integer  idArticle = (Integer) request.getAttribute("id");
 		ArticleVendu article=null;
-		
 		
 		try {
 			
