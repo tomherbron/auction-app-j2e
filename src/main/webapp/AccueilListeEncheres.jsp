@@ -24,79 +24,93 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 <title>Enchères-ENI | Accueil</title>
 </head>
 <body>
-	<div class="container">
-		<h1>
-			<a href="./ServletListeEnchere">Enchères-ENI</a>
-		</h1>
+<div class="container">
+	<article>
+		
+			<header>
 
-		<nav>
+				<h1>
+					<a href="./ServletListeEnchere">Enchères-ENI</a>
+				</h1>
+				<nav aria-label="breadcrumb">
+					<ul>
+						<li><a href="./ServletInscriptionUtilisateur">S'inscrire</a>
+						</li>
+						<li><a href="./ServletConnexion">Se Connecter</a></li>
+						<li><a href="./ServletNouvelleVente">Vendre un article</a></li>
+						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier
+								mon profil</a></li>
+						<li><a href="./ServletDeconnexion">Se déconnecter</a></li>
 
-			<a href="./ServletInscriptionUtilisateur">S'inscrire</a> <a
-				href="./ServletConnexion">Se Connecter</a> <a
-				href="./ServletNouvelleVente">Vendre un article</a> <a
-				href="./ServletAffichageProfilUtilisateurCourant">Modifier mon
-				profil</a> <a href="./ServletDeconnexion">Se déconnecter</a>
-		</nav>
-
-		<div>Liste des enchères</div>
-
-		<div>
-
-			<form action="post" action="./ServletListeEncheres">
-				<label for="site-search">Filtres :</label> <input type="text"
-					name="query" placeholder="Le nom de l'article contient" /> <br>
-				<label for="categories">Catégories:</label> <select
-					name="categories">
-					<option value="toutes">toutes</option>
-					<%
-					for (int i = 0; i < listeCategorie.size(); i++) {
-						String libelle = listeCategorie.get(i).getLibelle();
-					%>
-					<option value="<%=libelle%>"><%=libelle%></option>
-					<%
-					}
-					%>
-				</select> <input type="submit" />
-			</form>
-
-		</div>
+					</ul>
+				</nav>
+			</header>
 
 
 
 
+			<div>Liste des enchères</div>
+
+			<div>
+
+				<form action="post" action="./ServletListeEncheres">
+					<label for="site-search">Filtres :</label> <input type="text"
+						name="query" placeholder="Le nom de l'article contient" /> <br>
+					<label for="categories">Catégories:</label> <select
+						name="categories">
+						<option value="toutes">toutes</option>
+						<%
+						for (int i = 0; i < listeCategorie.size(); i++) {
+							String libelle = listeCategorie.get(i).getLibelle();
+						%>
+						<option value="<%=libelle%>"><%=libelle%></option>
+						<%
+						}
+						%>
+					</select> <input type="submit"  value = "Rechercher" />
+				</form>
+
+			</div>
 
 
 
 
 
 
-		<%
-		List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
-		for (ArticleVendu articleCourant : listeArticle) {
-		%>
 
-		<br>
-		<p>-----------------------------------------------</p>
-		<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
-		<br>
-		<p>
-			Prix :
-			<%=articleCourant.getMiseAPrix()%>
-			points
-		</p>
-		<p>
-			Fin de l'enchère :
-			<%=articleCourant.getDateFinEnchere()%></p>
-		<br>
-		<p>
-			Vendeur :
-			<%=articleCourant.getUtilisateur().getPseudo()%></p>
 
-		<%
-		session.setAttribute("articleCourant", articleCourant);
-		}
-		%>
 
+
+			<%
+			List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
+			for (ArticleVendu articleCourant : listeArticle) {
+			%>
+
+			<br>
+			<p>-----------------------------------------------</p>
+			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+			<br>
+			<p>
+				Prix :
+				<%=articleCourant.getMiseAPrix()%>
+				points
+			</p>
+			<p>
+				Fin de l'enchère :
+				<%=articleCourant.getDateFinEnchere()%></p>
+			<br>
+			<p>
+				Vendeur :
+				<%=articleCourant.getUtilisateur().getPseudo()%></p>
+
+			<%
+			session.setAttribute("articleCourant", articleCourant);
+			}
+			%>
+
+
+		
+	</article>
 	</div>
 </body>
 </html>

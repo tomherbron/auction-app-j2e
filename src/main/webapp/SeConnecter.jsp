@@ -10,9 +10,12 @@
 </head>
 <body>
 	<div class ="container">
+	<article>
+	<header>
 		<h1>
 			<a href="./ServletListeEnchere">Enchères-ENI</a>
 		</h1>
+		</header>
 		<h2>Se connecter</h2>
 		<form method="post" action="./ServletConnexion">
 			<div>
@@ -27,10 +30,13 @@
 				<input type="submit" value="Valider" />
 			</div>
 		</form>
-		<div>
+		<footer>
+		<div dir="rtl" >
 
-			<a href="./FormulaireInscription.jsp" role="button" name= "btn-creercompte">Créer un compte</a>
+			<a href="./FormulaireInscription.jsp"   role="button" name= "btn-creercompte">Créer un compte</a>
 		</div>
+		</footer>
+		</article>
 	</div>
 </body>
 </html>
