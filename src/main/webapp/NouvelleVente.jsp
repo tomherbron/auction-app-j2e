@@ -87,9 +87,6 @@
 		<input type="reset" value="Annuler">
 	</form>
 
-
-
-
 </div>
 </body>
 </html>

@@ -23,15 +23,10 @@ import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
-/**
- * Servlet implementation class ServletNouvelleVente
- */
 @WebServlet("/ServletNouvelleVente")
 public class ServletNouvelleVente extends HttpServlet {
 	private ICategorieManager categorieManager = SingletonCategorieManager.getInstance();
 	private IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
-
-	
 
 	private static final long serialVersionUID = 1L;
 
@@ -101,7 +96,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		
 		System.out.println("L'id article est : " + idArticle); //OKKK
 		
-		request.setAttribute("id", idArticle);
+		request.setAttribute("idArticle", idArticle);
 		RequestDispatcher rd = request.getRequestDispatcher("/ServletDetailVente");
 		rd.forward(request, response);
 		
