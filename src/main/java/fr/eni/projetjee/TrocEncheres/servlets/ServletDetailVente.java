@@ -38,11 +38,8 @@ public class ServletDetailVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    
 		
-		Integer idArticle = (Integer) request.getAttribute("id");
-		System.out.println(idArticle);
-		
+		Integer  idArticle = (Integer) request.getAttribute("id");
 		ArticleVendu article=null;
-		
 		
 		try {
 			
@@ -63,24 +60,22 @@ public class ServletDetailVente extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/*
 		String proposition = request.getParameter("proposition");
 		Integer propo = Integer.parseInt(proposition);
 		ArticleVendu article = (ArticleVendu) request.getAttribute("article");
 		Integer nouveauPrix;
 		
 		if(propo > article.getPrixDeVente() ) {
-			
 			nouveauPrix=propo;
 		} else {
 			nouveauPrix = article.getPrixDeVente();
 		}
 			
 		
-		
+		*/
 		
 		
 		doGet(request, response);

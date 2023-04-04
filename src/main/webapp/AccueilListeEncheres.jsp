@@ -29,6 +29,7 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 		
 			<header>
 
+
 				<h1>
 					<a href="./ServletListeEnchere">Enchères-ENI</a>
 				</h1>
@@ -38,14 +39,12 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 						</li>
 						<li><a href="./ServletConnexion">Se Connecter</a></li>
 						<li><a href="./ServletNouvelleVente">Vendre un article</a></li>
-						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier
-								mon profil</a></li>
+						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier	mon profil</a></li>
 						<li><a href="./ServletDeconnexion">Se déconnecter</a></li>
 
 					</ul>
 				</nav>
 			</header>
-
 
 
 
@@ -85,6 +84,7 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 			List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
 			for (ArticleVendu articleCourant : listeArticle) {
 			%>
+
 
 			<br>
 			<p>-----------------------------------------------</p>

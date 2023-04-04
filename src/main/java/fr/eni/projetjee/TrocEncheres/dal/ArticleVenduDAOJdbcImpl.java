@@ -123,6 +123,7 @@ public class ArticleVenduDAOJdbcImpl {
 
 			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_ID);
 			pstmt.setInt(1, noArticle);
+			System.out.println(noArticle);
 			ResultSet rs = pstmt.executeQuery();
 			
 			if (rs.next()) {

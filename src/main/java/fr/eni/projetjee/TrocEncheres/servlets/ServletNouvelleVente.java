@@ -84,8 +84,13 @@ public class ServletNouvelleVente extends HttpServlet {
 		ArticleVendu nouvelArticle = new ArticleVendu(nomArticle, description, debutEnchere, finEnchere, miseAprix,
 				prixDeVente, etatVente, nouveauRetrait, user, categorieVerif);
 		
+		Integer idArticle = 0;
+		
 		try {
+			
 			articleManager.insertArticle(nouvelArticle);
+			idArticle = nouvelArticle.getNoArticle();
+			
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,8 +99,8 @@ public class ServletNouvelleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		Integer idArticle = nouvelArticle.getNoArticle();
-		System.out.println(nouvelArticle.getNoArticle());
+		System.out.println("L'id article est : " + idArticle); //OKKK
+		
 		request.setAttribute("id", idArticle);
 		RequestDispatcher rd = request.getRequestDispatcher("/ServletDetailVente");
 		rd.forward(request, response);

@@ -26,24 +26,18 @@
 
 	<%
 		ArticleVendu article = (ArticleVendu) request.getAttribute("article");
-		out.print(article);
+	
 	%>
 
-	<p>Nom :</p>
-	<%=article.getNomArticle()%>
-	<p>Description :</p>
-	<%=article.getDescription()%>
-	<p>Catégorie :</p>
-	<%=article.getCategorie()%>
-	<p>Meilleure offre :</p>
-	<%=article.getMiseAPrix()%>
-	<p>Fin de l'enchère :</p>
-	<%=article.getDateFinEnchere()%>
-	<p>Retrait :</p>
-	<%=article.getRetrait().getRue()%>
+	<p>Nom de l'article : <%=article.getNomArticle()%></p>
+	<p>Description : <%=article.getDescription()%></p>
+	<p>Catégorie : <%=article.getCategorie().getLibelle()%></p>
+	<p>Meilleure offre : <%=article.getMiseAPrix()%> points</p>
+	<p>Fin de l'enchère : <%=article.getDateFinEnchere()%></p>
+	<p>Retrait : <%=article.getRetrait().getRue()%>
 	<%=article.getRetrait().getCodePostal()%>
-	<%=article.getRetrait().getVille()%>
-	<%=article.getUtilisateur().getPseudo()%>
+	<%=article.getRetrait().getVille()%></p>
+	<p>Vendu par : <%=article.getUtilisateur().getPseudo()%></p>
 
 	<form action="<%=request.getContextPath()%>/ServletDetailVente"
 		method="post">

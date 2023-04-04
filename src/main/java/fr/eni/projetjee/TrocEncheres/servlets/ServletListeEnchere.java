@@ -72,8 +72,9 @@ public class ServletListeEnchere extends HttpServlet {
 			} catch (DALException | ArticleVenduManagerException e) {
 				e.printStackTrace();
 			}
-		} else if ("email".equals(type)) {
+		} else {
 		    try {
+		    
 				results = articleVenduManager.selectByCategorie();
 			} catch (DALException | ArticleVenduManagerException e) {
 				e.printStackTrace();
