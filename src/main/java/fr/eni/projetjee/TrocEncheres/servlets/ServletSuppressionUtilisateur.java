@@ -34,7 +34,6 @@ public class ServletSuppressionUtilisateur extends HttpServlet {
 		Utilisateur current = (Utilisateur) session.getAttribute("utilisateur");
 		
 		Integer noUtilisateur = current.getNoUtilisateur();
-		System.out.println(noUtilisateur);
 		
 		try {
 			
