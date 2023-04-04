@@ -17,7 +17,7 @@
 </head>
 <body>
 	<h1>
-		<a href="AccueilListeEncheres.jsp">Enchères-ENI</a>
+		<a href="/ServletListeEncheres">Enchères-ENI</a>
 	</h1>
 	<h2>Détail vente</h2>
 

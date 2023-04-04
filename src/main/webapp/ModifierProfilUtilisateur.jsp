@@ -8,7 +8,7 @@
 </head>
 <body> 
 	<h1>
-		<a href="AccueilListeEncheres.jsp">Enchères-ENI</a>
+		<a href="/ServletListeEncheres">Enchères-ENI</a>
 	</h1>
 	<h2>Modifier mon profil</h2>
 	<form method="post" action="./ServletGestionProfilUtilisateur">
