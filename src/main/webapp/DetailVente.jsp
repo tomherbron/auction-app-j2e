@@ -12,10 +12,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 <meta charset="UTF-8">
 <title>Détail de la vente</title>
 </head>
 <body>
+<div class ="container">
 	<h1>
 		<a href="./ServletListeEnchere">Enchères-ENI</a>
 	</h1>
@@ -48,6 +51,6 @@
 			id="tentacles" name="proposition" min="10" max="2000">
 
 	</form>
-
+</div>
 </body>
 </html>

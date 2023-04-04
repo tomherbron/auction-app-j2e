@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>ENI Enchères | Mon profil</title>
+<link rel="stylesheet"
+	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 </head>
 <body>
+<div class="container">
 	<h1>
 		<a href="./ServletListeEnchere">Enchères-ENI</a>
 	</h1>
@@ -29,6 +32,7 @@
 	</div>
 	<div>
 		<button name ="btn-modifierUtilisateur" type="button"><a href="ModifierProfilUtilisateur.jsp">Modifier</a></button>
+	</div>
 	</div>
 </body>
 </html>

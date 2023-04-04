@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Enchères-ENI | Nouvelle vente</title>
+<link rel="stylesheet"
+	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 </head>
 <body>
+<div class="container">
 	<h1>
 		<a href="./ServletListeEnchere">Enchères-ENI</a>
 	</h1>
@@ -87,6 +90,6 @@
 
 
 
-
+</div>
 </body>
 </html>

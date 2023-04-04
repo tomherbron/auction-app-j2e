@@ -6,7 +6,10 @@
 <meta charset="UTF-8">
 <title>Enchères-ENI | Mon profil</title>
 </head>
+<link rel="stylesheet"
+	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 <body> 
+<div class="container">
 	<h1>
 		<a href="./ServletListeEnchere">Enchères-ENI</a>
 	</h1>
@@ -62,6 +65,7 @@
 	</form>    
 	<div>
 		<button name="btn-supprimercompte" type="button"><a href="./ServletSuppressionUtilisateur">Supprimer mon compte</a></button>
+	</div>
 	</div>
 </body>
 </html>
