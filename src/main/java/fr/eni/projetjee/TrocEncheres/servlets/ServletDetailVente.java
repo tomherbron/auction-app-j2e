@@ -67,7 +67,19 @@ public class ServletDetailVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String proposition = request.getParameter("proposition");
+		Integer propo = Integer.parseInt(proposition);
+		ArticleVendu article = (ArticleVendu) request.getAttribute("article");
+		
+		if(propo > article.getPrixDeVente() ) {
+			Integer nouveauPrix;
+			nouveauPrix=propo;
+		} else
+			
+		
+		
+		
+		
 		doGet(request, response);
 	}
 
