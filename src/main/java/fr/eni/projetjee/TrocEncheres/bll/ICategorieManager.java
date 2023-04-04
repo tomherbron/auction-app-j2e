@@ -11,6 +11,8 @@ public interface ICategorieManager {
 
 	public List<Categorie> selectAll() throws DALException, UtilisateurManagerException;
 	
+	
+	
 	public void insertCategorie(Categorie categorie) throws DALException, UtilisateurManagerException; 
 	
 	

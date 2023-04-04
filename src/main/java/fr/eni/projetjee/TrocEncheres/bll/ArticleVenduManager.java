@@ -75,7 +75,11 @@ public class ArticleVenduManager implements IArticleVenduManager{
 		
 		
 		return listeArticles;
-	
-	
-}
+		}
+
+	@Override
+	public List<ArticleVendu> selectByCategorie() throws DALException, ArticleVenduManagerException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
