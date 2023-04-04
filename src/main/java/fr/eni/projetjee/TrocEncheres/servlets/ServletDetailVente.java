@@ -20,32 +20,34 @@ import fr.eni.projetjee.TrocEncheres.dal.DALException;
  */
 @WebServlet("/ServletDetailVente")
 public class ServletDetailVente extends HttpServlet {
-	
+
 	IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletDetailVente() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Integer  idArticle = (Integer) request.getAttribute("idArticle");
-		
-		ArticleVendu article=null;
-		
+	public ServletDetailVente() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		Integer id = Integer.parseInt(request.getParameter("id"));
+
+		ArticleVendu article = null;
+
 		try {
-			
-		article =	articleManager.selectById(idArticle);
-		System.out.println(article);
-			
+
+			article = articleManager.selectById(id);
+			System.out.println(article);
+
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -53,32 +55,28 @@ public class ServletDetailVente extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		request.setAttribute("article", article);
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
-		
+
 		rd.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		/// tu me
 		/*
-		String proposition = request.getParameter("proposition");
-		Integer propo = Integer.parseInt(proposition);
-		ArticleVendu article = (ArticleVendu) request.getAttribute("article");
-		Integer nouveauPrix;
-		
-		if(propo > article.getPrixDeVente() ) {
-			nouveauPrix=propo;
-		} else {
-			nouveauPrix = article.getPrixDeVente();
-		}
-			
-		
-		*/
-		
-		
-		doGet(request, response);
+		 * String proposition = request.getParameter("proposition"); Integer propo =
+		 * Integer.parseInt(proposition); ArticleVendu article = (ArticleVendu)
+		 * request.getAttribute("article"); Integer nouveauPrix;
+		 * 
+		 * if(propo > article.getPrixDeVente() ) { nouveauPrix=propo; } else {
+		 * nouveauPrix = article.getPrixDeVente(); }
+		 * 
+		 * 
+		 */
+
 	}
 
 }

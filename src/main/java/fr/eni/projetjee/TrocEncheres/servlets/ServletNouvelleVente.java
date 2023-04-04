@@ -96,12 +96,11 @@ public class ServletNouvelleVente extends HttpServlet {
 		
 		System.out.println("L'id article est : " + idArticle); //OKKK
 		
-		request.setAttribute("idArticle", idArticle);
-		RequestDispatcher rd = request.getRequestDispatcher("/ServletDetailVente");
-		rd.forward(request, response);
-		
+		request.setAttribute("article", nouvelArticle);
+		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
 
-		doGet(request, response);
+		rd.forward(request, response);
+	
 	}
 
 	public Categorie checkCategorie(String libelle) throws DALException {
