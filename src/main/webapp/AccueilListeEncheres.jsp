@@ -36,17 +36,25 @@
 				placeholder="Le nom de l'article contient" id="site-search" name="q">
 			<label for="categories">Catégories:</label> <select name="categories"
 				id="categories">
-				<option value="cat1">cat1</option>
-				<option value="cat2">cat2</option>
-				<option value="cat3">cat3</option>
-				<option value="cat4">cat4</option>
+				<option value="informatique">informatique</option>
+				<option value="bricolage">bricolage</option>
+				<option value="electromenager">electromenager</option>
+				<option value="textile">textile</option>
+				<option value="armement">armement</option>
 
 			</select>
 		<button>Rechercher</button>
 	</div>
 </form>
 		
-	<% inserer le select by categorie avec le noCategorie du menu déroulant. %>	
+
+	
+	
+	
+
+		
+		
+		
 			
 <%
 List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
