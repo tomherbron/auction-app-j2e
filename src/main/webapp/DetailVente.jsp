@@ -16,7 +16,9 @@
 <title>Détail de la vente</title>
 </head>
 <body>
-	<h1>ENI - Enchères</h1>
+	<h1>
+		<a href="AccueilListeEncheres.jsp">Enchères-ENI</a>
+	</h1>
 	<h2>Détail vente</h2>
 
 	<%

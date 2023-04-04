@@ -7,7 +7,9 @@
 <title>ENI Enchères | Mon profil</title>
 </head>
 <body>
-	<h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>
+	<h1>
+	<a href="AccueilListeEncheres.jsp">Enchères-ENI</a>
+	</h1>
 	<div>
 		<form action="./ServletDeconnexion" method="GET">
   			<button type="submit">Se déconnecter</button>

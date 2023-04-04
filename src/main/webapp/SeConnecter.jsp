@@ -7,7 +7,9 @@
 <title>Enchères-ENI | Connexion</title>
 </head>
 <body>
-    <h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>
+   	<h1>
+	<a href="AccueilListeEncheres.jsp">Enchères-ENI</a>
+	</h1>
     <h2>Se connecter</h2>
     <form method="post" action="./ServletConnexion">
 	    <div>

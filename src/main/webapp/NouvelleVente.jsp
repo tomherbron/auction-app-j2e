@@ -7,7 +7,9 @@
 <title>Enchères-ENI | Nouvelle vente</title>
 </head>
 <body>
-	<h1><a href="AccueilListeEncheres.jsp">Enchères-ENI</a></h1>>Enchères-ENI</h1>
+	<h1>
+		<a href="AccueilListeEncheres.jsp">Enchères-ENI</a>
+	</h1>
 	<h2>Nouvelle vente</h2>
 	<form method="post" action="./ServletNouvelleVente">
 		<div>

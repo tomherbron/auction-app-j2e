@@ -28,7 +28,7 @@ public class ServletConnexion extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 RequestDispatcher rd = request.getRequestDispatcher("./SeConnecter.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./SeConnecter.jsp");
 	     rd.forward(request, response);
 	}
 
@@ -58,18 +58,21 @@ public class ServletConnexion extends HttpServlet {
 			
 				List <Utilisateur> userList = new ArrayList<>();
 				userList = utilisateurManager.selectAll();
-				RequestDispatcher dispatcher = null;
+				boolean userValid = false;
 				
 				for (Utilisateur current : userList) {
-					
 					if (current.getPseudo().equals(pseudo) && current.getMotDePasse().equals(motDePasse)) {
-						dispatcher = request.getRequestDispatcher("/ServletListeEnchere");		
-					} else if (!userList.contains(pseudo)) {
-						dispatcher = request.getRequestDispatcher("/ServletConnexion");
-					}
+						userValid = true;
+						break;
+					} 
 				}
 				
-				dispatcher.forward(request, response);
+				if (userValid) {
+					response.sendRedirect("ServletListeEnchere");		
+				} else {
+					RequestDispatcher rd = request.getRequestDispatcher("./SeConnecter.jsp");
+				     rd.forward(request, response);
+				}
 				
 		} catch (DALException e) {
 			e.printStackTrace();
