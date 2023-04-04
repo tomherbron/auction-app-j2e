@@ -18,7 +18,8 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 
 <html>
 <head>
-<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+<link rel="stylesheet"
+	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 <meta charset="UTF-8">
 <title>Enchères-ENI | Accueil</title>
 </head>
@@ -43,7 +44,7 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 						<%
 						} else {
 						%>
-						
+
 						<li><a href="./ServletNouvelleVente">Vendre un article</a></li>
 						<%
 						}
@@ -63,6 +64,21 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 			<div>
 
 				<form action="post" action="./ServletListeEncheres">
+					<%
+					if (session.getAttribute("utilisateur") != null) {
+					%>
+					<fieldset>
+						<label for="achats"> <input type="radio" id="achats"
+							name="condition" value="achats" checked> Achats
+						</label> <label for="mes-ventes"> <input type="radio"
+							id="mes-ventes" name="condition" value="mes-ventes"> Mes
+							ventes
+						</label>
+					</fieldset>
+					<%
+					}
+					%>
+
 					<label for="site-search">Filtres :</label> <input type="text"
 						name="query" placeholder="Le nom de l'article contient" /> <br>
 					<label for="categories">Catégories:</label> <select
@@ -80,14 +96,6 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 				</form>
 
 			</div>
-
-
-
-
-
-
-
-
 
 
 			<%

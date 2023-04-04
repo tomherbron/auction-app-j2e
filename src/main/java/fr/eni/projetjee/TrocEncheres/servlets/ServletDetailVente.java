@@ -67,11 +67,14 @@ public class ServletDetailVente extends HttpServlet {
 
 		/// tu me
 		/*
-		 * String proposition = request.getParameter("proposition"); Integer propo =
-		 * Integer.parseInt(proposition); ArticleVendu article = (ArticleVendu)
-		 * request.getAttribute("article"); Integer nouveauPrix;
+		 * String proposition = request.getParameter("proposition");
+		 *  Integer propo =Integer.parseInt(proposition); 
+		 *  ArticleVendu article = (ArticleVendu)request.getAttribute("article");
+		 *   Integer nouveauPrix;
 		 * 
-		 * if(propo > article.getPrixDeVente() ) { nouveauPrix=propo; } else {
+		 * if(propo > article.getPrixDeVente() ) { 
+		 * nouveauPrix=propo;
+		 *  } else {
 		 * nouveauPrix = article.getPrixDeVente(); }
 		 * 
 		 * 
