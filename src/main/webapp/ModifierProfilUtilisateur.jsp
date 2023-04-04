@@ -75,9 +75,9 @@
 				</div>
 			</form>
 			<div>
-				<button name="btn-supprimercompte" type="button">
-					<a href="./ServletSuppressionUtilisateur">Supprimer mon compte</a>
-				</button>
+				<form action="./ServletSuppressionUtilisateur" method="GET">
+					<button type="submit">Supprimer mon compte</button>
+				</form>
 			</div>
 		</article>
 	</div>

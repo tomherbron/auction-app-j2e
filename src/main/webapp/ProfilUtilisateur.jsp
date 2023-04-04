@@ -17,11 +17,6 @@
 				</h1>
 			</header>
 			<div>
-				<form action="./ServletDeconnexion" method="GET">
-					<button type="submit">Se déconnecter</button>
-				</form>
-			</div>
-			<div>
 				<h2>Mon profil</h2>
 				<p>Pseudo : ${pseudo}</p>
 				<p>Nom : ${nom}</p>
@@ -34,9 +29,14 @@
 				<p>Crédit : ${credit}</p>
 			</div>
 			<div>
-				<button name="btn-modifierUtilisateur" type="button">
-					<a href="ModifierProfilUtilisateur.jsp">Modifier</a>
-				</button>
+				<form action="ModifierProfilUtilisateur.jsp" method="GET">
+					<button type="submit">Modifier</button>
+				</form>
+			</div>
+			<div>
+				<form action="./ServletDeconnexion" method="GET">
+					<button type="submit">Se déconnecter</button>
+				</form>
 			</div>
 		</article>
 	</div>

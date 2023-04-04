@@ -16,7 +16,11 @@ public class ArticleVenduManager implements IArticleVenduManager{
 	public void insertArticle(ArticleVendu article) throws DALException, ArticleVenduManagerException {
 		
 		try {
+			
+			
+			
 			articleVenduDAO.insertArticleVendu(article);
+			
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
