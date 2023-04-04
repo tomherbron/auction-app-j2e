@@ -59,7 +59,7 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 
 
 
-			<div>Liste des enchères</div>
+			<div><h2>Liste des enchères</h2></div>
 
 			<div>
 
