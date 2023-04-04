@@ -23,6 +23,10 @@ public class ArticleVenduDAOJdbcImpl {
 													+ "LEFT JOIN retrait ON article_vendu.no_article = retrait.no_article "
 													+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie "
 													+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur"; 
+	private static final String SELECT_BY_CATEGORIE = "SELECT * FROM `article_vendu` "
+			+ "LEFT JOIN retrait ON article_vendu.no_article = retrait.no_article "
+			+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie "
+			+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE categorie = ? "; 
 	
 	
 	
@@ -217,4 +221,61 @@ public class ArticleVenduDAOJdbcImpl {
 		return listeArticleVendu;
 		
 	}
+	
+	public List<ArticleVendu> selectByCategorie(Categorie categorie) throws DALException, SQLException {
+		List<ArticleVendu> listeArticleVenduParCateg = null;
+		ArticleVendu article = null;
+
+		try (Connection con = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_CATEGORIE);
+			pstmt.setInt(1, categorie.getNoCategorie());
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				if (listeArticleVenduParCateg == null)
+					listeArticleVenduParCateg = new ArrayList<ArticleVendu>();
+				Integer noArticle = rs.getInt("no_article");
+				String nomArticle = rs.getString("nom_article");
+				String description = rs.getString("description");
+				LocalDate dateDebutEnchere = rs.getDate("date_debut_enchere").toLocalDate();
+				LocalDate dateFinEnchere = rs.getDate("date_fin_enchere").toLocalDate();
+				Integer miseAPrix = rs.getInt("prix_initial");
+				Integer prixDeVente = rs.getInt("prix_vente");
+				Integer noUtilisateur = rs.getInt("no_utilisateur");
+				Integer noCategorie = rs.getInt("no_categorie");
+				Boolean etatVente = rs.getBoolean("etat_vente");
+				String rue = rs.getNString("rue");
+				String codePostal = rs.getString("code_postal");
+				String ville = rs.getNString("ville");
+				String libelle = rs.getString("libelle");
+				String pseudo = rs.getString("pseudo");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String motDePasse = rs.getString("mot_de_passe");
+				Integer credit = rs.getInt("credit");
+				Boolean administrateur = rs.getBoolean("administrateur");
+				
+				Retrait retrait2 = new Retrait (rue, codePostal, ville);
+				Categorie categorie2 = new Categorie (noCategorie, libelle);
+				Utilisateur utilisateur2 = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+				article = new ArticleVendu (noArticle, nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, prixDeVente, etatVente, retrait2, utilisateur2, categorie2); 	
+				
+				listeArticleVenduParCateg.add(article);
+			}
+			
+			pstmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Select by categorie");
+		}
+
+		return listeArticleVenduParCateg;
+		
+	}
+	
+	
 }
