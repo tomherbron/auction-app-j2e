@@ -61,7 +61,7 @@
 	    </div>  
 	</form>    
 	<div>
-		<button name="btn-supprimercompte" type="button" href="./ServletSuppressionUtilisateur">Supprimer mon compte</button>
+		<button name="btn-supprimercompte" type="button"><a href="./ServletSuppressionUtilisateur">Supprimer mon compte</a></button>
 	</div>
 </body>
 </html>

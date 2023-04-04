@@ -11,7 +11,7 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 
 	private static final String INSERT = "INSERT INTO utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE utilisateur SET pseudo=?, nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?, ville=?,mot_de_passe=? WHERE no_utilisateur=?";
-	private static final String DELETE = "DELETE FROM Utilisateur WHERE no_utilisateur=?";
+	private static final String DELETE = "DELETE FROM utilisateur WHERE no_utilisateur=?";
 	private static final String SELECT_BY_ID = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit) FROM utilisateur WHERE no_utilisateur=? )";
 	private static final String SELECT_BY_LOGIN = "SELECT `no_utilisateur`, `pseudo`, `nom`, `prenom`, `email`, `telephone`, `rue`, `code_postal`, `ville`, `mot_de_passe`, `credit`, `administrateur` FROM `utilisateur` WHERE pseudo=? AND mot_de_passe=?";
 	private static final String SELECT_ALL = "SELECT `no_utilisateur`, `pseudo`, `nom`, `prenom`, `email`, `telephone`, `rue`, `code_postal`, `ville`, `mot_de_passe`, `credit`, `administrateur` FROM `utilisateur` ";
@@ -78,13 +78,12 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 	public void deleteUtilisateur(Integer noUtilisateur) throws DALException, SQLException {
 		
 		try (Connection con = ConnectionProvider.getConnection()){
-					
-					PreparedStatement pstmt = con.prepareStatement(DELETE);
-		
-					pstmt.setInt(1, noUtilisateur);
-					pstmt.executeUpdate();
-					
-					pstmt.close();
+			PreparedStatement pstmt = con.prepareStatement(DELETE);
+
+			pstmt.setInt(1, noUtilisateur);
+			pstmt.executeUpdate();
+			
+			pstmt.close();
 					
 		} catch (SQLException e) {
 			e.printStackTrace();

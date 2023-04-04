@@ -42,6 +42,7 @@ public class ArticleVenduDAOJdbcImpl {
 			pstmt.setDate(4, Date.valueOf(article.getDateFinEnchere()));
 			pstmt.setInt(5, article.getMiseAPrix());
 			pstmt.setInt(6, article.getPrixDeVente());
+			System.out.println("coucou" + article.getUtilisateur().getNoUtilisateur());
 			pstmt.setInt(7, article.getUtilisateur().getNoUtilisateur());
 			pstmt.setInt(8, article.getCategorie().getNoCategorie());
 			pstmt.setBoolean(9, article.getEtatVente());

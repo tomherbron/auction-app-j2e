@@ -58,7 +58,15 @@ public class UtilisateurManager implements IUtilisateurManager {
 
 	@Override
 	public void deleteUtilisateur(Integer noUtilisateur) throws DALException, UtilisateurManagerException {
-		// TODO Auto-generated method stub
+		
+			try {
+				
+				utilisateurDAO.deleteUtilisateur(noUtilisateur);
+				
+			} catch (DALException | SQLException e) {
+				e.printStackTrace();
+				throw new UtilisateurManagerException("Delete failed.");
+			}
 		
 	}
 

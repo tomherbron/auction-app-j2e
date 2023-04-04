@@ -34,6 +34,7 @@ public class ServletSuppressionUtilisateur extends HttpServlet {
 		Utilisateur current = (Utilisateur) session.getAttribute("utilisateur");
 		
 		Integer noUtilisateur = current.getNoUtilisateur();
+		System.out.println(noUtilisateur);
 		
 		try {
 			
@@ -45,7 +46,7 @@ public class ServletSuppressionUtilisateur extends HttpServlet {
 		
 		session.invalidate();
 		
-		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/ServletConnexion");
 		rd.forward(request, response);
 		
 	}

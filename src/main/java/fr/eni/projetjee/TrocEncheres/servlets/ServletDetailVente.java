@@ -39,7 +39,7 @@ public class ServletDetailVente extends HttpServlet {
 	    
 		
 		String id = request.getParameter("id");
-		System.out.println(id);
+		System.out.println("coucou   "  + id);
 		Integer idArticle =Integer.parseInt(id);
 		
 		ArticleVendu article=null;
