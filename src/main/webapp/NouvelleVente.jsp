@@ -86,8 +86,8 @@
 						name="ville">
 				</div>
 
-				<input type="submit" value="Enregistrer"> <input
-					type="reset" value="Annuler">
+				<input type="submit" value="Enregistrer"> 
+				<input type="reset" value="Effacer">	
 			</form>
 		</article>
 	</div>

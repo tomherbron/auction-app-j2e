@@ -18,8 +18,7 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 <meta charset="UTF-8">
 <title>Enchères-ENI | Accueil</title>
 </head>
