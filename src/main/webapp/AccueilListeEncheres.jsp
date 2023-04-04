@@ -20,10 +20,11 @@
 	</h1>
 
 	<nav>
-		<a href="FormulaireInscription.jsp">S'inscrire</a> <a
-			href="SeConnecter.jsp">Se Connecter</a> <a href="NouvelleVente.jsp">Vendre
-			un article</a> <a href="./ServletAffichageProfilUtilisateurCourant">Modifier
-			mon profil</a> <a href="">Se déconnecter</a>
+		<a href="FormulaireInscription.jsp">S'inscrire</a> 
+		<a href="SeConnecter.jsp">Se Connecter</a> 
+		<a href="NouvelleVente.jsp">Vendre un article</a> 
+		<a href="./ServletAffichageProfilUtilisateurCourant">Modifier mon profil</a>
+		<a href="./ServletDeconnexion">Se déconnecter</a>
 	</nav>
 
 	<div>Liste des enchères</div>
