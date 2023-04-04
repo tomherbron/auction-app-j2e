@@ -39,7 +39,7 @@ public class ServletDetailVente extends HttpServlet {
 	    
 		
 		Integer idArticle = (Integer) request.getAttribute("id");
-		System.out.println(idArticle);
+		System.out.println("Coucou" + idArticle);
 		
 		ArticleVendu article=null;
 		
@@ -67,20 +67,21 @@ public class ServletDetailVente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/*
 		String proposition = request.getParameter("proposition");
 		Integer propo = Integer.parseInt(proposition);
 		ArticleVendu article = (ArticleVendu) request.getAttribute("article");
 		Integer nouveauPrix;
 		
 		if(propo > article.getPrixDeVente() ) {
-			
 			nouveauPrix=propo;
 		} else {
 			nouveauPrix = article.getPrixDeVente();
 		}
 			
 		
-		
+		*/
 		
 		
 		doGet(request, response);
