@@ -20,10 +20,10 @@
 	<h2>Détail vente</h2>
 
 	<%
- 
     	
         ArticleVendu article = (ArticleVendu)request.getAttribute("article");
 	out.print(article);
+	
     %>
 
 	<p>Nom : </p>
