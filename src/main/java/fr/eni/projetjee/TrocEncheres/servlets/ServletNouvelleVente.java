@@ -94,6 +94,9 @@ public class ServletNouvelleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		Integer idArticle = nouvelArticle.getNoArticle();
+		System.out.println(nouvelArticle.getNoArticle());
+		request.setAttribute("id", idArticle);
 		RequestDispatcher rd = request.getRequestDispatcher("/ServletDetailVente");
 		rd.forward(request, response);
 		
