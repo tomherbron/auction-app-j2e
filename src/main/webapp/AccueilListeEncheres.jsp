@@ -24,9 +24,9 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 <title>Enchères-ENI | Accueil</title>
 </head>
 <body>
-<div class="container">
-	<article>
-		
+	<div class="container">
+		<article>
+
 			<header>
 
 
@@ -35,11 +35,22 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 				</h1>
 				<nav aria-label="breadcrumb">
 					<ul>
+						<%
+						if (session.getAttribute("utilisateur") == null) {
+						%>
 						<li><a href="./ServletInscriptionUtilisateur">S'inscrire</a>
 						</li>
 						<li><a href="./ServletConnexion">Se Connecter</a></li>
+						<%
+						} else {
+						%>
+						
 						<li><a href="./ServletNouvelleVente">Vendre un article</a></li>
-						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier	mon profil</a></li>
+						<%
+						}
+						%>
+						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier
+								mon profil</a></li>
 						<li><a href="./ServletDeconnexion">Se déconnecter</a></li>
 
 					</ul>
@@ -66,7 +77,7 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 						<%
 						}
 						%>
-					</select> <input type="submit"  value = "Rechercher" />
+					</select> <input type="submit" value="Rechercher" />
 				</form>
 
 			</div>
@@ -109,8 +120,8 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 			%>
 
 
-		
-	</article>
+
+		</article>
 	</div>
 </body>
 </html>
