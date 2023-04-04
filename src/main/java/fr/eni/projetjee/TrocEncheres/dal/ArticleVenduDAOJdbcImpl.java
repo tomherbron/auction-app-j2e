@@ -53,7 +53,6 @@ public class ArticleVenduDAOJdbcImpl {
 			
 			if (rs.next()) {
 				article.setNoArticle(rs.getInt(1));
-				System.out.println(article.getNoArticle());
 			}
 			
 			rs.close();
@@ -64,7 +63,6 @@ public class ArticleVenduDAOJdbcImpl {
 			retrait.setRue(article.getRetrait().getRue());
 			retrait.setCodePostal(article.getRetrait().getCodePostal());
 			retrait.setVille(article.getRetrait().getVille());
-			System.out.println(retrait);
 			
 			 DAOFactory.getRetraitDAO() .insertRetrait(retrait, article.getNoArticle());
 
@@ -166,7 +164,6 @@ public class ArticleVenduDAOJdbcImpl {
 			throw new DALException("selectById failed");
 		}
 		
-		System.out.println(article);
 
 		return article;
 	}

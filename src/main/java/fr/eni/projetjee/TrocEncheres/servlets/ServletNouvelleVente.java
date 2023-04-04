@@ -94,7 +94,6 @@ public class ServletNouvelleVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		System.out.println("L'id article est : " + idArticle); //OKKK
 		
 		request.setAttribute("article", nouvelArticle);
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
