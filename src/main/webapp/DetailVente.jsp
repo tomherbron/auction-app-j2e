@@ -15,17 +15,15 @@
 <meta charset="UTF-8">
 <title>Détail de la vente</title>
 </head>
-<h1>ENI - Enchères</h1>
-<h2>Détail vente</h2>
 <body>
-	<h1>Détail Vente</h1>
-
+	<h1>ENI - Enchères</h1>
+	<h2>Détail vente</h2>
 
 	<%
-        SingletonArticleVenduManager.getInstance();
-    
-        ArticleVendu article = new ArticleVendu();
-        if (article != null) {
+ 
+    	
+        ArticleVendu article = (ArticleVendu)request.getAttribute("article");
+	out.print(article);
     %>
 
 	<p>Nom : </p>
@@ -44,7 +42,6 @@
 	<%=article.getRetrait().getVille() %>
 	<%=article.getUtilisateur().getPseudo() %>
 	
-	<%} %>
 	<form action="<%=request.getContextPath()%>/ServletDetailVente" method="post">
 
 		<label for="tentacles">Ma proposition :</label>
