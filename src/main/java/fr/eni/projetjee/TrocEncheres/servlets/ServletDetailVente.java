@@ -38,7 +38,7 @@ public class ServletDetailVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    
 		
-		Integer idArticle = (Integer) request.getAttribute("id");
+		Integer idArticle = Integer.parseInt(request.getParameter("id"));
 		System.out.println("Coucou" + idArticle);
 		
 		ArticleVendu article=null;
@@ -63,9 +63,6 @@ public class ServletDetailVente extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*

@@ -74,7 +74,6 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 		
 		List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
 		
-		
 		for (ArticleVendu articleCourant : listeArticle) {
 		%>
 
