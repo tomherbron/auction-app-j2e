@@ -6,6 +6,7 @@
 
 <%@page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
 <%@page import="fr.eni.projetjee.TrocEncheres.bo.Categorie"%>
+<%@page import="fr.eni.projetjee.TrocEncheres.bo.Utilisateur"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -86,6 +87,14 @@ if (session.getAttribute("utilisateur") == null) {
 			<br>
 			<p>-----------------------------------------------</p>
 			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+			
+			
+			<br>
+			<p>
+				Description
+				<%=articleCourant.getDescription()%>
+				
+			</p>
 			<br>
 			<p>
 				Prix :
@@ -129,24 +138,31 @@ if (session.getAttribute("utilisateur") == null) {
 <title>Enchères-ENI | Accueil</title>
 </head>
 <body>
+<%@page import="fr.eni.projetjee.TrocEncheres.bo.Utilisateur"%>
 	<div class="container">
 		<article>
 
 			<header>
-
+				
+				<%
+				Utilisateur utilisateurCourant = (Utilisateur) session.getAttribute("utilisateur");
+				%>
+				
 
 				<h1>
 					<a href="./ServletListeEnchere">Enchères-ENI</a>
 				</h1>
+				<div dir="rtl">
+					<h3>Bienvenue, <%=utilisateurCourant.getPseudo()%></h3>
+				</div>
 				<nav aria-label="breadcrumb">
 					<ul>
-
-
+	
 						<li><a href="./ServletNouvelleVente">Vendre un article</a></li>
 						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier
-								mon profil</a></li>
+								mon profil</a></li>	
 						<li><a href="./ServletDeconnexion">Se déconnecter</a></li>
-
+			
 
 
 					</ul>
@@ -164,28 +180,33 @@ if (session.getAttribute("utilisateur") == null) {
 				<form method="post" action="ServletListeEnchere">
 
 					<fieldset>
-						<label for="achats"> <input type="radio" id="achats"
-							name="condition" value="achats" checked> Achats
-						</label> <label for="mes-ventes"> <input type="radio"
-							id="mes-ventes" name="condition" value="mes-ventes"> Mes
-							ventes
-						</label>
+						<label for="achats"> 
+							<input type="radio" id="achats"	name="radioAchatVente" value="achats" checked/>Achats</label>
+							 
+						<label for="mes-ventes"> 
+							<input type="radio" id="mes-ventes" name="radioAchatVente" value="ventes"/>Mes ventes</label>
+							if (selection = "achats"){
+								SELECT 
+							}
+					
 					</fieldset>
-
-					<label for="site-search">Filtres :</label> <input type="text"
-						name="query" placeholder="Le nom de l'article contient" /> <br>
-					<label for="categories">Catégories:</label> <select
-						name="categories">
-						<option value="toutes">toutes</option>
-						<%
-						for (int i = 0; i < listeCategorie.size(); i++) {
-							String libelle = listeCategorie.get(i).getLibelle();
-						%>
-						<option value="<%=libelle%>"><%=libelle%></option>
-						<%
-						}
-						%>
-					</select> <input type="submit" value="Rechercher" />
+						
+					<label for="site-search">Filtres :</label>
+						<input type="text" name="query" placeholder="Le nom de l'article contient"/> 
+							<br>
+					<label for="categories">Catégories:</label> 
+						<select name="categories">
+							<option value="toutes">toutes</option>
+								<%
+								for (int i = 0; i < listeCategorie.size(); i++) {
+									String libelle = listeCategorie.get(i).getLibelle();
+								%>
+							<option value="<%=libelle%>"><%=libelle%></option>
+								<%
+								}
+								%>
+						</select> 
+							<input type="submit" value="Rechercher" />
 				</form>
 
 			</div>
@@ -201,6 +222,18 @@ if (session.getAttribute("utilisateur") == null) {
 			<p>-----------------------------------------------</p>
 			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
 			<br>
+			<br>
+			<p>
+				Description :
+				<%=articleCourant.getDescription()%>
+				
+			</p>
+			<br>
+			<p>
+				Description :
+				<%=articleCourant.getDescription()%>
+				
+			</p>
 			<p>
 				Prix :
 				<%=articleCourant.getMiseAPrix()%>
@@ -209,18 +242,9 @@ if (session.getAttribute("utilisateur") == null) {
 			<p>
 				Fin de l'enchère :
 				<%=articleCourant.getDateFinEnchere()%></p>
-			<br>
-			
-			
 			<p>
 				Vendeur :
-				<a href="./ServletAffichageProfilUtilisateur"
-				><%=articleCourant.getUtilisateur().getPseudo() %></a>
-				
-				<%String pseudo =articleCourant.getUtilisateur().getPseudo();
-					request.setAttribute("pseudo", pseudo);%>
-				
-				</p>
+				<%=articleCourant.getUtilisateur().getPseudo()%></p>
 
 			<%
 			session.setAttribute("articleCourant", articleCourant);
