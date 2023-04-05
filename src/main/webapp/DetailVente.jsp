@@ -40,11 +40,23 @@
 			<p>
 				Catégorie :
 				<%=article.getCategorie().getLibelle()%></p>
+			<p>Prix initital : 
+				<%=article.getMiseAPrix()%> points</p>
+			
+			<% 
+			if (article.getPrixDeVente() == 0) { 
+			%>	
+			<p>
+				Meilleure offre : pas d'offre
+			</p>
+			<%} else { %>
 			<p>
 				Meilleure offre :
-				<%=article.getMiseAPrix()%>
+				<%=article.getPrixDeVente()%>
 				points
 			</p>
+							
+			<%}%>
 			<p>
 				Fin de l'enchère :
 				<%=article.getDateFinEnchere()%></p>

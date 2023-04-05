@@ -69,20 +69,26 @@ public class ServletDetailVente extends HttpServlet {
 		
 		// Set le prix de vente au montant saisir par l'utilisateur
 		
-		articleAModifier.setPrixDeVente(montantEnchere);
+		if (montantEnchere >= articleAModifier.getMiseAPrix()) {
+			articleAModifier.setPrixDeVente(montantEnchere);
+		} else {
+			//Erreur
+		}
 		
 		// Update l'article en BDD
 		
 		try {
 			
-			articleManager.updateArticle(articleAModifier);
+			articleManager.updatePdv(articleAModifier);
 			
 		} catch (DALException | ArticleVenduManagerException e) {
 			e.printStackTrace();
 		}
 		
-		
-		
+		request.setAttribute("article", articleAModifier);
+		request.setAttribute(montantSaisi, montantEnchere);
+		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
+		rd.forward(request, response);
 
 	}
 
