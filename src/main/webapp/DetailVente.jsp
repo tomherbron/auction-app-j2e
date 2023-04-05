@@ -1,6 +1,8 @@
 <%@page
 	import="fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager"%>
 <%@page import="fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManager"%>
+<%@page import="fr.eni.projetjee.TrocEncheres.bll.UtilisateurManager" %>
+<%@page import="fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@  page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
@@ -44,19 +46,15 @@
 				<%=article.getMiseAPrix()%> points</p>
 			
 			<% 
-			if (article.getPrixDeVente() == 0) { 
+			if (article.getPrixDeVente() != 0) { 
 			%>	
-			<p>
-				Meilleure offre :
-			</p>
-			<%} else { %>
-			<p>
-				Meilleure offre :
-				<%=article.getPrixDeVente()%>
-				points
-			</p>
-							
-			<%}%>
+				<p>
+					Meilleure offre :
+					<%=article.getPrixDeVente()%>
+					points
+				</p>	
+			<% } %>
+			
 			<p>
 				Fin de l'enchère :
 				<%=article.getDateFinEnchere()%></p>
@@ -76,16 +74,23 @@
 			<%
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 			%>	
+			<%
+			if (session.getAttribute("utilisateur") != null) {
+			%>
+				<% if (!article.getUtilisateur().getPseudo().equalsIgnoreCase(utilisateur.getPseudo())){%>
+					<form action="<%=request.getContextPath()%>/ServletDetailVente"
+						method="post">
+						<label for="tentacles">Ma proposition :</label>
+						<br> 
+						<input type="number" id="tentacles" name="proposition" min="10" max="2000">	
+						<input type="submit" value="Enchérir" />	
+						<% if (request.getAttribute("erreur") != null) { %>
+							<strong>Vous n'avez pas assez de crédit</strong>
+						<%}%>	
+					</form>
+				<%}%>
+			<%}%>	
 			
-			<% if (!article.getUtilisateur().getPseudo().equalsIgnoreCase(utilisateur.getPseudo())){%>
-			<form action="<%=request.getContextPath()%>/ServletDetailVente"
-				method="post">
-				<label for="tentacles">Ma proposition :</label>
-				<br> 
-				<input type="number" id="tentacles" name="proposition" min="10" max="2000">	
-				<input type="submit" value="Enchérir" />		
-			</form>
-			<% } %>
 		</article>
 	</div>
 </body>
