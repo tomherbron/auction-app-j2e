@@ -210,9 +210,17 @@ if (session.getAttribute("utilisateur") == null) {
 				Fin de l'enchère :
 				<%=articleCourant.getDateFinEnchere()%></p>
 			<br>
+			
+			
 			<p>
 				Vendeur :
-				<%=articleCourant.getUtilisateur().getPseudo()%></p>
+				<a href="./ServletAffichageProfilUtilisateur"
+				><%=articleCourant.getUtilisateur().getPseudo() %></a>
+				
+				<%String pseudo =articleCourant.getUtilisateur().getPseudo();
+					request.setAttribute("pseudo", pseudo);%>
+				
+				</p>
 
 			<%
 			session.setAttribute("articleCourant", articleCourant);
