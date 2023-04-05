@@ -90,9 +90,7 @@ public class ServletNouvelleVente extends HttpServlet {
 			articleManager.insertArticle(nouvelArticle);
 			idArticle = nouvelArticle.getNoArticle();
 			
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
 		} catch (ArticleVenduManagerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

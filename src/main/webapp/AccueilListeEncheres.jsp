@@ -12,6 +12,7 @@
 
 <%
 ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCategorie");
+
 %>
 
 
@@ -46,12 +47,13 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 						%>
 
 						<li><a href="./ServletNouvelleVente">Vendre un article</a></li>
-						<%
-						}
-						%>
 						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier
 								mon profil</a></li>
 						<li><a href="./ServletDeconnexion">Se déconnecter</a></li>
+						<%
+						}
+						%>
+
 
 					</ul>
 				</nav>
@@ -59,14 +61,14 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 
 
 
-			<div><h2>Liste des enchères</h2></div>
+			<div>
+				<h2>Liste des enchères</h2>
+			</div>
 
 			<div>
 
-				<form action="post" action="./ServletListeEncheres">
-					<%
-					if (session.getAttribute("utilisateur") != null) {
-					%>
+				<form method="post" action="ServletListeEnchere">
+					
 					<fieldset>
 						<label for="achats"> <input type="radio" id="achats"
 							name="condition" value="achats" checked> Achats
@@ -75,10 +77,7 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 							ventes
 						</label>
 					</fieldset>
-					<%
-					}
-					%>
-
+					
 					<label for="site-search">Filtres :</label> <input type="text"
 						name="query" placeholder="Le nom de l'article contient" /> <br>
 					<label for="categories">Catégories:</label> <select
