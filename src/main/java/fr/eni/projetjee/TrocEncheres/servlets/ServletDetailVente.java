@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
@@ -64,21 +65,16 @@ public class ServletDetailVente extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
 
-		/// tu me
-		/*
-		 * String proposition = request.getParameter("proposition");
-		 *  Integer propo =Integer.parseInt(proposition); 
-		 *  ArticleVendu article = (ArticleVendu)request.getAttribute("article");
-		 *   Integer nouveauPrix;
-		 * 
-		 * if(propo > article.getPrixDeVente() ) { 
-		 * nouveauPrix=propo;
-		 *  } else {
-		 * nouveauPrix = article.getPrixDeVente(); }
-		 * 
-		 * 
-		 */
+		String montantSaisi = request.getParameter("proposition");
+		ArticleVendu articleAModifier = (ArticleVendu) session.getAttribute("article");
+		System.out.println( "l'article à modifier est : " + articleAModifier);
+		Integer montantEnchere = Integer.parseInt(montantSaisi);
+		System.out.println("le montant à update ets : " + montantEnchere);
+		
+		
 
 	}
 

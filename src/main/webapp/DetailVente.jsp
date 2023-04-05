@@ -56,6 +56,10 @@
 			<p>
 				Vendu par :
 				<%=article.getUtilisateur().getPseudo()%></p>
+				
+				<%
+				 session.setAttribute("article", article);
+				%>
 
 			<form action="<%=request.getContextPath()%>/ServletDetailVente"
 				method="post">
