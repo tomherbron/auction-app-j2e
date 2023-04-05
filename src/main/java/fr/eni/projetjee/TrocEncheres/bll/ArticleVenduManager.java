@@ -96,7 +96,7 @@ public class ArticleVenduManager implements IArticleVenduManager{
 	}
 
 	@Override
-<<<<<<< HEAD
+
 	public void updatePdv(ArticleVendu article) throws DALException, ArticleVenduManagerException {
 		
 		try {
@@ -106,13 +106,8 @@ public class ArticleVenduManager implements IArticleVenduManager{
 		} catch (DALException | SQLException e) {
 			e.printStackTrace();
 		}	
-=======
-	public void updatePdv(ArticleVendu article) throws ArticleVenduManagerException {
-		// TODO Auto-generated method stub
->>>>>>> refs/remotes/origin/master
 		
 	}
-	
 	
 	
 }

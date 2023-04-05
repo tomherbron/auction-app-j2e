@@ -82,6 +82,9 @@ public class ServletDetailVente extends HttpServlet {
 			
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		request.setAttribute("article", articleAModifier);
