@@ -39,8 +39,12 @@ public class EnchereManager implements IEnchereManager {
 
 	@Override
 	public Enchere selectEnchereById(Integer noEnchere) throws DALException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Enchere enchere = null;
+		
+		enchere = enchereDAO.selectEnchereById(noEnchere);
+		
+		return enchere;
+		
 	}
 
 }

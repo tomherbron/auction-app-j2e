@@ -78,8 +78,6 @@ public class ServletDetailVente extends HttpServlet {
 		Integer montantEnchere = Integer.parseInt(montantSaisi);
 		LocalDate dateJour = LocalDate.now();
 		
-		Enchere enchere = new Enchere (dateJour, montantEnchere, articleAModifier.getUtilisateur(), articleAModifier);
-		
 		// Set le prix de vente au montant saisir par l'utilisateur
 		
 		if (montantEnchere >= articleAModifier.getMiseAPrix()) {
@@ -87,6 +85,8 @@ public class ServletDetailVente extends HttpServlet {
 		} else {
 			//Erreur
 		}
+		
+		Enchere enchere = new Enchere (dateJour, montantEnchere, articleAModifier.getUtilisateur(), articleAModifier);
 		
 		// Update l'article en BDD
 		

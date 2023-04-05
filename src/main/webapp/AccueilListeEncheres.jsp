@@ -6,6 +6,7 @@
 
 <%@page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
 <%@page import="fr.eni.projetjee.TrocEncheres.bo.Categorie"%>
+<%@page import="fr.eni.projetjee.TrocEncheres.bo.Utilisateur"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
@@ -129,24 +130,31 @@ if (session.getAttribute("utilisateur") == null) {
 <title>Enchères-ENI | Accueil</title>
 </head>
 <body>
+<%@page import="fr.eni.projetjee.TrocEncheres.bo.Utilisateur"%>
 	<div class="container">
 		<article>
 
 			<header>
-
+				
+				<%
+				Utilisateur utilisateurCourant = (Utilisateur) session.getAttribute("utilisateur");
+				%>
+				
 
 				<h1>
 					<a href="./ServletListeEnchere">Enchères-ENI</a>
 				</h1>
+				<div dir="rtl">
+					<h3>Bienvenue, <%=utilisateurCourant.getPseudo()%></h3>
+				</div>
 				<nav aria-label="breadcrumb">
 					<ul>
-
-
+	
 						<li><a href="./ServletNouvelleVente">Vendre un article</a></li>
 						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier
-								mon profil</a></li>
+								mon profil</a></li>	
 						<li><a href="./ServletDeconnexion">Se déconnecter</a></li>
-
+			
 
 
 					</ul>
