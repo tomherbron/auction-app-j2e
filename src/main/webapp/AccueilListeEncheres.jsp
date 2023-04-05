@@ -75,8 +75,8 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 						</label>
 					</fieldset>
 					
-					<label for="site-search">Filtres :</label> <input type="text"
-						name="query" placeholder="Le nom de l'article contient" /> <br>
+					<label for="site-search">Filtres :</label> 
+					<input type="text" name="query" placeholder="Le nom de l'article contient" /> <br>
 					<label for="categories">Catégories:</label> <select
 						name="categories">
 						<option value="toutes">toutes</option>
