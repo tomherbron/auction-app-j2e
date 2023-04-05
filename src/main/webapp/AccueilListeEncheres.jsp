@@ -86,6 +86,13 @@ if (session.getAttribute("utilisateur") == null) {
 			<br>
 			<p>-----------------------------------------------</p>
 			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+			
+			<br>
+			<p>
+				Description
+				<%=articleCourant.getDescription()%>
+				
+			</p>
 			<br>
 			<p>
 				Prix :
@@ -164,28 +171,33 @@ if (session.getAttribute("utilisateur") == null) {
 				<form method="post" action="ServletListeEnchere">
 
 					<fieldset>
-						<label for="achats"> <input type="radio" id="achats"
-							name="condition" value="achats" checked> Achats
-						</label> <label for="mes-ventes"> <input type="radio"
-							id="mes-ventes" name="condition" value="mes-ventes"> Mes
-							ventes
-						</label>
+						<label for="achats"> 
+							<input type="radio" id="achats"	name="radioAchatVente" value="achats" checked/>Achats</label>
+							 
+						<label for="mes-ventes"> 
+							<input type="radio" id="mes-ventes" name="radioAchatVente" value="ventes"/>Mes ventes</label>
+							if (selection = "achats"){
+								SELECT 
+							}
+					
 					</fieldset>
-
-					<label for="site-search">Filtres :</label> <input type="text"
-						name="query" placeholder="Le nom de l'article contient" /> <br>
-					<label for="categories">Catégories:</label> <select
-						name="categories">
-						<option value="toutes">toutes</option>
-						<%
-						for (int i = 0; i < listeCategorie.size(); i++) {
-							String libelle = listeCategorie.get(i).getLibelle();
-						%>
-						<option value="<%=libelle%>"><%=libelle%></option>
-						<%
-						}
-						%>
-					</select> <input type="submit" value="Rechercher" />
+						
+					<label for="site-search">Filtres :</label>
+						<input type="text" name="query" placeholder="Le nom de l'article contient"/> 
+							<br>
+					<label for="categories">Catégories:</label> 
+						<select name="categories">
+							<option value="toutes">toutes</option>
+								<%
+								for (int i = 0; i < listeCategorie.size(); i++) {
+									String libelle = listeCategorie.get(i).getLibelle();
+								%>
+							<option value="<%=libelle%>"><%=libelle%></option>
+								<%
+								}
+								%>
+						</select> 
+							<input type="submit" value="Rechercher" />
 				</form>
 
 			</div>
@@ -200,6 +212,12 @@ if (session.getAttribute("utilisateur") == null) {
 			<br>
 			<p>-----------------------------------------------</p>
 			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+			<br>
+			<p>
+				Description
+				<%=articleCourant.getDescription()%>
+				
+			</p>
 			<br>
 			<p>
 				Prix :
