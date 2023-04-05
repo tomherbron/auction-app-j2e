@@ -31,6 +31,13 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO{
 			+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE libelle = ? "; 
 
 	private static final String UPDATE_PDV =  "UPDATE article_vendu SET prix_vente=? WHERE no_article=?";
+//	private static final String SELECT_BY_UTILISATEUR =  "UPDATE article_vendu SET prix_vente=? WHERE no_article=?";
+	private static final String SELECT_BY_ETAT_VENTE =  "SELECT * FROM  article_vendu WHERE etat_vete = 1";
+	private static final String SELECT_BY_DATE_DEBUT =  "SELECT * FROM  article_vendu WHERE date_debut_enchere = ?";
+	private static final String SELECT_BY_DATE_FIN =  "SELECT * FROM  article_vendu WHERE date_fin_enchere = ?";
+	
+	
+	
 	
 	public void insertArticleVendu(ArticleVendu article) throws DALException, SQLException {
 		
@@ -307,5 +314,57 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO{
 		
 	}
 	
-	
+	public List<ArticleVendu> selectByEtatVente() throws DALException, SQLException {
+		List<ArticleVendu> listeArticleVendu = null;
+
+		try (Connection con = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_ETAT_VENTE);
+			ResultSet rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				ArticleVendu article = null;
+				if (listeArticleVendu == null)
+					listeArticleVendu = new ArrayList<ArticleVendu>();
+				Integer noArticle = rs.getInt("no_article");
+				String nomArticle = rs.getString("nom_article");
+				String description = rs.getString("description");
+				LocalDate dateDebutEnchere = rs.getDate("date_debut_enchere").toLocalDate();
+				LocalDate dateFinEnchere = rs.getDate("date_fin_enchere").toLocalDate();
+				Integer miseAPrix = rs.getInt("prix_initial");
+				Integer prixDeVente = rs.getInt("prix_vente");
+				Integer noUtilisateur = rs.getInt("no_utilisateur");
+				Integer noCategorie = rs.getInt("no_categorie");
+				Boolean etatVente = rs.getBoolean("etat_vente");
+				String rue = rs.getNString("rue");
+				String codePostal = rs.getString("code_postal");
+				String ville = rs.getNString("ville");
+				String libelle = rs.getString("libelle");
+				String pseudo = rs.getString("pseudo");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String motDePasse = rs.getString("mot_de_passe");
+				Integer credit = rs.getInt("credit");
+				Boolean administrateur = rs.getBoolean("administrateur");
+				
+				Retrait retrait2 = new Retrait (rue, codePostal, ville);
+				Categorie categorie2 = new Categorie (noCategorie, libelle);
+				Utilisateur utilisateur2 = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+				article = new ArticleVendu (noArticle, nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, prixDeVente, etatVente, retrait2, utilisateur2, categorie2); 	
+				
+				listeArticleVendu.add(article);
+			}
+			
+			pstmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Select ");
+		}
+
+		return listeArticleVendu;
+		
+	}
 }
