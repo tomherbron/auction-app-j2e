@@ -1,5 +1,4 @@
 package fr.eni.projetjee.TrocEncheres.bll;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,20 +6,21 @@ import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.dal.ArticleVenduDAOJdbcImpl;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 import fr.eni.projetjee.TrocEncheres.dal.DAOFactory;
-import fr.eni.projetjee.TrocEncheres.dal.IArticleVenduDAO;
 
-public class ArticleVenduManager implements IArticleVenduManager {
+public class ArticleVenduManager implements IArticleVenduManager{
 
-	private IArticleVenduDAO articleVenduDAO = DAOFactory.getArticleVenduDAO();
+	private ArticleVenduDAOJdbcImpl articleVenduDAO = DAOFactory.getArticleVenduDAO();
 
+	
 	@Override
-	public void insertArticle(ArticleVendu article) throws ArticleVenduManagerException {
-
+	public void insertArticle(ArticleVendu article) throws DALException, ArticleVenduManagerException {
+		
 		try {
 
+			
 			articleVenduDAO.insertArticleVendu(article);
-
-		} catch (DALException | SQLException e) {
+			
+		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new ArticleVenduManagerException("select All failed.");
@@ -92,5 +92,11 @@ public class ArticleVenduManager implements IArticleVenduManager {
 		}
 
 		return listeArticles;
+	}
+
+	@Override
+	public void updatePdv(ArticleVendu article) throws DALException, ArticleVenduManagerException {
+		// TODO Auto-generated method stub
+		
 	}
 }

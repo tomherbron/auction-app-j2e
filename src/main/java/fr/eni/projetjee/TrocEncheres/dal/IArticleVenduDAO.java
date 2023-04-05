@@ -10,11 +10,18 @@ public interface IArticleVenduDAO {
 	
 	public void updateArticleVendu(ArticleVendu article) throws DALException, SQLException ;
 	
+	public void updatePdv(ArticleVendu article) throws DALException, SQLException ;
+	
 	public void deleteArticleVendu(Integer noArticle) throws DALException, SQLException ;
 	
 	public ArticleVendu selectById(Integer noArticle) throws DALException, SQLException ;
 
+<<<<<<< HEAD
 	public List<ArticleVendu>  selectAll() throws DALException, SQLException ;
 	
 	public List<ArticleVendu> selectByCategorie(String type) throws DALException, SQLException;
+=======
+	public List<ArticleVendu> selectAll() throws DALException, SQLException ;
+
+>>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres
 }

@@ -49,8 +49,12 @@ public class ServletNouvelleVente extends HttpServlet {
 		String categorie = request.getParameter("categorie");
 		Categorie categorieVerif = null;
 		
+		System.out.println(categorie);
+		
 		try {
+			
 			categorieVerif = checkCategorie(categorie);
+			
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,7 +72,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		Boolean etatVente = false;
 
 		Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
-		System.out.println(user);
+
 		
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("code-postal");
@@ -109,7 +113,6 @@ public class ServletNouvelleVente extends HttpServlet {
 		
 		try {
 			maListe = categorieManager.selectAll();
-			System.out.println(maListe.toString());
 		} catch (DALException e) {
 			e.printStackTrace();
 		} catch (UtilisateurManagerException e) {
@@ -117,7 +120,7 @@ public class ServletNouvelleVente extends HttpServlet {
 		}
 
 		for (int i = 0; i < maListe.size(); i++) {
-			if (libelle.equals(maListe.get(i).getLibelle())) {
+			if (libelle.equalsIgnoreCase(maListe.get(i).getLibelle())) {
 				categorie = maListe.get(i);
 			}
 		}
