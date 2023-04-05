@@ -14,7 +14,8 @@ public class EnchereManager implements IEnchereManager {
 
 	@Override
 	public void insertEnchere(Enchere enchere) throws DALException, SQLException {
-		// TODO Auto-generated method stub
+		
+		enchereDAO.insertEnchere(enchere);
 		
 	}
 
