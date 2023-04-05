@@ -51,8 +51,8 @@ public class ServletDetailVente extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("article", article);
-		request.setAttribute("utilisateur", utilisateur);
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
 
 		rd.forward(request, response);
@@ -62,6 +62,8 @@ public class ServletDetailVente extends HttpServlet {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+
 		
 		// Récupérer l'article et le montant de l'enchere
 
@@ -92,6 +94,7 @@ public class ServletDetailVente extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("article", articleAModifier);
 		request.setAttribute(montantSaisi, montantEnchere);
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");

@@ -74,7 +74,7 @@
 				%>
 				
 			<%
-			Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");
+			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 			%>	
 			
 			<% if (!article.getUtilisateur().getPseudo().equalsIgnoreCase(utilisateur.getPseudo())){%>

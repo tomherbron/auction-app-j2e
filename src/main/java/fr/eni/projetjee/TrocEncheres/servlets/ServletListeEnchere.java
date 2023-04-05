@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
@@ -17,6 +18,7 @@ import fr.eni.projetjee.TrocEncheres.bll.SingletonCategorieManager;
 import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.bo.Categorie;
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 
@@ -26,7 +28,7 @@ public class ServletListeEnchere extends HttpServlet {
 	private IArticleVenduManager articleVenduManager =  SingletonArticleVenduManager.getInstance();	
 	private ICategorieManager categorieManager =  SingletonCategorieManager.getInstance();	
 	private static final long serialVersionUID = 1L;
-
+	
 	private List<Categorie> listeCategorie;
 	
     public ServletListeEnchere() {
@@ -35,6 +37,9 @@ public class ServletListeEnchere extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	HttpSession session = request.getSession();
+    	Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
     	
     	List<ArticleVendu> listeArticle = null;
 		
@@ -57,6 +62,7 @@ public class ServletListeEnchere extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("listeArticle", listeArticle);
 		request.setAttribute("listeCategorie", listeCategorie);
 		
@@ -67,6 +73,9 @@ public class ServletListeEnchere extends HttpServlet {
     }
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+    	Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
     	List<ArticleVendu> listeArticle = null;
     	
@@ -94,7 +103,8 @@ public class ServletListeEnchere extends HttpServlet {
 					e.printStackTrace();
 			}
 		}
-
+		
+		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("listeArticle", listeArticle);
 		request.setAttribute("listeCategorie", listeCategorie);
 				
