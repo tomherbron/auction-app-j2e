@@ -1,4 +1,5 @@
 package fr.eni.projetjee.TrocEncheres.servlets;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +25,22 @@ import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 @WebServlet("/ServletListeEnchere")
 public class ServletListeEnchere extends HttpServlet {
-	
-	private IArticleVenduManager articleVenduManager =  SingletonArticleVenduManager.getInstance();	
-	private ICategorieManager categorieManager =  SingletonCategorieManager.getInstance();	
+
+	private IArticleVenduManager articleVenduManager = SingletonArticleVenduManager.getInstance();
+	private ICategorieManager categorieManager = SingletonCategorieManager.getInstance();
 	private static final long serialVersionUID = 1L;
 	
 	private List<Categorie> listeCategorie;
-	
-    public ServletListeEnchere() {
-        super();
-        listeCategorie = null;
-    }
+	private List<Categorie> listeArticleFiltre;
+
+
+	private static int trouve = 0;
+
+	public ServletListeEnchere() {
+		super();
+		listeCategorie = null;
+	}
+
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
@@ -43,14 +49,13 @@ public class ServletListeEnchere extends HttpServlet {
     	
     	List<ArticleVendu> listeArticle = null;
 		
+
 		try {
-			
+
 			listeArticle = articleVenduManager.selectAll();
-			
+
 			listeCategorie = categorieManager.selectAll();
-			
-			
-			
+
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,6 +70,7 @@ public class ServletListeEnchere extends HttpServlet {
 		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("listeArticle", listeArticle);
 		request.setAttribute("listeCategorie", listeCategorie);
+
 		
 		// transfert affichage à la jsp
 		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
@@ -72,48 +78,51 @@ public class ServletListeEnchere extends HttpServlet {
 		
     }
 	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-    	Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
-    	List<ArticleVendu> listeArticle = null;
-    	
-    	String query = request.getParameter("query");
-		
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		List<ArticleVendu> listeArticle = null;
+		List<ArticleVendu> listeArticleFiltre = new ArrayList<>();
+
+		String query = request.getParameter("query");
 		String type = request.getParameter("categories");
-		
+
+		System.out.println("query : " + query);
 		System.out.println("type : " + type);
 		
-		List<ArticleVendu> results = null;
-
 		if ("toutes".equals(type)) {
-			
-		    try {
-		    	listeArticle = articleVenduManager.selectAll();
-			} catch ( ArticleVenduManagerException e) {
+
+			try {
+				listeArticle = articleVenduManager.selectAll();
+			} catch (ArticleVenduManagerException e) {
 				e.printStackTrace();
 			}
-		} else
-			{
-				try {
+		} else {
+			try {
 
-					listeArticle = articleVenduManager.selectByCategorie(type);
-				} catch ( ArticleVenduManagerException e) {
-					e.printStackTrace();
+				listeArticle = articleVenduManager.selectByCategorie(type);
+			} catch (ArticleVenduManagerException e) {
+				e.printStackTrace();
 			}
 		}
-		
-		session.setAttribute("utilisateur", utilisateur);
-		request.setAttribute("listeArticle", listeArticle);
+
+		if (query != null) {
+
+			for (ArticleVendu article : listeArticle) {
+				if (article.getNomArticle().contains(query) || 
+						article.getDescription().contains(query)) {
+					listeArticleFiltre.add(article);
+				}
+
+			}
+		}
+
+		request.setAttribute("listeArticle", listeArticleFiltre);
 		request.setAttribute("listeCategorie", listeCategorie);
-				
-		
+
 		// transfert affichage à la jsp
 		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
 		rd.forward(request, response);
-		
+
 	}
-
-
 }
