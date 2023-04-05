@@ -34,7 +34,6 @@
 				<p>Rue : ${user.rue}</p>
 				<p>Code postal : ${user.codePostal}</p>
 				<p>Ville : ${user.ville}</p>
-				<p>Crédit : ${user.credit}</p>
 			</div>
 
 			<div>
