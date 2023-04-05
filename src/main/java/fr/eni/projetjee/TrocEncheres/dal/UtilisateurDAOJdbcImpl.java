@@ -164,7 +164,10 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 			
 			pstmt.close();
 			
-		}	
+		}	catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Erreur à la saisie du pseudo et/ou du mot de passe");
+		}		
 		
 		return utilisateur;
 		

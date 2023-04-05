@@ -36,7 +36,7 @@ public class EnchereDAOJdbcImpl implements IEnchereDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Insert failed");
+			throw new DALException("Problème à l'insertion de l'enchère");
 
 		}
 	}

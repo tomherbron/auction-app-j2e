@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+<link rel="stylesheet"
+	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 <meta charset="UTF-8">
 <title>Enchères-ENI | Connexion</title>
 </head>
@@ -28,13 +29,27 @@
 				<div>
 					<input type="submit" value="Valider" />
 				</div>
+
+
 			</form>
+			<%
+			if (request.getAttribute("erreur") != null) {
+			%>
+			<strong>Erreur dans la saisie, veuillez réessayer</strong>
+			<%
+			}
+			%>
+
+
+
 			<footer>
 				<div dir="rtl">
 
 					<a href="./FormulaireInscription.jsp" role="button"
 						name="btn-creercompte">Créer un compte</a>
 				</div>
+
+
 			</footer>
 		</article>
 	</div>
