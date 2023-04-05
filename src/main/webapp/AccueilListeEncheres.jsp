@@ -239,11 +239,9 @@ if (session.getAttribute("utilisateur") == null) {
 
 			<p>
 				Vendeur :
-				<a href="./ServletAffichageProfilUtilisateur"
-				><%=articleCourant.getUtilisateur().getPseudo() %></a>
+				<a href="./ServletAffichageProfilUtilisateur?pseudo=<%=articleCourant.getUtilisateur().getPseudo() %>">
+				<%=articleCourant.getUtilisateur().getPseudo() %></a>
 				
-				<%String pseudo =articleCourant.getUtilisateur().getPseudo();
-					request.setAttribute("pseudo", pseudo);%>
 				
 				</p>
 

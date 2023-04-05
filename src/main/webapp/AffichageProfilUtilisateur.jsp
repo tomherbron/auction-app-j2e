@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page
+	import="fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager"%>
+<%@  page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
+<%@  page import="fr.eni.projetjee.TrocEncheres.bo.Utilisateur"%>
+<%@  page import="fr.eni.projetjee.TrocEncheres.bo.Retrait"%>
+<%@  page import="fr.eni.projetjee.TrocEncheres.bo.Categorie"%>
+<%@  page import="fr.eni.projetjee.TrocEncheres.bo.Enchere"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +25,16 @@
 			</header>
 			<div>
 				<h2>Mon profil</h2>
-				<p>Pseudo : ${pseudo}</p>
-				<p>Nom : ${nom}</p>
-				<p>Prénom : ${prenom}</p>
-				<p>Email : ${email}</p>
-				<p>Téléphone : ${telephone}</p>
-				<p>Rue : ${rue}</p>
-				<p>Code postal : ${cpo}</p>
-				<p>Ville : ${ville}</p>
-				<p>Crédit : ${credit}</p>
+				<p>Pseudo :  ${user.pseudo}</p>
+				
+				<p>Nom : ${user.nom}</p>
+				<p>Prénom : ${user.prenom}</p>
+				<p>Email : ${user.email}</p>
+				<p>Téléphone : ${user.telephone}</p>
+				<p>Rue : ${user.rue}</p>
+				<p>Code postal : ${user.codePostal}</p>
+				<p>Ville : ${user.ville}</p>
+				<p>Crédit : ${user.credit}</p>
 			</div>
 
 			<div>

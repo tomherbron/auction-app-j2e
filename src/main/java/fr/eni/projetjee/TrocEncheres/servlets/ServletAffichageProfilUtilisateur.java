@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.projetjee.TrocEncheres.bll.IUtilisateurManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager;
 import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 /**
  * Servlet implementation class AffichageProfilUtilisateur
  */
-@WebServlet("/AffichageProfilUtilisateur")
+@WebServlet("/ServletAffichageProfilUtilisateur")
 public class ServletAffichageProfilUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
@@ -31,10 +32,12 @@ public class ServletAffichageProfilUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String pseudo = (String) request.getAttribute("pseudo");
+		Utilisateur utilisateur=null;
+		String pseudo = request.getParameter("pseudo");
+		System.out.println("pseudo : " + pseudo);
 		try {
-			utilisateurManager.selectByPseudo(pseudo);
+			utilisateur = utilisateurManager.selectByPseudo(pseudo);
+			System.out.println("utilisateur : " + utilisateur);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,6 +46,7 @@ public class ServletAffichageProfilUtilisateur extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("user", utilisateur);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("./AffichageProfilUtilisateur.jsp");
 		rd.forward(request, response);
