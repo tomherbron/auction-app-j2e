@@ -85,7 +85,7 @@ if (session.getAttribute("utilisateur") == null) {
 
 
 			<br>
-			<p>-----------------------------------------------</p>
+			<article>
 			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
 			
 			<br>
@@ -107,12 +107,13 @@ if (session.getAttribute("utilisateur") == null) {
 			<p>
 				Vendeur :
 				<%=articleCourant.getUtilisateur().getPseudo()%></p>
-
+			</article>
 			<%
 			session.setAttribute("articleCourant", articleCourant);
 			}
+			
 			%>
-
+			
 
 
 		</article>
