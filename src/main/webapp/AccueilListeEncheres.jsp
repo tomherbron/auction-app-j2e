@@ -221,12 +221,12 @@ if (session.getAttribute("utilisateur") == null) {
 			<p>-----------------------------------------------</p>
 			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
 			<br>
+			<br>
 			<p>
-				Description
+				Description :
 				<%=articleCourant.getDescription()%>
 				
 			</p>
-			<br>
 			<p>
 				Prix :
 				<%=articleCourant.getMiseAPrix()%>
@@ -235,7 +235,6 @@ if (session.getAttribute("utilisateur") == null) {
 			<p>
 				Fin de l'enchère :
 				<%=articleCourant.getDateFinEnchere()%></p>
-			<br>
 			<p>
 				Vendeur :
 				<%=articleCourant.getUtilisateur().getPseudo()%></p>
