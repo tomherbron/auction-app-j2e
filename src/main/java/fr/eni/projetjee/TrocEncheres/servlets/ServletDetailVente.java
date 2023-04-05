@@ -12,18 +12,19 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
+import fr.eni.projetjee.TrocEncheres.bll.IEnchereManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
+import fr.eni.projetjee.TrocEncheres.bll.SingletonEnchereManager;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
-/**
- * Servlet implementation class ServletDetailVente
- */
 @WebServlet("/ServletDetailVente")
 public class ServletDetailVente extends HttpServlet {
 
 	IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
+	IEnchereManager enchereManager = SingletonEnchereManager.getInstance();
+	
 	private static final long serialVersionUID = 1L;
 
 	public ServletDetailVente() {
@@ -69,9 +70,8 @@ public class ServletDetailVente extends HttpServlet {
 
 		String montantSaisi = request.getParameter("proposition");
 		ArticleVendu articleAModifier = (ArticleVendu) session.getAttribute("article");
-		System.out.println( "l'article à modifier est : " + articleAModifier);
 		Integer montantEnchere = Integer.parseInt(montantSaisi);
-		System.out.println("le montant à update est : " + montantEnchere);
+
 		
 		// Set le prix de vente au montant saisir par l'utilisateur
 		
