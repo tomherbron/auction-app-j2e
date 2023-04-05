@@ -86,7 +86,7 @@ if (session.getAttribute("utilisateur") == null) {
 
 			<br>
 			<article>
-			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+			<h1><a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a></h1>
 			
 			<br>
 			<p>
