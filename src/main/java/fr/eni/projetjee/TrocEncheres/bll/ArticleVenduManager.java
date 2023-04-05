@@ -96,8 +96,18 @@ public class ArticleVenduManager implements IArticleVenduManager{
 	}
 
 	@Override
-	public void updatePdv(ArticleVendu article) throws ArticleVenduManagerException {
-		// TODO Auto-generated method stub
+
+	public void updatePdv(ArticleVendu article) throws DALException, ArticleVenduManagerException {
+		
+		try {
+			
+			articleVenduDAO.updatePdv(article);
+			
+		} catch (DALException | SQLException e) {
+			e.printStackTrace();
+		}	
 		
 	}
+	
+	
 }
