@@ -88,7 +88,6 @@ if (session.getAttribute("utilisateur") == null) {
 			<p>-----------------------------------------------</p>
 			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
 			
-			
 			<br>
 			<p>
 				Description
@@ -228,12 +227,6 @@ if (session.getAttribute("utilisateur") == null) {
 				<%=articleCourant.getDescription()%>
 				
 			</p>
-			<br>
-			<p>
-				Description :
-				<%=articleCourant.getDescription()%>
-				
-			</p>
 			<p>
 				Prix :
 				<%=articleCourant.getMiseAPrix()%>
@@ -242,9 +235,17 @@ if (session.getAttribute("utilisateur") == null) {
 			<p>
 				Fin de l'enchère :
 				<%=articleCourant.getDateFinEnchere()%></p>
+			<br>
+
 			<p>
 				Vendeur :
-				<%=articleCourant.getUtilisateur().getPseudo()%></p>
+				<a href="./ServletAffichageProfilUtilisateur"
+				><%=articleCourant.getUtilisateur().getPseudo() %></a>
+				
+				<%String pseudo =articleCourant.getUtilisateur().getPseudo();
+					request.setAttribute("pseudo", pseudo);%>
+				
+				</p>
 
 			<%
 			session.setAttribute("articleCourant", articleCourant);
