@@ -25,18 +25,11 @@ public class ServletDetailVente extends HttpServlet {
 	IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public ServletDetailVente() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -50,10 +43,8 @@ public class ServletDetailVente extends HttpServlet {
 			System.out.println(article);
 
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ArticleVenduManagerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -67,12 +58,29 @@ public class ServletDetailVente extends HttpServlet {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		
+		// Récupérer l'article et le montant de l'enchere
 
 		String montantSaisi = request.getParameter("proposition");
 		ArticleVendu articleAModifier = (ArticleVendu) session.getAttribute("article");
 		System.out.println( "l'article à modifier est : " + articleAModifier);
 		Integer montantEnchere = Integer.parseInt(montantSaisi);
-		System.out.println("le montant à update ets : " + montantEnchere);
+		System.out.println("le montant à update est : " + montantEnchere);
+		
+		// Set le prix de vente au montant saisir par l'utilisateur
+		
+		articleAModifier.setPrixDeVente(montantEnchere);
+		
+		// Update l'article en BDD
+		
+		try {
+			
+			articleManager.updateArticle(articleAModifier);
+			
+		} catch (DALException | ArticleVenduManagerException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 

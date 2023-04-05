@@ -13,7 +13,7 @@ import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 
-public class ArticleVenduDAOJdbcImpl {
+public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 	
 	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=?, etat_vente =? WHERE no_article=?";
@@ -27,6 +27,8 @@ public class ArticleVenduDAOJdbcImpl {
 			+ "LEFT JOIN retrait ON article_vendu.no_article = retrait.no_article "
 			+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie "
 			+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE categorie = ? "; 
+	
+	private static final String UPDATE_PDV =  "UPDATE article_vendu SET prix_vente=? WHERE no_article=?";
 	
 	
 	
@@ -168,6 +170,7 @@ public class ArticleVenduDAOJdbcImpl {
 
 		return article;
 	}
+	
 	public List<ArticleVendu> selectAll() throws DALException, SQLException {
 		List<ArticleVendu> listeArticleVendu = null;
 		ArticleVendu article = null;
@@ -274,6 +277,27 @@ public class ArticleVenduDAOJdbcImpl {
 		}
 
 		return listeArticleVenduParCateg;
+		
+	}
+
+	@Override
+	public void updatePdv(ArticleVendu article) throws DALException, SQLException {
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+
+			PreparedStatement pstmt = con.prepareStatement(UPDATE_PDV);
+			
+			pstmt.setInt(1, article.getPrixDeVente());
+			pstmt.setInt(2, article.getNoArticle());
+			
+			pstmt.executeUpdate();
+			
+			pstmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException("Update Pdv failed");
+		}
 		
 	}
 	

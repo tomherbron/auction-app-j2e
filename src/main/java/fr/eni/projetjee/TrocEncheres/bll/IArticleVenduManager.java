@@ -1,6 +1,7 @@
 package fr.eni.projetjee.TrocEncheres.bll;
 
 
+import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
@@ -11,6 +12,8 @@ public interface IArticleVenduManager {
 	public void insertArticle(ArticleVendu article ) throws DALException, ArticleVenduManagerException;
 	
 	public void updateArticle(ArticleVendu article ) throws DALException, ArticleVenduManagerException;
+	
+	public void updatePdv(ArticleVendu article) throws DALException, ArticleVenduManagerException ;
 	
 	public void deleteArticle(Integer noArticle ) throws DALException, ArticleVenduManagerException;
 	

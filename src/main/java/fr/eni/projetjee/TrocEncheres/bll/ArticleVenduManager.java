@@ -17,8 +17,6 @@ public class ArticleVenduManager implements IArticleVenduManager{
 		
 		try {
 			
-			
-			
 			articleVenduDAO.insertArticleVendu(article);
 			
 		} catch (DALException e) {
@@ -69,21 +67,24 @@ public class ArticleVenduManager implements IArticleVenduManager{
 			
 			listeArticles = articleVenduDAO.selectAll();
 					
-		}catch (DALException | SQLException e) {
+		} catch (DALException | SQLException e) {
 			e.printStackTrace();
 			throw new ArticleVenduManagerException("select All failed.");
-		
-		
-		
-	}
-		
+		}
 		
 		return listeArticles;
-		}
+		
+	}
 
 	@Override
 	public List<ArticleVendu> selectByCategorie() throws DALException, ArticleVenduManagerException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void updatePdv(ArticleVendu article) throws DALException, ArticleVenduManagerException {
+		// TODO Auto-generated method stub
+		
 	}
 }
