@@ -20,16 +20,16 @@
 			<form method="post" action="./ServletNouvelleVente">
 				<div>
 					<label for="nom-article">Article : </label> <input type="text"
-						id="nom-article" name="nom-article">
+						id="nom-article" name="nom-article" required>
 				</div>
 				<div>
 					<label for="description">Description : </label> <input type="text"
-						id="description" name="description">
+						id="description" name="description" required>
 				</div>
 
 				<div>
 					<label for="categorie">Catégorie :</label> <select name="categorie"
-						id="categorie">
+						id="categorie" required>
 						<option value="">--Choisissez une catégorie--</option>
 						<option value="informatique">Informatique</option>
 						<option value="bricolage">Bricolage</option>
@@ -45,7 +45,7 @@
 
 				<div>
 					<label for="mise-a-prix">Mise à prix :</label><select
-						name="mise-a-prix" id=mise-a-prix>
+						name="mise-a-prix" id=mise-a-prix required>
 
 						<option value="" hidden></option>
 
@@ -64,7 +64,7 @@
 				<div>
 					<label>Début de l'enchère : <input type="date"
 						name="debut-enchere" id="debut-enchere" required
-						pattern="\d{4}-\d{2}-\d{2}">
+						pattern="\d{4}-\d{2}-\d{2}" >
 					</label>
 				</div>
 				<div>

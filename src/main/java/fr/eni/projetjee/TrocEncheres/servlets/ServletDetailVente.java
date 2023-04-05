@@ -12,17 +12,19 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
+import fr.eni.projetjee.TrocEncheres.bll.IEnchereManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
+import fr.eni.projetjee.TrocEncheres.bll.SingletonEnchereManager;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
-/**
- * Servlet implementation class ServletDetailVente
- */
 @WebServlet("/ServletDetailVente")
 public class ServletDetailVente extends HttpServlet {
 
 	IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
+	IEnchereManager enchereManager = SingletonEnchereManager.getInstance();
+	
 	private static final long serialVersionUID = 1L;
 
 	public ServletDetailVente() {
@@ -32,6 +34,9 @@ public class ServletDetailVente extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
 		Integer id = Integer.parseInt(request.getParameter("id"));
 
@@ -47,6 +52,7 @@ public class ServletDetailVente extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("article", article);
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
 
@@ -57,31 +63,42 @@ public class ServletDetailVente extends HttpServlet {
 			throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+
 		
 		// Récupérer l'article et le montant de l'enchere
 
 		String montantSaisi = request.getParameter("proposition");
 		ArticleVendu articleAModifier = (ArticleVendu) session.getAttribute("article");
-		System.out.println( "l'article à modifier est : " + articleAModifier);
 		Integer montantEnchere = Integer.parseInt(montantSaisi);
-		System.out.println("le montant à update est : " + montantEnchere);
+
 		
 		// Set le prix de vente au montant saisir par l'utilisateur
 		
-		articleAModifier.setPrixDeVente(montantEnchere);
+		if (montantEnchere >= articleAModifier.getMiseAPrix()) {
+			articleAModifier.setPrixDeVente(montantEnchere);
+		} else {
+			//Erreur
+		}
 		
 		// Update l'article en BDD
 		
 		try {
 			
-			articleManager.updateArticle(articleAModifier);
+			articleManager.updatePdv(articleAModifier);
 			
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		
-		
+		session.setAttribute("utilisateur", utilisateur);
+		request.setAttribute("article", articleAModifier);
+		request.setAttribute(montantSaisi, montantEnchere);
+		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
+		rd.forward(request, response);
 
 	}
 

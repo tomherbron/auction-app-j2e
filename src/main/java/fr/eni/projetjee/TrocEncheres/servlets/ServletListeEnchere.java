@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.jstl.sql.Result;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
@@ -19,7 +19,9 @@ import fr.eni.projetjee.TrocEncheres.bll.SingletonCategorieManager;
 import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.bo.Categorie;
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
+
 
 @WebServlet("/ServletListeEnchere")
 public class ServletListeEnchere extends HttpServlet {
@@ -27,9 +29,10 @@ public class ServletListeEnchere extends HttpServlet {
 	private IArticleVenduManager articleVenduManager = SingletonArticleVenduManager.getInstance();
 	private ICategorieManager categorieManager = SingletonCategorieManager.getInstance();
 	private static final long serialVersionUID = 1L;
-
+	
 	private List<Categorie> listeCategorie;
 	private List<Categorie> listeArticleFiltre;
+
 
 	private static int trouve = 0;
 
@@ -38,9 +41,14 @@ public class ServletListeEnchere extends HttpServlet {
 		listeCategorie = null;
 	}
 
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		List<ArticleVendu> listeArticle = null;
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	HttpSession session = request.getSession();
+    	Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+    	
+    	List<ArticleVendu> listeArticle = null;
+		
 
 		try {
 
@@ -59,14 +67,17 @@ public class ServletListeEnchere extends HttpServlet {
 			e.printStackTrace();
 		}
 
+		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("listeArticle", listeArticle);
 		request.setAttribute("listeCategorie", listeCategorie);
 
+		
 		// transfert affichage à la jsp
 		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
-		rd.forward(request, response);
-
-	}
+		rd.forward(request, response);		
+		
+    }
+	
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -95,7 +106,7 @@ public class ServletListeEnchere extends HttpServlet {
 			}
 		}
 
-		if (query != null && query.length() > 0) {
+		if (query != null) {
 
 			for (ArticleVendu article : listeArticle) {
 				if (article.getNomArticle().contains(query) || 
