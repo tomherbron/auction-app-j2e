@@ -73,8 +73,7 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 						<label for="achats"> <input type="radio" id="achats"
 							name="condition" value="achats" checked> Achats
 						</label> <label for="mes-ventes"> <input type="radio"
-							id="mes-ventes" name="condition" value="mes-ventes"> Mes
-							ventes
+							id="mes-ventes" name="condition" value="mes-ventes"> Mes ventes
 						</label>
 					</fieldset>
 					
