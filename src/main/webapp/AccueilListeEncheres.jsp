@@ -46,12 +46,13 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 						%>
 
 						<li><a href="./ServletNouvelleVente">Vendre un article</a></li>
-						<%
-						}
-						%>
 						<li><a href="./ServletAffichageProfilUtilisateurCourant">Modifier
 								mon profil</a></li>
 						<li><a href="./ServletDeconnexion">Se déconnecter</a></li>
+						<%
+						}
+						%>
+
 
 					</ul>
 				</nav>
@@ -59,7 +60,9 @@ ArrayList<Categorie> listeCategorie = (ArrayList) request.getAttribute("listeCat
 
 
 
-			<div><h2>Liste des enchères</h2></div>
+			<div>
+				<h2>Liste des enchères</h2>
+			</div>
 
 			<div>
 
