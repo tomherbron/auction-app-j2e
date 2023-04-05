@@ -8,16 +8,16 @@ import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 public interface IArticleVenduManager {
 
-	public void insertArticle(ArticleVendu article ) throws DALException, ArticleVenduManagerException;
+	public void insertArticle(ArticleVendu article ) throws ArticleVenduManagerException;
 	
-	public void updateArticle(ArticleVendu article ) throws DALException, ArticleVenduManagerException;
+	public void updateArticle(ArticleVendu article ) throws ArticleVenduManagerException;
 	
-	public void deleteArticle(Integer noArticle ) throws DALException, ArticleVenduManagerException;
+	public void deleteArticle(Integer noArticle ) throws ArticleVenduManagerException;
 	
-	public ArticleVendu selectById(Integer noArticle ) throws DALException, ArticleVenduManagerException;
+	public ArticleVendu selectById(Integer noArticle ) throws ArticleVenduManagerException;
 
-	public List<ArticleVendu> selectAll() throws DALException, ArticleVenduManagerException ;
+	public List<ArticleVendu> selectAll() throws ArticleVenduManagerException ;
 
-	public List<ArticleVendu> selectByCategorie()throws DALException, ArticleVenduManagerException;
+	public List<ArticleVendu> selectByCategorie(String type)throws ArticleVenduManagerException;
 	
 }

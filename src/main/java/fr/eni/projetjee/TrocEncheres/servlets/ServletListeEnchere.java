@@ -28,22 +28,22 @@ public class ServletListeEnchere extends HttpServlet {
 	private IArticleVenduManager articleVenduManager =  SingletonArticleVenduManager.getInstance();	
 	private ICategorieManager categorieManager =  SingletonCategorieManager.getInstance();	
 	private static final long serialVersionUID = 1L;
-       
+
+	private List<Categorie> listeCategorie;
+	
     public ServletListeEnchere() {
         super();
+        listeCategorie = null;
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	List<ArticleVendu> listeArticle = new ArrayList<>();
-    	List<Categorie> listeCategorie = new ArrayList<>();
+    	List<ArticleVendu> listeArticle = null;
 		
 		try {
 			
-			listeArticle = null;
 			listeArticle = articleVenduManager.selectAll();
 			
-			listeCategorie = null;
 			listeCategorie = categorieManager.selectAll();
 			
 			
@@ -58,30 +58,45 @@ public class ServletListeEnchere extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		request.setAttribute("listeArticle", listeArticle);
+		request.setAttribute("listeCategorie", listeCategorie);
 		
-		String query = request.getParameter("query");
+		// transfert affichage à la jsp
+		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
+		rd.forward(request, response);		
+		
+    }
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    	List<ArticleVendu> listeArticle = null;
+    	
+    	String query = request.getParameter("query");
 		
 		String type = request.getParameter("categories");
+		
+		System.out.println("type : " + type);
 		
 		List<ArticleVendu> results = null;
 
 		if ("toutes".equals(type)) {
 			
 		    try {
-				results = articleVenduManager.selectAll();
-			} catch (DALException | ArticleVenduManagerException e) {
+		    	listeArticle = articleVenduManager.selectAll();
+			} catch ( ArticleVenduManagerException e) {
 				e.printStackTrace();
 			}
-		} else {
-		    try {
-		    
-				results = articleVenduManager.selectByCategorie();
-			} catch (DALException | ArticleVenduManagerException e) {
-				e.printStackTrace();
+		} else
+			{
+				try {
+
+					listeArticle = articleVenduManager.selectByCategorie(type);
+				} catch ( ArticleVenduManagerException e) {
+					e.printStackTrace();
 			}
 		}
 
-		request.setAttribute("results", results);
 		request.setAttribute("listeArticle", listeArticle);
 		request.setAttribute("listeCategorie", listeCategorie);
 				
@@ -90,14 +105,6 @@ public class ServletListeEnchere extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("./AccueilListeEncheres.jsp");
 		rd.forward(request, response);
 		
-		
-		
-		
-		
-    }
-	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 
