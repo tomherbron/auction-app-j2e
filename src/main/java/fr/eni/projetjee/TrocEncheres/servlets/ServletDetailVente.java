@@ -78,15 +78,30 @@ public class ServletDetailVente extends HttpServlet {
 		Integer montantEnchere = Integer.parseInt(montantSaisi);
 		LocalDate dateJour = LocalDate.now();
 		
+		Enchere enchere = new Enchere (dateJour, montantEnchere, articleAModifier.getUtilisateur(), articleAModifier);
+		
 		// Set le prix de vente au montant saisir par l'utilisateur
 		
-		if (montantEnchere >= articleAModifier.getMiseAPrix()) {
+		if (utilisateur.getCredit() < articleAModifier.getMiseAPrix() && utilisateur.getCredit() < montantEnchere) {
+			request.setAttribute("erreur", "Identifiant ou mot de passe incorrect");
+			RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
+			rd.forward(request, response);
+		}
+		
+		if (montantEnchere >= articleAModifier.getMiseAPrix() && montantEnchere >= articleAModifier.getPrixDeVente()) {
+			
 			articleAModifier.setPrixDeVente(montantEnchere);
+			utilisateur.setCredit(utilisateur.getCredit() - montantEnchere);
+			
+			enchere.setUtilisateur(utilisateur);
+			
 		} else {
 			//Erreur
 		}
 		
-		Enchere enchere = new Enchere (dateJour, montantEnchere, articleAModifier.getUtilisateur(), articleAModifier);
+		Utilisateur acquereur = enchere.getUtilisateur();
+		System.out.println("L'acquéreur est : " + acquereur);
+		
 		
 		// Update l'article en BDD
 		
@@ -106,8 +121,10 @@ public class ServletDetailVente extends HttpServlet {
 		}
 		
 		session.setAttribute("utilisateur", utilisateur);
+		
+		request.setAttribute("acquereur", acquereur);
 		request.setAttribute("article", articleAModifier);
-		request.setAttribute(montantSaisi, montantEnchere);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
 		rd.forward(request, response);
 
