@@ -11,11 +11,11 @@ import fr.eni.projetjee.TrocEncheres.bo.Enchere;
 
 public class EnchereDAOJdbcImpl implements IEnchereDAO {
 
-	private static final String INSERT = "INSERT INTO enchere(date_enchere, montant_enchere) VALUES(?,?)";
-	private static final String UPDATE = "UPDATE enchere SET date_enchere=?, montant_enchere=?WHERE no_enchere=?";
+	private static final String INSERT = "INSERT INTO enchere(date_enchere, montant_enchere, no_article, no_utilisateur) VALUES(?,?,?,?)";
+	private static final String UPDATE = "UPDATE enchere SET date_enchere=?, montant_enchere=?, no_article=?, no_utilisateur=? WHERE no_enchere=?";
 	private static final String DELETE = "DELETE FROM enchere WHERE no_enchere=?";
 	private static final String SELECTALL = "SELECT * FROM enchere";
-	private static final String SELECTBYID = "SELECT (no_enchere, date_enchere, montant_enchere) FROM enchere WHERE no_enchere=? )";
+	private static final String SELECTBYID = "SELECT (no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur) FROM enchere WHERE no_enchere=? )";
 
 	@Override
 	public void insertEnchere(Enchere enchere) throws DALException, SQLException {
@@ -23,14 +23,18 @@ public class EnchereDAOJdbcImpl implements IEnchereDAO {
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
+			
 			pstmt.setDate(1, java.sql.Date.valueOf(enchere.getDateEnchere()));
 			pstmt.setInt(2, enchere.getMontantEnchere());
-
+			pstmt.setInt(3, enchere.getArticle().getNoArticle());
+			pstmt.setInt(4, enchere.getUtilisateur().getNoUtilisateur());
 			pstmt.executeUpdate();
+			
 			ResultSet rs = pstmt.getGeneratedKeys();
 			if (rs.next()) {
 				enchere.setNoEnchere(rs.getInt(1));
 			}
+			
 			rs.close();
 			pstmt.close();
 
@@ -116,8 +120,7 @@ public class EnchereDAOJdbcImpl implements IEnchereDAO {
 				noEnchere = rs.getInt(1);
 				LocalDate dateEnchere = rs.getDate(2).toLocalDate();
 				int montantEnchere = rs.getInt(3);
-
-				enchere = new Enchere(noEnchere, dateEnchere, montantEnchere);
+			
 
 				pstmt.close();
 

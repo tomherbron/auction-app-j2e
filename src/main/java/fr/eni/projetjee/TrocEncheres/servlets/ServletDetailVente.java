@@ -1,6 +1,9 @@
 package fr.eni.projetjee.TrocEncheres.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Date;
+import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +19,7 @@ import fr.eni.projetjee.TrocEncheres.bll.IEnchereManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonEnchereManager;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
+import fr.eni.projetjee.TrocEncheres.bo.Enchere;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
@@ -66,12 +70,15 @@ public class ServletDetailVente extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
 		
-		// Récupérer l'article et le montant de l'enchere
+		// Récupérer l'article et le montant de l'enchere, date, utilisateur
 
 		String montantSaisi = request.getParameter("proposition");
+		
 		ArticleVendu articleAModifier = (ArticleVendu) session.getAttribute("article");
 		Integer montantEnchere = Integer.parseInt(montantSaisi);
-
+		LocalDate dateJour = LocalDate.now();
+		
+		Enchere enchere = new Enchere (dateJour, montantEnchere, articleAModifier.getUtilisateur(), articleAModifier);
 		
 		// Set le prix de vente au montant saisir par l'utilisateur
 		
@@ -86,10 +93,14 @@ public class ServletDetailVente extends HttpServlet {
 		try {
 			
 			articleManager.updatePdv(articleAModifier);
+			enchereManager.insertEnchere(enchere);
 			
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
 		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
