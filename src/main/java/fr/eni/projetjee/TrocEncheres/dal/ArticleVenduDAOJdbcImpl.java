@@ -13,11 +13,9 @@ import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 
-<<<<<<< HEAD
+
 public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO{
-=======
-public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres
+
 	
 	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=?, etat_vente =? WHERE no_article=?";
@@ -31,16 +29,9 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 			+ "LEFT JOIN retrait ON article_vendu.no_article = retrait.no_article "
 			+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie "
 			+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE libelle = ? "; 
-	
-<<<<<<< HEAD
 
-	@Override
-=======
 	private static final String UPDATE_PDV =  "UPDATE article_vendu SET prix_vente=? WHERE no_article=?";
 	
-	
-	
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres
 	public void insertArticleVendu(ArticleVendu article) throws DALException, SQLException {
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -183,10 +174,7 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 		return article;
 	}
 	
-<<<<<<< HEAD
-	@Override
-=======
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres
+
 	public List<ArticleVendu> selectAll() throws DALException, SQLException {
 		List<ArticleVendu> listeArticleVendu = null;
 

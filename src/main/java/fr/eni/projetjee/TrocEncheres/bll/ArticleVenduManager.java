@@ -13,17 +13,18 @@ public class ArticleVenduManager implements IArticleVenduManager{
 
 	
 	@Override
-	public void insertArticle(ArticleVendu article) throws DALException, ArticleVenduManagerException {
+	public void insertArticle(ArticleVendu article) throws ArticleVenduManagerException {
 		
 		try {
 
 			
 			articleVenduDAO.insertArticleVendu(article);
 			
-		} catch (DALException e) {
+		} catch (DALException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new ArticleVenduManagerException("select All failed.");
+		
 		}
 
 	}
@@ -95,7 +96,7 @@ public class ArticleVenduManager implements IArticleVenduManager{
 	}
 
 	@Override
-	public void updatePdv(ArticleVendu article) throws DALException, ArticleVenduManagerException {
+	public void updatePdv(ArticleVendu article) throws ArticleVenduManagerException {
 		// TODO Auto-generated method stub
 		
 	}

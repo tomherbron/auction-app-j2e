@@ -13,13 +13,13 @@ public interface IArticleVenduManager {
 	
 	public void updateArticle(ArticleVendu article ) throws ArticleVenduManagerException;
 	
-<<<<<<< HEAD
+
 	public void deleteArticle(Integer noArticle ) throws ArticleVenduManagerException;
-=======
+
 	public void updatePdv(ArticleVendu article) throws DALException, ArticleVenduManagerException ;
 	
-	public void deleteArticle(Integer noArticle ) throws DALException, ArticleVenduManagerException;
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres
+
+
 	
 	public ArticleVendu selectById(Integer noArticle ) throws ArticleVenduManagerException;
 
