@@ -14,6 +14,7 @@ import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
+import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 /**
@@ -32,6 +33,9 @@ public class ServletDetailVente extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
 		Integer id = Integer.parseInt(request.getParameter("id"));
 
@@ -48,6 +52,7 @@ public class ServletDetailVente extends HttpServlet {
 		}
 
 		request.setAttribute("article", article);
+		request.setAttribute("utilisateur", utilisateur);
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
 
 		rd.forward(request, response);

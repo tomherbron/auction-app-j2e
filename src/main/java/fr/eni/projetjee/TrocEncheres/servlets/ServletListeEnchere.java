@@ -20,9 +20,6 @@ import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 import fr.eni.projetjee.TrocEncheres.dal.DALException;
 
 
-
-
-
 @WebServlet("/ServletListeEnchere")
 public class ServletListeEnchere extends HttpServlet {
 	

@@ -47,7 +47,7 @@
 			if (article.getPrixDeVente() == 0) { 
 			%>	
 			<p>
-				Meilleure offre : pas d'offre
+				Meilleure offre :
 			</p>
 			<%} else { %>
 			<p>
@@ -72,7 +72,12 @@
 				<%
 				 session.setAttribute("article", article);
 				%>
-
+				
+			<%
+			Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur");
+			%>	
+			
+			<% if (!article.getUtilisateur().getPseudo().equalsIgnoreCase(utilisateur.getPseudo())){%>
 			<form action="<%=request.getContextPath()%>/ServletDetailVente"
 				method="post">
 				<label for="tentacles">Ma proposition :</label>
@@ -80,6 +85,7 @@
 				<input type="number" id="tentacles" name="proposition" min="10" max="2000">	
 				<input type="submit" value="Enchérir" />		
 			</form>
+			<% } %>
 		</article>
 	</div>
 </body>
