@@ -13,7 +13,9 @@ import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 
-public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
+
+public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO{
+
 	
 	private static final String INSERT_ARTICLE_VENDU = "INSERT INTO article_vendu(nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, prix_vente, no_utilisateur, no_categorie, etat_vente) VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String UPDATE = "UPDATE article_vendu SET nom_article=?, description=?, date_debut_enchere=?,date_fin_enchere=?, prix_initial=?,prix_vente=?, etat_vente =? WHERE no_article=?";
@@ -26,11 +28,9 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 	private static final String SELECT_BY_CATEGORIE = "SELECT * FROM `article_vendu` "
 			+ "LEFT JOIN retrait ON article_vendu.no_article = retrait.no_article "
 			+ "LEFT JOIN categorie on article_vendu.no_categorie = categorie.no_categorie "
-			+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE categorie = ? "; 
-	
+			+ "LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE libelle = ? "; 
+
 	private static final String UPDATE_PDV =  "UPDATE article_vendu SET prix_vente=? WHERE no_article=?";
-	
-	
 	
 	public void insertArticleVendu(ArticleVendu article) throws DALException, SQLException {
 		
@@ -76,6 +76,7 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 
 	}
 
+	@Override
 	public void updateArticleVendu(ArticleVendu article) throws DALException, SQLException {
 
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -100,6 +101,7 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 
 	}
 
+	@Override
 	public void deleteArticleVendu(Integer noArticle) throws DALException, SQLException {
 
 		try (Connection con = ConnectionProvider.getConnection()) {
@@ -116,10 +118,11 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 
 	}
 
+	@Override
 	public ArticleVendu selectById(Integer noArticle) throws DALException, SQLException {
-		
+	
 		ArticleVendu article = null;
-
+		
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_ID);
@@ -128,7 +131,7 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				
+
 				noArticle = rs.getInt("no_article");
 				String nomArticle = rs.getString("nom_article");
 				String description = rs.getString("description");
@@ -171,9 +174,9 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 		return article;
 	}
 	
+
 	public List<ArticleVendu> selectAll() throws DALException, SQLException {
 		List<ArticleVendu> listeArticleVendu = null;
-		ArticleVendu article = null;
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
@@ -181,6 +184,7 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
+				ArticleVendu article = null;
 				if (listeArticleVendu == null)
 					listeArticleVendu = new ArrayList<ArticleVendu>();
 				Integer noArticle = rs.getInt("no_article");
@@ -225,14 +229,16 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO {
 		
 	}
 	
-	public List<ArticleVendu> selectByCategorie(Categorie categorie) throws DALException, SQLException {
+
+	@Override
+	public List<ArticleVendu> selectByCategorie(String type) throws DALException, SQLException {
 		List<ArticleVendu> listeArticleVenduParCateg = null;
 		ArticleVendu article = null;
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_CATEGORIE);
-			pstmt.setInt(1, categorie.getNoCategorie());
+			pstmt.setString(1,type);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {

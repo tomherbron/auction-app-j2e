@@ -42,8 +42,7 @@ public class ServletDetailVente extends HttpServlet {
 			article = articleManager.selectById(id);
 			System.out.println(article);
 
-		} catch (DALException e) {
-			e.printStackTrace();
+		
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
 		}
@@ -77,7 +76,7 @@ public class ServletDetailVente extends HttpServlet {
 			
 			articleManager.updateArticle(articleAModifier);
 			
-		} catch (DALException | ArticleVenduManagerException e) {
+		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
 		}
 		
