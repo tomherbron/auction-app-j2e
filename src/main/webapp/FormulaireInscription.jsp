@@ -21,49 +21,49 @@
 				<div>
 					<label for="pseudo-utilisateur">Pseudo : </label> <input
 						type="text" id="pseudo-utilisateur" name="pseudo-utilisateur"
-						pattern="^[a-zA-Z0-9]{4,16}$">
+						pattern="^[a-zA-Z0-9]{4,16}$" required>
 				</div>
 				<div>
 					<label for="nom-utilisateur">Nom : </label> <input type="text"
 						id="nom-utilisateur" name="nom-utilisateur"
-						pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$">
+						pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" required>
 				</div>
 				<div>
 					<label for="prenom-utilisateur">Prénom : </label> <input
 						type="text" id="prenom-utilisateur" name="prenom-utilisateur"
-						pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$">
+						pattern="^[a-zA-Z]+(?:\s+[a-zA-Z]+)*$" required>
 				</div>
 				<div>
 					<label for="email-utilisateur">E-mail : </label> <input
-						type="email" id="email-utilisateur" name="email-utilisateur">
+						type="email" id="email-utilisateur" name="email-utilisateur" required>
 				</div>
 				<div>
 					<label for="telephone-utilisateur">Téléphone : </label> <input
 						type="text" id="telephone-utilisateur"
-						name="telephone-utilisateur" pattern="^[0-9]{10}$">
+						name="telephone-utilisateur" pattern="^[0-9]{10}$" required>
 				</div>
 				<div>
 					<label for="rue-utilisateur">Rue : </label> <input type="text"
-						id="rue-utilisateur" name="rue-utilisateur">
+						id="rue-utilisateur" name="rue-utilisateur" required>
 				</div>
 				<div>
 					<label for="cpo-utilisateur">Code Postal : </label> <input
 						type="text" id="cpo-utilisateur" name="cpo-utilisateur"
-						pattern="^[0-9]{5}(?:-[0-9]{4})?$">
+						pattern="^[0-9]{5}(?:-[0-9]{4})?$" required>
 				</div>
 				<div>
 					<label for="ville-utilisateur">Ville : </label> <input type="text"
-						id="ville-utilisateur" name="ville-utilisateur">
+						id="ville-utilisateur" name="ville-utilisateur" required>
 				</div>
 				<div>
 					<label for="mdp-utilisateur">Mot de passe : </label> <input
 						type="password" id="mdp-utilisateur" name="mdp-utilisateur"
-						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$">
+						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" required>
 				</div>
 				<div>
 					<label for="confirmation-mdp">Confirmation : </label> <input
 						type="password" id="confirmation-mdp" name="confirmation-mdp"
-						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$">
+						pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" required>
 				</div>
 				<div>
 					<input type="submit" value="Créer" />
