@@ -60,6 +60,7 @@
 				<%=article.getDateFinEnchere()%></p>
 			<p>
 				Retrait :
+				
 				<%=article.getRetrait().getRue()%>
 				<%=article.getRetrait().getCodePostal()%>
 				<%=article.getRetrait().getVille()%></p>

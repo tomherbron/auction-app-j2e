@@ -86,26 +86,32 @@ if (session.getAttribute("utilisateur") == null) {
 
 			<br>
 			<article>
-			<h1><a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a></h1>
+			<h3><a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a></h3>
 			
 			<br>
 			<p>
-				Description
+			<strong>	Description </strong>
 				<%=articleCourant.getDescription()%>
+				
+			</p>
+				<p>
+				<strong>Catégorie :</strong>
+				<%=articleCourant.getCategorie().getLibelle()%>
 				
 			</p>
 			<br>
 			<p>
-				Prix :
+				<strong> Prix : </strong>
 				<%=articleCourant.getMiseAPrix()%>
 				points
+				
 			</p>
 			<p>
-				Fin de l'enchère :
+				<strong> Fin de l'enchère : </strong>
 				<%=articleCourant.getDateFinEnchere()%></p>
 			<br>
 			<p>
-				Vendeur :
+				<strong> Vendeur : </strong>
 				<%=articleCourant.getUtilisateur().getPseudo()%></p>
 			</article>
 			<%
@@ -185,9 +191,6 @@ if (session.getAttribute("utilisateur") == null) {
 							 
 						<label for="mes-ventes"> 
 							<input type="radio" id="mes-ventes" name="radioAchatVente" value="ventes"/>Mes ventes</label>
-							if (selection = "achats"){
-								SELECT 
-							}
 					
 					</fieldset>
 						
@@ -220,26 +223,31 @@ if (session.getAttribute("utilisateur") == null) {
 
 			<br>
 			<article>
-			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+			<h3><a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a></h3>
 			<br>
 			<br>
 			<p>
-				Description :
+				<strong>Description :</strong>
 				<%=articleCourant.getDescription()%>
 				
 			</p>
 			<p>
-				Prix :
+				<strong>Catégorie :</strong>
+				<%=articleCourant.getCategorie().getLibelle()%>
+				
+			</p>
+			<p>
+				<strong> Prix : </strong>
 				<%=articleCourant.getMiseAPrix()%>
 				points
 			</p>
 			<p>
-				Fin de l'enchère :
+				<strong> Fin de l'enchère : </strong>
 				<%=articleCourant.getDateFinEnchere()%></p>
 			<br>
 
 			<p>
-				Vendeur :
+				<strong> Vendeur : </strong>
 				<a href="./ServletAffichageProfilUtilisateur?pseudo=<%=articleCourant.getUtilisateur().getPseudo() %>">
 				<%=articleCourant.getUtilisateur().getPseudo() %></a>
 				

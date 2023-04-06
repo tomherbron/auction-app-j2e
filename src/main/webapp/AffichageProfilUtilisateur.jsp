@@ -24,7 +24,7 @@
 				</h1>
 			</header>
 			<div>
-				<h2>Mon profil</h2>
+				<h2>Profil de  ${user.pseudo }</h2>
 				<p>Pseudo :  ${user.pseudo}</p>
 				
 				<p>Nom : ${user.nom}</p>
@@ -37,8 +37,8 @@
 			</div>
 
 			<div>
-				<form action="./ServletDeconnexion" method="GET">
-					<button type="submit">Se déconnecter</button>
+				<form action="./ServletListeEnchere" method="GET">
+					<button type="submit">Retour</button>
 				</form>
 			</div>
 		</article>
