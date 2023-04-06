@@ -86,8 +86,8 @@ public class ServletDetailVente extends HttpServlet {
 		
 		// Set le prix de vente au montant saisir par l'utilisateur
 		
-		if (utilisateur.getCredit() < articleAModifier.getMiseAPrix() && utilisateur.getCredit() < montantEnchere) {
-			request.setAttribute("erreur", "Identifiant ou mot de passe incorrect");
+		if (utilisateur.getCredit() < articleAModifier.getMiseAPrix() || utilisateur.getCredit() < montantEnchere) {
+			request.setAttribute("erreur", "erreur");
 			RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
 			rd.forward(request, response);
 		}
