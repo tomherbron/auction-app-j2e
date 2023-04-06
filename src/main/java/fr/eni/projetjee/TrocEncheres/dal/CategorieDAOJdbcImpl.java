@@ -73,5 +73,4 @@ public class CategorieDAOJdbcImpl implements ICategorieDAO {
 		
 	}
 	
-	
 }
