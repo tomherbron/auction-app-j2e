@@ -37,6 +37,9 @@
 				<form action="./ServletDeconnexion" method="GET">
 					<button type="submit">Se déconnecter</button>
 				</form>
+					<form action="./ServletListeEnchere" method="GET">
+					<button type="submit">Retour</button>
+				</form>
 			</div>
 		</article>
 	</div>

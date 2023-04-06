@@ -91,6 +91,9 @@
 					</form>
 				<%}%>
 			<%}%>	
+							<form action="./ServletListeEnchere" method="GET">
+					<button type="submit">Retour</button>
+				</form>
 			
 		</article>
 	</div>

@@ -64,7 +64,7 @@
 				<div>
 					<label>Début de l'enchère : <input type="date"
 						name="debut-enchere" id="debut-enchere" required
-						pattern="\d{4}-\d{2}-\d{2}" >
+						pattern="\d{4}-\d{2}-\d{2}">
 					</label>
 				</div>
 				<div>
@@ -86,8 +86,12 @@
 						name="ville">
 				</div>
 
-				<input type="submit" value="Enregistrer"> 
-				<input type="reset" value="Effacer">	
+				<input type="submit" value="Enregistrer"> <input
+					type="reset" value="Effacer">
+
+			</form>
+			<form action="./ServletListeEnchere" method="GET">
+				<button type="submit">Retour</button>
 			</form>
 		</article>
 	</div>
