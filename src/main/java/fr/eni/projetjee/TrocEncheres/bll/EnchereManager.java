@@ -1,6 +1,7 @@
 package fr.eni.projetjee.TrocEncheres.bll;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.Enchere;
@@ -33,23 +34,21 @@ public class EnchereManager implements IEnchereManager {
 
 	@Override
 	public List<Enchere> selectAllEncheres() throws DALException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Enchere> lstEncheres = new ArrayList<>();
+		
+		lstEncheres = enchereDAO.selectAllEncheres();
+		
+		return lstEncheres;
 	}
 
 	@Override
 	public Enchere selectEnchereById(Integer noEnchere) throws DALException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Enchere selectEnchereByNoArticle(Integer noArticle) throws DALException, SQLException {
 		Enchere enchere = null;
 		
-		enchere = enchereDAO.selectEnchereByNoArticle(noArticle);
+		enchere = enchereDAO.selectEnchereById(noEnchere);
 		
 		return enchere;
+		
 	}
 
 }

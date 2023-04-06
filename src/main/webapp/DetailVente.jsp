@@ -1,6 +1,8 @@
 <%@page
 	import="fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager"%>
 <%@page import="fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManager"%>
+<%@page import="fr.eni.projetjee.TrocEncheres.bll.UtilisateurManager" %>
+<%@page import="fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@  page import="fr.eni.projetjee.TrocEncheres.bo.ArticleVendu"%>
@@ -12,6 +14,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 <meta charset="UTF-8">
@@ -21,7 +26,7 @@
 	<div class="container">
 		<article>
 			<header>
-				<h1>
+				<h1 style = "font-family: 'Kaushan Script', cursive;">
 					<a href="./ServletListeEnchere">Enchères-ENI</a>
 				</h1>
 			</header>
@@ -32,27 +37,27 @@
 			%>
 
 			<p>
-				Nom de l'article :
+				<strong>Nom de l'article :</strong>
 				<%=article.getNomArticle()%></p>
 			<p>
-				Description :
+				<strong>Description :</strong>
 				<%=article.getDescription()%></p>
 			<p>
-				Catégorie :
+				<strong>Catégorie :</strong>
 				<%=article.getCategorie().getLibelle()%></p>
-			<p>Prix initital : 
+			<p><strong>Prix initital : </strong>
 				<%=article.getMiseAPrix()%> points</p>
 			
 			<% 
-			if (article.getPrixDeVente() == 0) { 
+			if (article.getPrixDeVente() != 0) { 
 			%>	
-<<<<<<< HEAD
 				<p>
-					Meilleure offre :
+					<strong>Meilleure offre :</strong>
 					<%=article.getPrixDeVente()%>
-					points 
-					<%Utilisateur usr = (Utilisateur) request.getAttribute("acquereur"); %>
-					<% if (usr != null) {%> | par 
+					points | par 
+					<% Utilisateur usr = (Utilisateur) request.getAttribute("acquereur"); 
+					if (usr != null) {%>
+					
 						<%=usr.getPseudo()%>
 					<%
 						}
@@ -60,29 +65,17 @@
 				</p>	
 			<% } %>
 			
-=======
 			<p>
-				Meilleure offre :
-			</p>
-			<%} else { %>
-			<p>
-				Meilleure offre :
-				<%=article.getPrixDeVente()%>
-				points
-			</p>
-							
-			<%}%>
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres.git
-			<p>
-				Fin de l'enchère :
+				<strong>Fin de l'enchère :</strong>
 				<%=article.getDateFinEnchere()%></p>
 			<p>
-				Retrait :
+				<strong>Retrait :</strong>
+				
 				<%=article.getRetrait().getRue()%>
 				<%=article.getRetrait().getCodePostal()%>
 				<%=article.getRetrait().getVille()%></p>
 			<p>
-				Vendu par :
+				<strong>Vendu par :</strong>
 				<%=article.getUtilisateur().getPseudo()%></p>
 				
 				<%
@@ -92,16 +85,26 @@
 			<%
 			Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 			%>	
+			<%
+			if (session.getAttribute("utilisateur") != null) {
+			%>
+				<% if (!article.getUtilisateur().getPseudo().equalsIgnoreCase(utilisateur.getPseudo())){%>
+					<form action="<%=request.getContextPath()%>/ServletDetailVente"
+						method="post">
+						<label for="tentacles">Ma proposition :</label>
+						<br> 
+						<input type="number" id="tentacles" name="proposition" min="10" max="2000">	
+						<input type="submit" value="Enchérir" />	
+						<% if (request.getAttribute("erreur") != null) { %>
+							<strong>Vous n'avez pas assez de crédit</strong>
+						<%}%>	
+					</form>
+				<%}%>
+			<%}%>	
+							<form action="./ServletListeEnchere" method="GET">
+					<button type="submit">Retour</button>
+				</form>
 			
-			<% if (!article.getUtilisateur().getPseudo().equalsIgnoreCase(utilisateur.getPseudo())){%>
-			<form action="<%=request.getContextPath()%>/ServletDetailVente"
-				method="post">
-				<label for="tentacles">Ma proposition :</label>
-				<br> 
-				<input type="number" id="tentacles" name="proposition" min="10" max="2000">	
-				<input type="submit" value="Enchérir" />		
-			</form>
-			<% } %>
 		</article>
 	</div>
 </body>

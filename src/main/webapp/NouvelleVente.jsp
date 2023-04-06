@@ -7,12 +7,15 @@
 <title>Enchères-ENI | Nouvelle vente</title>
 <link rel="stylesheet"
 	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
 		<article>
 			<header>
-				<h1>
+				<h1 style = "font-family: 'Kaushan Script', cursive;">
 					<a href="./ServletListeEnchere">Enchères-ENI</a>
 				</h1>
 			</header>
@@ -64,7 +67,7 @@
 				<div>
 					<label>Début de l'enchère : <input type="date"
 						name="debut-enchere" id="debut-enchere" required
-						pattern="\d{4}-\d{2}-\d{2}" >
+						pattern="\d{4}-\d{2}-\d{2}">
 					</label>
 				</div>
 				<div>
@@ -86,8 +89,12 @@
 						name="ville">
 				</div>
 
-				<input type="submit" value="Enregistrer"> 
-				<input type="reset" value="Effacer">	
+				<input type="submit" value="Enregistrer"> <input
+					type="reset" value="Effacer">
+
+			</form>
+			<form action="./ServletListeEnchere" method="GET">
+				<button type="submit">Retour</button>
 			</form>
 		</article>
 	</div>

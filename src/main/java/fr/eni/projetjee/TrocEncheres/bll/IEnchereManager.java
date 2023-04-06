@@ -18,7 +18,4 @@ public interface IEnchereManager {
 	
 	public Enchere selectEnchereById (Integer noEnchere) throws DALException, SQLException;
 	
-	public Enchere selectEnchereByNoArticle (Integer noArticle) throws DALException, SQLException;
-
-	
 }

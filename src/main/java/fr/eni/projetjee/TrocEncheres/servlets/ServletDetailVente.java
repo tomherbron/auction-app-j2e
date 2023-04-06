@@ -3,6 +3,7 @@ package fr.eni.projetjee.TrocEncheres.servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
@@ -16,8 +17,11 @@ import javax.servlet.http.HttpSession;
 import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.IEnchereManager;
+import fr.eni.projetjee.TrocEncheres.bll.IUtilisateurManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonEnchereManager;
+import fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager;
+import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.bo.Enchere;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
@@ -28,6 +32,7 @@ public class ServletDetailVente extends HttpServlet {
 
 	IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
 	IEnchereManager enchereManager = SingletonEnchereManager.getInstance();
+	IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
 	
 	private static final long serialVersionUID = 1L;
 
@@ -49,12 +54,12 @@ public class ServletDetailVente extends HttpServlet {
 		try {
 
 			article = articleManager.selectById(id);
+			System.out.println(article);
 
 		
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
 		
 		List<Enchere> lstEncheres = null;
 		
@@ -64,8 +69,10 @@ public class ServletDetailVente extends HttpServlet {
 			System.out.println("lstEncheres : "+  lstEncheres);
 			
 		} catch (DALException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -83,9 +90,6 @@ public class ServletDetailVente extends HttpServlet {
 		
 		request.setAttribute("acquereur", winner);
 		
-=======
-
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres.git
 		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("article", article);
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
@@ -99,62 +103,71 @@ public class ServletDetailVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
-		
-		// Récupérer l'article et le montant de l'enchere, date, utilisateur
 
 		String montantSaisi = request.getParameter("proposition");
+		
 		ArticleVendu articleAModifier = (ArticleVendu) session.getAttribute("article");
-		
 		Integer montantEnchere = Integer.parseInt(montantSaisi);
+		LocalDate dateJour = LocalDate.now();
 		
-		Enchere enchere = null;
+		Enchere enchere = new Enchere (dateJour, montantEnchere, articleAModifier.getUtilisateur(), articleAModifier);
 		
-<<<<<<< HEAD
-		try {
+		
+		if (utilisateur.getCredit() < articleAModifier.getMiseAPrix() || utilisateur.getCredit() < montantEnchere) {
+			request.setAttribute("erreur", "erreur");
+			RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
+			rd.forward(request, response);
+		}
+		
+		if (montantEnchere >= articleAModifier.getMiseAPrix() && montantEnchere >= articleAModifier.getPrixDeVente()) {
 			
-			 enchere = enchereManager.selectEnchereByNoArticle(articleAModifier.getNoArticle());
-			 
-		} catch (DALException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-=======
-		// Set le prix de vente au montant saisir par l'utilisateur
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres.git
-		
-		if (montantEnchere >= articleAModifier.getMiseAPrix()) {
 			articleAModifier.setPrixDeVente(montantEnchere);
+			utilisateur.setCredit(utilisateur.getCredit() - montantEnchere);
+			
+			enchere.setUtilisateur(utilisateur);
+			
 		} else {
-			//Erreur
+			
+			request.setAttribute("erreur", "erreur");
+			RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
+			rd.forward(request, response);
+			
 		}
 		
-<<<<<<< HEAD
 		Utilisateur acquereur = enchere.getUtilisateur();
 		System.out.println("L'acquéreur est : " + acquereur);
 		
-=======
+		
 		// Update l'article en BDD
->>>>>>> branch 'master' of https://github.com/tomyonearth/trocEncheres.git
 		
 		try {
 			
 			articleManager.updatePdv(articleAModifier);
-			enchereManager.updateEnchere(enchere);
+			enchereManager.insertEnchere(enchere);
+			
+			try {
+				
+				System.out.println("Les credits sont à : " + utilisateur.getCredit());
+				utilisateurManager.updateUtilisateur(utilisateur);
+				
+			} catch (UtilisateurManagerException e) {
+				e.printStackTrace();
+			}
 			
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		
 		session.setAttribute("utilisateur", utilisateur);
+		
+		request.setAttribute("acquereur", acquereur);
 		request.setAttribute("article", articleAModifier);
-		request.setAttribute(montantSaisi, montantEnchere);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
 		rd.forward(request, response);
 

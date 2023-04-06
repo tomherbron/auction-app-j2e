@@ -17,4 +17,5 @@ public interface IUtilisateurDAO {
 	
 	public Utilisateur selectByLogIn (String pseudo, String motDePasse) throws DALException, SQLException ;
 	
+	public Utilisateur selectByPseudo (String pseudo) throws DALException, SQLException ;
 }

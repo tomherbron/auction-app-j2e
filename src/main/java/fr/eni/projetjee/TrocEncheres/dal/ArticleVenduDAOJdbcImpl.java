@@ -32,7 +32,7 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO{
 
 	private static final String UPDATE_PDV =  "UPDATE article_vendu SET prix_vente=? WHERE no_article=?";
 //	private static final String SELECT_BY_UTILISATEUR =  "UPDATE article_vendu SET prix_vente=? WHERE no_article=?";
-	private static final String SELECT_BY_ETAT_VENTE =  "SELECT * FROM  article_vendu WHERE etat_vente = ?";
+	private static final String SELECT_BY_ETAT_VENTE =  "SELECT * FROM  article_vendu WHERE etat_vete = 1";
 	private static final String SELECT_BY_DATE_DEBUT =  "SELECT * FROM  article_vendu WHERE date_debut_enchere = ?";
 	private static final String SELECT_BY_DATE_FIN =  "SELECT * FROM  article_vendu WHERE date_fin_enchere = ?";
 	
@@ -313,21 +313,19 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO{
 		}
 		
 	}
-
 	
-	public List<ArticleVendu> selectByEtatVente(String terminee) throws DALException, SQLException {
-		List<ArticleVendu> listeArticleAVendre = null;
+	public List<ArticleVendu> selectByEtatVente() throws DALException, SQLException {
+		List<ArticleVendu> listeArticleVendu = null;
 
 		try (Connection con = ConnectionProvider.getConnection()) {
 
 			PreparedStatement pstmt = con.prepareStatement(SELECT_BY_ETAT_VENTE);
-			pstmt.setString(1,terminee);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
 				ArticleVendu article = null;
-				if (listeArticleAVendre == null)
-					listeArticleAVendre = new ArrayList<ArticleVendu>();
+				if (listeArticleVendu == null)
+					listeArticleVendu = new ArrayList<ArticleVendu>();
 				Integer noArticle = rs.getInt("no_article");
 				String nomArticle = rs.getString("nom_article");
 				String description = rs.getString("description");
@@ -356,17 +354,17 @@ public class ArticleVenduDAOJdbcImpl implements IArticleVenduDAO{
 				Utilisateur utilisateur2 = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 				article = new ArticleVendu (noArticle, nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, prixDeVente, etatVente, retrait2, utilisateur2, categorie2); 	
 				
-				listeArticleAVendre.add(article);
+				listeArticleVendu.add(article);
 			}
 			
 			pstmt.close();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new DALException("Select by etat vente");
+			throw new DALException("Select ");
 		}
 
-		return listeArticleAVendre;
+		return listeArticleVendu;
 		
 	}
 }
