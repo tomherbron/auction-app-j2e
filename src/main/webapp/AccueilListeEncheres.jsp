@@ -172,14 +172,38 @@ if (session.getAttribute("utilisateur") == null) {
 
 					<fieldset>
 						<label for="achats"> 
-							<input type="radio" id="achats"	name="radioAchatVente" value="achats" checked/>Achats</label>
-							 
+							<input type="radio" id="achats"	name="radioAchatVente" value="achats" checked onselect=uncheck/>Achats</label>
+											<fieldset>
+							  					 <div>
+												      <input type="checkbox" id="ench_ouv" name="ench_ouv" value="ench_ouv" >
+												      <label for="ench_ouv">enchères ouvertes</label>
+												 </div>
+													<div>
+												      <input type="checkbox" id="mes_encheres" name="mes_encheres" value="mes_encheres" >
+												      <label for="mes_encheres">mes enchères</label>
+											 		</div>	
+												 		<div>
+													      <input type="checkbox" id="mes_ench_remp" name="mes_ench_remp" value="mes_ench_remp">
+													      <label for="mes_ench_remp">mes enchères remportées</label>
+													 </div>		
+											</fieldset>																				 
 						<label for="mes-ventes"> 
 							<input type="radio" id="mes-ventes" name="radioAchatVente" value="ventes"/>Mes ventes</label>
-							if (selection = "achats"){
-								SELECT 
-							}
-					
+							  				<fieldset>
+							  					 <div>
+												      <input type="checkbox" id="en_cours" name="en_cours" value="en_cours" >
+												      <label for="en_cours">mes ventes en cours</label>
+												 </div>
+													<div>
+												      <input type="checkbox" id="non_debutee" name="non_debutee" value="non_debutee" >
+												      <label for="non_debutee">ventes non debutées</label>
+											 		</div>	
+												 		<div>
+													      <input type="checkbox" id="terminee" name="terminee" value="terminee" >
+													      <label for="terminee">ventes terminées</label>
+													 </div>		
+											</fieldset>	  					
+							  						
 					</fieldset>
 						
 					<label for="site-search">Filtres :</label>
@@ -203,39 +227,44 @@ if (session.getAttribute("utilisateur") == null) {
 			</div>
 
 
-			<%
-			List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
-			for (ArticleVendu articleCourant : listeArticle) {
-			%>
 
+			
+			
+					<%			
+				List<ArticleVendu> listeArticle = (List<ArticleVendu>) request.getAttribute("listeArticle");
+					for (ArticleVendu articleCourant : listeArticle) {
+						%>
+					
+					<br>
+					<p>-----------------------------------------------</p>
+					<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
+					<br>
+					<p>
+						Description
+						<%=articleCourant.getDescription()%>
+						
+					</p>
+					<br>
+					<p>
+						Prix :
+						<%=articleCourant.getMiseAPrix()%>
+						points
+					</p>
+					<p>
+						Fin de l'enchère :
+						<%=articleCourant.getDateFinEnchere()%></p>
+					<br>
+					<p>
+						Vendeur :
+						<%=articleCourant.getUtilisateur().getPseudo()%></p>
 
-			<br>
-			<p>-----------------------------------------------</p>
-			<a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a>
-			<br>
-			<p>
-				Description
-				<%=articleCourant.getDescription()%>
+					<%
+					session.setAttribute("articleCourant", articleCourant);
+					}
 				
-			</p>
-			<br>
-			<p>
-				Prix :
-				<%=articleCourant.getMiseAPrix()%>
-				points
-			</p>
-			<p>
-				Fin de l'enchère :
-				<%=articleCourant.getDateFinEnchere()%></p>
-			<br>
-			<p>
-				Vendeur :
-				<%=articleCourant.getUtilisateur().getPseudo()%></p>
+					
+				%>
 
-			<%
-			session.setAttribute("articleCourant", articleCourant);
-			}
-			%>
 
 
 
@@ -244,5 +273,5 @@ if (session.getAttribute("utilisateur") == null) {
 </body>
 </html>
 <%
-}
+}					
 %>

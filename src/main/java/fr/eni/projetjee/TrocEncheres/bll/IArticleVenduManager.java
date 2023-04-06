@@ -26,5 +26,11 @@ public interface IArticleVenduManager {
 	public List<ArticleVendu> selectAll() throws ArticleVenduManagerException ;
 
 	public List<ArticleVendu> selectByCategorie(String type)throws ArticleVenduManagerException;
+
+	public List<ArticleVendu> selectByEtatVente(String vente)throws ArticleVenduManagerException;
+
+	
+
+	
 	
 }
