@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
 <meta charset="UTF-8">
@@ -12,7 +15,7 @@
 	<div class="container">
 		<article>
 			<header>
-				<h1>
+				<h1 style = "font-family: 'Kaushan Script', cursive;">
 					<a href="./ServletListeEnchere">Enchères-ENI</a>
 				</h1>
 			</header>
