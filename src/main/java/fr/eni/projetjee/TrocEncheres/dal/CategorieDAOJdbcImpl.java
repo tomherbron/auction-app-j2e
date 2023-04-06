@@ -9,7 +9,7 @@ import java.util.List;
 
 import fr.eni.projetjee.TrocEncheres.bo.Categorie;
 
-public class CategorieDAOJdbcImpl implements ICategorieDAO {
+public class CategorieDAOJdbcImpl {
 
 	private static final String SELECT_BY_ID = "SELECT (libelle) FROM categorie WHERE no_categorie=?";
 	private static final String SELECT_ALL = "SELECT `no_categorie`, `libelle` FROM `categorie`";
@@ -72,5 +72,14 @@ public class CategorieDAOJdbcImpl implements ICategorieDAO {
 		return catList;
 		
 	}
+	
+	public void insertCategorie(Categorie categorie) throws DALException, SQLException {
+		//TODO		
+		
+	} 
+	
+
+	
+	
 	
 }

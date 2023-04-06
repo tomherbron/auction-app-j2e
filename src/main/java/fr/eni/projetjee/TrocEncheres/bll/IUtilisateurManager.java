@@ -18,7 +18,5 @@ public interface IUtilisateurManager {
 	public Utilisateur  selectByLogin (String pseudo, String motDePasse) throws DALException, UtilisateurManagerException;
 	
 	public List <Utilisateur> selectAll() throws DALException, UtilisateurManagerException;
-	
-	public Utilisateur  selectByPseudo (String pseudo) throws DALException, UtilisateurManagerException;
 
 }

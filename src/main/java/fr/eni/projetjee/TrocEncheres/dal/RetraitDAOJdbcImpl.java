@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import fr.eni.projetjee.TrocEncheres.bo.Retrait;
 
-public class RetraitDAOJdbcImpl implements IRetraitDAO {
+public class RetraitDAOJdbcImpl {
 
 	private static final String UPDATE = "UPDATE retrait SET rue=?, code_postal=?, ville=? WHERE no_article=?";
 	private static final String SELECT_BY_ID = "SELECT `r`.`rue` AS `rue`, `r`.`code_postal` AS `code_postal`, `a`.`no_article` AS `no_article` FROM `retrait` AS `r`INNER JOIN `article_vendu` AS `a` ON `a`.`no_article` = `r`.`no_article` WHERE `r`.`no_article` = ?";

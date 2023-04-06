@@ -191,11 +191,38 @@ if (session.getAttribute("utilisateur") == null) {
 
 					<fieldset>
 						<label for="achats"> 
-							<input type="radio" id="achats"	name="radioAchatVente" value="achats" checked/>Achats</label>
-							 
+							<input type="radio" id="achats"	name="radioAchatVente" value="achats" checked onselect=uncheck/>Achats</label>
+											<fieldset>
+							  					 <div>
+												      <input type="checkbox" id="ench_ouv" name="ench_ouv" value="ench_ouv" >
+												      <label for="ench_ouv">enchères ouvertes</label>
+												 </div>
+													<div>
+												      <input type="checkbox" id="mes_encheres" name="mes_encheres" value="mes_encheres" >
+												      <label for="mes_encheres">mes enchères</label>
+											 		</div>	
+												 		<div>
+													      <input type="checkbox" id="mes_ench_remp" name="mes_ench_remp" value="mes_ench_remp">
+													      <label for="mes_ench_remp">mes enchères remportées</label>
+													 </div>		
+											</fieldset>																				 
 						<label for="mes-ventes"> 
 							<input type="radio" id="mes-ventes" name="radioAchatVente" value="ventes"/>Mes ventes</label>
-					
+							  				<fieldset>
+							  					 <div>
+												      <input type="checkbox" id="en_cours" name="en_cours" value="en_cours" >
+												      <label for="en_cours">mes ventes en cours</label>
+												 </div>
+													<div>
+												      <input type="checkbox" id="non_debutee" name="non_debutee" value="non_debutee" >
+												      <label for="non_debutee">ventes non debutées</label>
+											 		</div>	
+												 		<div>
+													      <input type="checkbox" id="terminee" name="terminee" value="terminee" >
+													      <label for="terminee">ventes terminées</label>
+													 </div>		
+											</fieldset>	  					
+							  						
 					</fieldset>
 						
 					<label for="site-search">Filtres :</label>
@@ -225,6 +252,17 @@ if (session.getAttribute("utilisateur") == null) {
 			%>
 
 
+					<%
+					session.setAttribute("articleCourant", articleCourant);
+					}
+			<br>
+			<article>
+			<h3><a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a></h3>
+			<br>
+			<br>
+			<p>
+				<strong>Description :</strong>
+				<%=articleCourant.getDescription()%>
 			<br>
 			<article>
 			<h3><a href="./ServletDetailVente?id=<%=articleCourant.getNoArticle()%>"><%=articleCourant.getNomArticle()%></a></h3>
@@ -234,6 +272,33 @@ if (session.getAttribute("utilisateur") == null) {
 				<strong>Description :</strong>
 				<%=articleCourant.getDescription()%>
 				
+					
+				%>
+
+			</p>
+			<p>
+				<strong>Catégorie :</strong>
+				<%=articleCourant.getCategorie().getLibelle()%>
+				
+			</p>
+			<p>
+				<strong> Prix : </strong>
+				<%=articleCourant.getMiseAPrix()%>
+				points
+			</p>
+			<p>
+				<strong> Fin de l'enchère : </strong>
+				<%=articleCourant.getDateFinEnchere()%></p>
+			<br>
+
+			<p>
+				<strong> Vendeur : </strong>
+				<a href="./ServletAffichageProfilUtilisateur?pseudo=<%=articleCourant.getUtilisateur().getPseudo() %>">
+				<%=articleCourant.getUtilisateur().getPseudo() %></a>
+				
+				
+				</p>
+			</article>
 			</p>
 			<p>
 				<strong>Catégorie :</strong>

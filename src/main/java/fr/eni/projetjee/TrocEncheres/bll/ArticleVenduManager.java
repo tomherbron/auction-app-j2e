@@ -108,6 +108,30 @@ public class ArticleVenduManager implements IArticleVenduManager{
 		}	
 		
 	}
+
+	@Override
+	public List<ArticleVendu> selectByEtatVente(String vente) throws ArticleVenduManagerException {
+
+			
+		
+			
+
+			List<ArticleVendu> listeArticles = null;
+
+			try {
+
+				listeArticles = 	articleVenduDAO.selectByEtatVente(vente);
+
+			} catch (DALException | SQLException e) {
+				e.printStackTrace();
+				throw new ArticleVenduManagerException("select by etat de la Vente");
+
+			}
+
+			return listeArticles;
+		}
+	
+	
 	
 	
 }
