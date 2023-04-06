@@ -3,6 +3,7 @@ package fr.eni.projetjee.TrocEncheres.servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 import java.time.LocalDate;
 
 import javax.servlet.RequestDispatcher;
@@ -59,7 +60,36 @@ public class ServletDetailVente extends HttpServlet {
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
 		}
-
+		
+		List<Enchere> lstEncheres = null;
+		
+		try {
+			
+			lstEncheres = enchereManager.selectAllEncheres();
+			System.out.println("lstEncheres : "+  lstEncheres);
+			
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Integer enchMax = 0;
+		Utilisateur winner = null;
+		
+		for (int i = 0; i < lstEncheres.size(); i++) {
+			if (lstEncheres.get(i).getMontantEnchere() >= enchMax ) {
+				enchMax = lstEncheres.get(i).getMontantEnchere();
+				winner = lstEncheres.get(i).getUtilisateur();
+			}
+		}
+		
+		System.out.println(winner);
+		
+		request.setAttribute("acquereur", winner);
+		
 		session.setAttribute("utilisateur", utilisateur);
 		request.setAttribute("article", article);
 		RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
@@ -73,8 +103,6 @@ public class ServletDetailVente extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
-		
-		// Récupérer l'article et le montant de l'enchere, date, utilisateur
 
 		String montantSaisi = request.getParameter("proposition");
 		
@@ -84,7 +112,6 @@ public class ServletDetailVente extends HttpServlet {
 		
 		Enchere enchere = new Enchere (dateJour, montantEnchere, articleAModifier.getUtilisateur(), articleAModifier);
 		
-		// Set le prix de vente au montant saisir par l'utilisateur
 		
 		if (utilisateur.getCredit() < articleAModifier.getMiseAPrix() || utilisateur.getCredit() < montantEnchere) {
 			request.setAttribute("erreur", "erreur");
@@ -100,7 +127,11 @@ public class ServletDetailVente extends HttpServlet {
 			enchere.setUtilisateur(utilisateur);
 			
 		} else {
-			//Erreur
+			
+			request.setAttribute("erreur", "erreur");
+			RequestDispatcher rd = request.getRequestDispatcher("./DetailVente.jsp");
+			rd.forward(request, response);
+			
 		}
 		
 		Utilisateur acquereur = enchere.getUtilisateur();
@@ -126,12 +157,11 @@ public class ServletDetailVente extends HttpServlet {
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		session.setAttribute("utilisateur", utilisateur);
 		
