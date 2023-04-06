@@ -96,10 +96,8 @@ if (session.getAttribute("utilisateur") == null) {
 			</p>
 				<p>
 				<strong>Catégorie :</strong>
-				<%=articleCourant.getCategorie().getLibelle()%>
-				
+				<%=articleCourant.getCategorie().getLibelle()%>	
 			</p>
-			<br>
 			<p>
 				<strong> Prix : </strong>
 				<%=articleCourant.getMiseAPrix()%>
