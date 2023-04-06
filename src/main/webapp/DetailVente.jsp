@@ -54,10 +54,9 @@
 				<p>
 					Meilleure offre :
 					<%=article.getPrixDeVente()%>
-					points | par 
-					<% Utilisateur usr = (Utilisateur) request.getAttribute("acquereur"); 
-					if (usr != null) {%>
-					
+					points 
+					<%Utilisateur usr = (Utilisateur) request.getAttribute("acquereur"); %>
+					<% if (usr != null) {%> | par 
 						<%=usr.getPseudo()%>
 					<%
 						}

@@ -54,7 +54,6 @@ public class ServletDetailVente extends HttpServlet {
 		try {
 
 			article = articleManager.selectById(id);
-			System.out.println(article);
 
 		
 		} catch (ArticleVenduManagerException e) {
@@ -69,10 +68,8 @@ public class ServletDetailVente extends HttpServlet {
 			System.out.println("lstEncheres : "+  lstEncheres);
 			
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -105,13 +102,21 @@ public class ServletDetailVente extends HttpServlet {
 
 
 		String montantSaisi = request.getParameter("proposition");
-		
 		ArticleVendu articleAModifier = (ArticleVendu) session.getAttribute("article");
+		
 		Integer montantEnchere = Integer.parseInt(montantSaisi);
-		LocalDate dateJour = LocalDate.now();
 		
-		Enchere enchere = new Enchere (dateJour, montantEnchere, articleAModifier.getUtilisateur(), articleAModifier);
+		Enchere enchere = null;
 		
+		try {
+			
+			 enchere = enchereManager.selectEnchereByNoArticle(articleAModifier.getNoArticle());
+			 
+		} catch (DALException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		
 		if (utilisateur.getCredit() < articleAModifier.getMiseAPrix() || utilisateur.getCredit() < montantEnchere) {
 			request.setAttribute("erreur", "erreur");
@@ -138,12 +143,10 @@ public class ServletDetailVente extends HttpServlet {
 		System.out.println("L'acquéreur est : " + acquereur);
 		
 		
-		// Update l'article en BDD
-		
 		try {
 			
 			articleManager.updatePdv(articleAModifier);
-			enchereManager.insertEnchere(enchere);
+			enchereManager.updateEnchere(enchere);
 			
 			try {
 				

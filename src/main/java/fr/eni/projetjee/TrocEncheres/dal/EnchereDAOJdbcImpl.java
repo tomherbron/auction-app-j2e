@@ -20,6 +20,7 @@ public class EnchereDAOJdbcImpl implements IEnchereDAO {
 	private static final String DELETE = "DELETE FROM enchere WHERE no_enchere=?";
 	private static final String SELECTALL = "SELECT * FROM enchere LEFT JOIN article_vendu on article_vendu.no_article = enchere.no_article LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur ";
 	private static final String SELECTBYID =  "SELECT * FROM  enchere LEFT JOIN article_vendu on article_vendu.no_article = enchere.no_article LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE no_enchere = ?";
+	private static final String SELECTBYNOARTICLE = "SELECT * FROM enchere LEFT JOIN article_vendu on article_vendu.no_article = enchere.no_article LEFT JOIN utilisateur on article_vendu.no_utilisateur = utilisateur.no_utilisateur WHERE no_article=?;";
 	
 	@Override
 	public void insertEnchere(Enchere enchere) throws DALException, SQLException {
@@ -165,6 +166,62 @@ public class EnchereDAOJdbcImpl implements IEnchereDAO {
 		return enchere;
 
 	}
+	
+	@Override
+	public Enchere selectEnchereByNoArticle(Integer noArticle) throws DALException, SQLException {
+		Enchere enchere = null;
+		
+		try (Connection con = ConnectionProvider.getConnection()){
+			
+			PreparedStatement pstmt = con.prepareStatement(SELECTBYNOARTICLE);
+			pstmt.setInt(1, noArticle);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				Integer noEnchere = rs.getInt(1);
+				LocalDate dateEnchere = rs.getDate(2).toLocalDate();
+				int montantEnchere = rs.getInt(3);
+				
+				noArticle = rs.getInt("no_article");
+				String nomArticle = rs.getString("nom_article");
+				String description = rs.getString("description");
+				LocalDate dateDebutEnchere = rs.getDate("date_debut_enchere").toLocalDate();
+				LocalDate dateFinEnchere = rs.getDate("date_fin_enchere").toLocalDate();
+				Integer miseAPrix = rs.getInt("prix_initial");
+				Integer prixDeVente = rs.getInt("prix_vente");
+				Integer noUtilisateur = rs.getInt("no_utilisateur");
+				Integer noCategorie = rs.getInt("no_categorie");
+				Boolean etatVente = rs.getBoolean("etat_vente");
+				String rue = rs.getNString("rue");
+				String codePostal = rs.getString("code_postal");
+				String ville = rs.getNString("ville");
+				String libelle = rs.getNString("libelle");
+				String pseudo = rs.getString("pseudo");
+				String nom = rs.getString("nom");
+				String prenom = rs.getString("prenom");
+				String email = rs.getString("email");
+				String telephone = rs.getString("telephone");
+				String motDePasse = rs.getString("mot_de_passe");
+				Integer credit = rs.getInt("credit");
+				Boolean administrateur = rs.getBoolean("administrateur");
+				
+				Categorie cat = new Categorie (noCategorie, libelle);
+				Retrait ret = new Retrait (rue, codePostal, ville);
+				Utilisateur user = new Utilisateur (noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+
+				ArticleVendu article = new ArticleVendu(noArticle, nomArticle, description, dateDebutEnchere, dateFinEnchere, miseAPrix, prixDeVente, etatVente, ret, user, cat);
+			
+				enchere = new Enchere (noEnchere, dateEnchere, montantEnchere, user, article);
+			}
+				pstmt.close();
+				
+		} catch (SQLException e) {
+				e.printStackTrace();
+				throw new DALException("SelectEnchereByNoArticlefailed");
+		}
+		
+		return enchere;
+	}
 
 	private Enchere enchereBuilder(ResultSet rs) throws SQLException {
 		Enchere enchereCourante;
@@ -208,5 +265,6 @@ public class EnchereDAOJdbcImpl implements IEnchereDAO {
 		
 		return enchereCourante;
 	}
+
 
 }

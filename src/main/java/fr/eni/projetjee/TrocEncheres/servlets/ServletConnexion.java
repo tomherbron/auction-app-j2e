@@ -77,13 +77,9 @@ public class ServletConnexion extends HttpServlet {
 			}
 
 		} catch (DALException e) {
-			request.setAttribute("erreur", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("./SeConnecter.jsp");
-			rd.forward(request, response);
+			e.printStackTrace();
 		} catch (UtilisateurManagerException e) {
-			request.setAttribute("erreur", e.getMessage());
-			RequestDispatcher rd = request.getRequestDispatcher("./SeConnecter.jsp");
-			rd.forward(request, response);
+			e.printStackTrace();
 		}
 	
 		

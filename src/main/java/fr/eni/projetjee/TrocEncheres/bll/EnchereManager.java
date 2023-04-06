@@ -51,4 +51,13 @@ public class EnchereManager implements IEnchereManager {
 		
 	}
 
+	@Override
+	public Enchere selectEnchereByNoArticle(Integer noArticle) throws DALException, SQLException {
+		Enchere enchere = null;
+		
+		enchere = enchereDAO.selectEnchereByNoArticle(noArticle);
+		
+		return enchere;
+	}
+
 }
