@@ -16,8 +16,11 @@ import javax.servlet.http.HttpSession;
 import fr.eni.projetjee.TrocEncheres.bll.ArticleVenduManagerException;
 import fr.eni.projetjee.TrocEncheres.bll.IArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.IEnchereManager;
+import fr.eni.projetjee.TrocEncheres.bll.IUtilisateurManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonArticleVenduManager;
 import fr.eni.projetjee.TrocEncheres.bll.SingletonEnchereManager;
+import fr.eni.projetjee.TrocEncheres.bll.SingletonUtilisateurManager;
+import fr.eni.projetjee.TrocEncheres.bll.UtilisateurManagerException;
 import fr.eni.projetjee.TrocEncheres.bo.ArticleVendu;
 import fr.eni.projetjee.TrocEncheres.bo.Enchere;
 import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
@@ -28,6 +31,7 @@ public class ServletDetailVente extends HttpServlet {
 
 	IArticleVenduManager articleManager = SingletonArticleVenduManager.getInstance();
 	IEnchereManager enchereManager = SingletonEnchereManager.getInstance();
+	IUtilisateurManager utilisateurManager = SingletonUtilisateurManager.getInstance();
 	
 	private static final long serialVersionUID = 1L;
 
@@ -109,6 +113,15 @@ public class ServletDetailVente extends HttpServlet {
 			
 			articleManager.updatePdv(articleAModifier);
 			enchereManager.insertEnchere(enchere);
+			
+			try {
+				
+				System.out.println("Les credits sont à : " + utilisateur.getCredit());
+				utilisateurManager.updateUtilisateur(utilisateur);
+				
+			} catch (UtilisateurManagerException e) {
+				e.printStackTrace();
+			}
 			
 		} catch (ArticleVenduManagerException e) {
 			e.printStackTrace();

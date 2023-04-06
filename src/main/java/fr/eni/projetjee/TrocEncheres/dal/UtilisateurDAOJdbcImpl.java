@@ -11,7 +11,7 @@ import fr.eni.projetjee.TrocEncheres.bo.Utilisateur;
 public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 
 	private static final String INSERT = "INSERT INTO utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String UPDATE = "UPDATE utilisateur SET pseudo=?, nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?, ville=?,mot_de_passe=? WHERE no_utilisateur=?";
+	private static final String UPDATE = "UPDATE utilisateur SET pseudo=?, nom=?, prenom=?,email=?, telephone=?,rue=?,code_postal=?, ville=?,mot_de_passe=?, credit=? WHERE no_utilisateur=?";
 	private static final String DELETE = "DELETE FROM utilisateur WHERE no_utilisateur=?";
 	private static final String SELECT_BY_ID = "SELECT (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit) FROM utilisateur WHERE no_utilisateur=? )";
 	private static final String SELECT_BY_LOGIN = "SELECT `no_utilisateur`, `pseudo`, `nom`, `prenom`, `email`, `telephone`, `rue`, `code_postal`, `ville`, `mot_de_passe`, `credit`, `administrateur` FROM `utilisateur` WHERE pseudo=? AND mot_de_passe=?";
@@ -66,7 +66,8 @@ public class UtilisateurDAOJdbcImpl implements IUtilisateurDAO {
 			pstmt.setString(7, utilisateur.getCodePostal());
 			pstmt.setString(8, utilisateur.getVille());
 			pstmt.setString(9, utilisateur.getMotDePasse());
-			pstmt.setInt(10, utilisateur.getNoUtilisateur());
+			pstmt.setInt(10, utilisateur.getCredit());
+			pstmt.setInt(11, utilisateur.getNoUtilisateur());
 
 			pstmt.executeUpdate();
 			pstmt.close();
