@@ -28,15 +28,15 @@
 			</header>
 			<div>
 				<h2>Profil de  ${user.pseudo }</h2>
-				<p>Pseudo :  ${user.pseudo}</p>
+				<p><strong>Pseudo :  </strong>${user.pseudo}</p>
 				
-				<p>Nom : ${user.nom}</p>
-				<p>Prénom : ${user.prenom}</p>
-				<p>Email : ${user.email}</p>
-				<p>Téléphone : ${user.telephone}</p>
-				<p>Rue : ${user.rue}</p>
-				<p>Code postal : ${user.codePostal}</p>
-				<p>Ville : ${user.ville}</p>
+				<p><strong>Nom : </strong> ${user.nom}</p>
+				<p><strong>Prénom : </strong>${user.prenom}</p>
+				<p><strong>Email : </strong>${user.email}</p>
+				<p><strong>Téléphone : </strong>${user.telephone}</p>
+				<p><strong>Rue : </strong> ${user.rue}</p>
+				<p><strong>Code postal : </strong> ${user.codePostal}</p>
+				<p><strong>Ville : </strong> ${user.ville}</p>
 			</div>
 
 			<div>

@@ -37,38 +37,38 @@
 			%>
 
 			<p>
-				Nom de l'article :
+				<strong>Nom de l'article :</strong>
 				<%=article.getNomArticle()%></p>
 			<p>
-				Description :
+				<strong>Description :</strong>
 				<%=article.getDescription()%></p>
 			<p>
-				Catégorie :
+				<strong>Catégorie :</strong>
 				<%=article.getCategorie().getLibelle()%></p>
-			<p>Prix initital : 
+			<p><strong>Prix initital : </strong>
 				<%=article.getMiseAPrix()%> points</p>
 			
 			<% 
 			if (article.getPrixDeVente() != 0) { 
 			%>	
 				<p>
-					Meilleure offre :
+					<strong>Meilleure offre :</strong>
 					<%=article.getPrixDeVente()%>
 					points
 				</p>	
 			<% } %>
 			
 			<p>
-				Fin de l'enchère :
+				<strong>Fin de l'enchère :</strong>
 				<%=article.getDateFinEnchere()%></p>
 			<p>
-				Retrait :
+				<strong>Retrait :</strong>
 				
 				<%=article.getRetrait().getRue()%>
 				<%=article.getRetrait().getCodePostal()%>
 				<%=article.getRetrait().getVille()%></p>
 			<p>
-				Vendu par :
+				<strong>Vendu par :</strong>
 				<%=article.getUtilisateur().getPseudo()%></p>
 				
 				<%
